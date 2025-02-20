@@ -12,7 +12,7 @@ pipeline {
         branch = 'main'
         repo = 'https://github.com/MiguelFerreira18/Comparing_JSON_and_ProtoBuf_in_HTTP-based-_REST_architectures'
         credentials = 'isep-dissertation'
-        dockerhub_id = 1230199
+        dockerhub_id = '1230199'
         docker_control_repo = 'control_project'
         tag = 'latest'
         DOCKERHUB_CREDENTIALS = credentials('isep-dissertation-docker')
@@ -21,7 +21,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps{
-                checkout scmGit(branches: [[name: '*/${branch}']], extensions: [], userRemoteConfigs: [[credentialsId: '${credentials}', url: '${repo}']])
+                checkout scm           
             }
         }
         stage('Build jar'){
