@@ -40,7 +40,9 @@ pipeline {
         }
         stage('Login to Dockerhub'){
             steps{
-                chooseOsCommand("docker login -u ${DOCKERHUB_CREDENTIALS_USR} --password-stdin")
+                withCredentials([usernamePassword(credentialsId: 'isep-dissertation-docker', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_NAME')]) {
+                    chooseOsCommand("docker login -u ${DOCKERHUB_NAME} -p ${DOCKERHUB_PASSWORD}")
+                }
             }
         }
         stage('Push to Dockerhub'){
