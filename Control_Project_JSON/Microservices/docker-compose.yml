@@ -1,0 +1,102 @@
+services:
+  neo4j:
+    image: neo4j:4.4.1
+    container_name: votes-neo4j
+    environment:
+      NEO4J_AUTH: neo4j/acme_neo4j
+    ports:
+      - 7474:7474 #HTTP
+      - 7687:7687 #bolt  # Ports are correctly formatted.
+
+  rabbitmq:
+    image: rabbitmq:3.10.5-management-alpine
+    container_name: rabbitmq
+    restart: on-failure:30
+    ports:
+      - 5672:5672  # Ports are correctly formatted.
+      - 15672:15672
+
+  products-query1:
+    container_name: products-query1
+    build: ./products_query_microservice
+    image: acme/products-query1
+    restart: on-failure:30
+    ports:
+      - 9091:9091  # Ports are correctly formatted.
+    depends_on:
+      - rabbitmq
+
+  products-command1:
+    container_name: products-command1
+    build: ./Product_command_microservice
+    image: acme/product-command1
+    restart: on-failure:30
+    ports:
+      - 9092:9092  # Ports are correctly formatted.
+    depends_on:
+      - rabbitmq
+
+  reviews-query1:
+    container_name: reviews-query1
+    build: ./Review_query_microservice
+    image: acme/reviews-query1
+    restart: on-failure:30
+    ports:
+      - 9191:9191  # Ports are correctly formatted.
+    depends_on:
+      - rabbitmq
+      - products-command1
+
+
+  reviews-comand1:
+    container_name: reviews-command1
+    build: ./Review_command_microservice
+    image: acme/reviews-command1
+    restart: on-failure:30
+    ports:
+      - 9192:9192  # Ports are correctly formatted.
+    depends_on:
+      - rabbitmq
+      - products-command1
+
+  votes-query1:
+    container_name: votes-query1
+    build: ./votes_query
+    image: acme/votes-query1
+    restart: on-failure:30
+    ports:
+      - 8090:8090  # Ports are correctly formatted.
+    depends_on:
+      - rabbitmq
+      - neo4j  # Corrected the service dependency to include Neo4j.
+
+  votes-comand1:
+    container_name: votes-command1
+    build: ./votes_command
+    image: acme/votes-command1
+    restart: on-failure:30
+    ports:
+      - 8091:8091  # Ports are correctly formatted.
+    depends_on:
+      - rabbitmq
+
+  loadbalancer:
+    container_name: loadbalancer
+    image: nginx:1.22.0
+    restart: on-failure:30
+    ports:
+      - 8080:8080  # Port mapping is corrected for the load balancer.
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf  # Corrected volume mapping for the load balancer config.
+    depends_on:
+      - products-query1
+      - products-command1
+      - reviews-query1
+      - reviews-comand1
+      - votes-query1
+      - votes-comand1
+
+networks:
+  default:
+    name: acme
+    driver: bridge

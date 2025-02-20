@@ -1,0 +1,115 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config-map
+data:
+  nginx.conf: |-
+    user nginx;
+    worker_processes 1;
+
+    events {
+        worker_connections 1024;
+    }
+
+    http {
+        log_format main '$remote_addr - $remote_user [$time_local] "$request" '
+                          '$status $body_bytes_sent "$http_referer" '
+                          '"$http_user_agent" "$http_x_forwarded_for"';
+
+        access_log /var/log/nginx/access.log main;  # Added a semicolon here
+
+        # Docker Containers Running
+
+        upstream products-command {
+            server products-command-svc:9092;
+           
+        }
+
+        upstream products-query {
+            server products-query-svc:9091;
+            
+        }
+
+
+         upstream reviews-command {
+            server review-command-svc:9192;
+        
+        }
+
+         upstream reviews-query {
+             server review-query-svc:9191;
+        }
+
+         upstream votes-command {
+             server votes-command-svc:8091;
+         }
+
+         upstream votes-query {
+             server votes-query-svc:8090;
+         }
+
+        server {
+            listen 8080;
+
+            location /auth {
+                proxy_pass http://products-command;
+            }
+
+
+            location /products {
+                if ($request_method = GET) {
+                    proxy_pass http://products-query;
+                }
+                if ($request_method = POST) {
+                    proxy_pass http://products-command;
+                }
+                if ($request_method = PUT) {
+                    proxy_pass http://products-command;
+                }
+                if ($request_method = DELETE) {
+                    proxy_pass http://products-command;
+                }
+                if ($request_method = PATCH) {
+                    proxy_pass http://products-command;
+                }
+            }
+
+
+            location /reviews {
+                 if ($request_method = GET) {
+                     proxy_pass http://reviews-query;
+                 }
+                 if ($request_method = POST) {
+                     proxy_pass http://reviews-command;
+                 }
+                 if ($request_method = PUT) {
+                     proxy_pass http://reviews-command;
+                 }
+                 if ($request_method = DELETE) {
+                     proxy_pass http://reviews-command;
+                 }
+
+                
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme;
+
+             }
+             
+            location /votes/getReviews {
+                 if ($request_method = GET) {
+                     proxy_pass http://votes-command;
+                 }
+            }
+
+             location /votes {
+                 if ($request_method = GET) {
+                     proxy_pass http://votes-query;
+                 }
+                 if ($request_method = POST) {
+                     proxy_pass http://votes-command;
+                 }
+             }
+        }
+      }   

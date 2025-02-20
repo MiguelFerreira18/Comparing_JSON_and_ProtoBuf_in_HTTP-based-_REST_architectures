@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: review-command
+spec:
+  replicas: 1  # Adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: review-command
+  template:
+    metadata:
+      labels:
+        app: review-command
+    spec:
+      containers:
+        - name: review-command
+          image: rodrigo1230207/review_command_microservice
+          ports:
+            - containerPort: 9092
+          resources:
+            limits:
+              cpu: "500m"  # Increase the CPU limit to 500 milliCPU
+              memory: "400Mi"  # Increase the memory limit to 500 Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: review-command-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: review-command
+  ports:
+    - port: 9092
+      targetPort: 9092

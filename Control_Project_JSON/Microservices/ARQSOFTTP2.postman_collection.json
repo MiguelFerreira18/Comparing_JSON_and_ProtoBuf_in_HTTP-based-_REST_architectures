@@ -1,0 +1,462 @@
+{
+	"info": {
+		"_postman_id": "83b32304-ca52-4898-a2e4-9f85a405d228",
+		"name": "ARQSOFT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9837439"
+	},
+	"item": [
+		{
+			"name": "Votes Query",
+			"item": [
+				{
+					"name": "GetVotesByReviewID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/votes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"votes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Votes Commands",
+			"item": [
+				{
+					"name": "UpvoteReview",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "2",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/votes/upvote/1137",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"votes",
+								"upvote",
+								"1137"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DownvoteReview",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "10",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/votes/downvote/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"votes",
+								"downvote",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reviews Commands",
+			"item": [
+				{
+					"name": "Create Review",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"reviewText\": \"This is a great product!\",\n  \"userID\": 7,\n  \"rating\": 4.5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/reviews/g4f7e85f4g54/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reviews",
+								"g4f7e85f4g54",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateReviewAndVote",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"createReviewDTO\": {\n    \"reviewText\": \"This is a great product!\",\n    \"userID\": 7,\n    \"rating\": 2\n  },\n  \"voteReviewDTO\": {\n    \"userID\": 1,\n    \"vote\": \"upVote\"\n  }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/reviews/g4f7e85f4g54/votes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reviews",
+								"g4f7e85f4g54",
+								"votes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "CreateReviewAndVote",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"createReviewDTO\": {\n    \"reviewText\": \"This is a great product!\",\n    \"userID\": 7,\n    \"rating\": 2\n  },\n  \"voteReviewDTO\": {\n    \"userID\": 1,\n    \"vote\": \"upVote\"\n  }\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/reviews/g4f7e85f4g54/votes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"reviews",
+										"g4f7e85f4g54",
+										"votes"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 02 Jan 2024 22:53:35 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"reviewDTO\": {\n        \"idReview\": 1238,\n        \"reviewText\": \"This is a great product!\",\n        \"approvalStatus\": \"pending\",\n        \"funFact\": \"January 2nd is the day in 1959 that Luna 1, the first spacecraft to reach the vicinity of the Moon and to orbit the Sun, is launched by the Soviet Union.\",\n        \"rating\": 2,\n        \"vote\": 0,\n        \"numberApproved\": 0\n    },\n    \"voteReviewDTO\": {\n        \"userID\": 1,\n        \"vote\": \"upVote\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "CreateReviewAndVoteToRollback",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"createReviewDTO\": {\n    \"reviewText\": \"This is a great product!\",\n    \"userID\": 7,\n    \"rating\": 2\n  },\n  \"voteReviewDTO\": {\n    \"userID\": 1,\n    \"vote\": \"Vote\"\n  }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/reviews/g4f7e85f4g54/votes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reviews",
+								"g4f7e85f4g54",
+								"votes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "CreateReviewAndVote Copy",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"createReviewDTO\": {\n    \"reviewText\": \"This is a great product!\",\n    \"userID\": 7,\n    \"rating\": 2\n  },\n  \"voteReviewDTO\": {\n    \"userID\": 1,\n    \"vote\": \"Vote\"\n  }\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/reviews/g4f7e85f4g54/votes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"reviews",
+										"g4f7e85f4g54",
+										"votes"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 02 Jan 2024 22:53:44 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"reviewDTO\": {\n        \"idReview\": 1239,\n        \"reviewText\": \"This is a great product!\",\n        \"approvalStatus\": \"pending\",\n        \"funFact\": \"January 2nd is the day in 1871 that Amadeus I becomes King of Spain.\",\n        \"rating\": 2,\n        \"vote\": 0,\n        \"numberApproved\": 0\n    },\n    \"voteReviewDTO\": {\n        \"userID\": 1,\n        \"vote\": \"Vote\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "DeleteReview",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/reviews/1172",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reviews",
+								"1172"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GetVotes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/votes/getReviews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"votes",
+						"getReviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostReviews",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"reviewText\": \"Sample review text\",\n  \"userID\": 10,\n  \"rating\": 4.5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9192/products/g4f7e85f4g54/reviews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9192",
+					"path": [
+						"products",
+						"g4f7e85f4g54",
+						"reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetReviews",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/reviews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"reviews"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
