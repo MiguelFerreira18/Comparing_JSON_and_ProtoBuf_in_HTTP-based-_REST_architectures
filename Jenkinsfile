@@ -26,14 +26,14 @@ pipeline {
         }
         stage('Build jar'){
             steps{
-                dir('Control_Project_JSON'){
+                dir('Control_Project_JSON/base_project'){
                     chooseOsCommand('mvn clean package -DskipTests')
                 }
             }
         }
         stage('Build dockerfile'){
             steps{
-                dir('Control_Project_JSON'){
+                dir('Control_Project_JSON/base_project'){
                     chooseOsCommand('docker build -t ${dockerhub_id}/${docker_control_repo}:${tag} .')
                 }
             }
@@ -45,7 +45,7 @@ pipeline {
         }
         stage('Push to Dockerhub'){
             steps{
-                dir('Control_Project_JSON'){
+                dir('Control_Project_JSON/base_project'){
                     chooseOsCommand('docker push ${dockerhub_id}/${docker_control_repo}:${tag}')
                 }
             }
