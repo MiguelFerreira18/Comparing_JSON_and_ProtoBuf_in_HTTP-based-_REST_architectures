@@ -34,19 +34,19 @@ pipeline {
         stage('Build dockerfile'){
             steps{
                 dir('Control_Project_JSON/base_project'){
-                    chooseOsCommand('docker build -t ${dockerhub_id}/${docker_control_repo}:${tag} .')
+                    chooseOsCommand("docker build -t ${dockerhub_id}/${docker_control_repo}:${tag} .")
                 }
             }
         }
         stage('Login to Dockerhub'){
             steps{
-                chooseOsCommand('docker login -u ${DOCKERHUB_CREDENTIALS_USR} --password-stdin')
+                chooseOsCommand("docker login -u ${DOCKERHUB_CREDENTIALS_USR} --password-stdin")
             }
         }
         stage('Push to Dockerhub'){
             steps{
                 dir('Control_Project_JSON/base_project'){
-                    chooseOsCommand('docker push ${dockerhub_id}/${docker_control_repo}:${tag}')
+                    chooseOsCommand("docker push ${dockerhub_id}/${docker_control_repo}:${tag}")
                 }
             }
         }
