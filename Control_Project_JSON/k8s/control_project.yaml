@@ -40,12 +40,12 @@ metadata:
   name: control-project
   namespace: monitoring
   labels:
-    release: Prometheus # Match the release label of your Prometheus instance
+    release: prometheus # Match the release label of your Prometheus instance
 spec:
   selector:
     matchLabels:
       app: control-project # Match the labels of your Spring Boot service
   endpoints:
     - port: web # The port name or number where metrics are exposed
-      path: /metrics # The path to the metrics endpoint
+      path: /actuator/prometheus # The path to the metrics endpoint
       interval: 15s # Scrape interval
