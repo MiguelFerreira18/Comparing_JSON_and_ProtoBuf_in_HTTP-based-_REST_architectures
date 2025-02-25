@@ -1,6 +1,7 @@
 package com.isep.acme.controllers.h2Controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.isep.acme.Dto.CreateProductDTO;
 import com.isep.acme.Dto.ProductDTO;
 import com.isep.acme.model.H2Entity.Product;
 import com.isep.acme.services.ProductService;
@@ -63,13 +64,13 @@ class ProductControllerTest {
 
     @Test
     void testCreateProduct() throws Exception {
-        Product newProduct = new Product("unbjh8123123", " mug ", " drink something from it");
+        CreateProductDTO newProduct = new CreateProductDTO(" mug ", " drink something from it");
 
         // Serialize the newProduct object to JSON using the objectMapper
         String requestJson = objectMapper.writeValueAsString(newProduct);
 
         // Mock the productService behavior for the "create" operation
-        Mockito.when(productService.create(Mockito.any(Product.class))).thenReturn(new ProductDTO("123654", "Sample Designation"));
+        Mockito.when(productService.create(Mockito.any(CreateProductDTO.class))).thenReturn(new ProductDTO("123654", "Sample Designation"));
 
         mockMvc.perform(MockMvcRequestBuilders.post("/products")
                         .contentType(MediaType.APPLICATION_JSON)

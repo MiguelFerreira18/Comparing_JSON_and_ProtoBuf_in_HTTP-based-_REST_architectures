@@ -65,7 +65,7 @@ class ProductController {
     public ResponseEntity<ProductDTO> create(@RequestBody CreateProductDTO manager) {
         try {
             final ProductDTO product = service.create(manager);
-            return new ResponseEntity<>(product, HttpStatus.CREATED);
+            return new ResponseEntity<ProductDTO>(product, HttpStatus.CREATED);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Product must have a unique SKU.");
         }

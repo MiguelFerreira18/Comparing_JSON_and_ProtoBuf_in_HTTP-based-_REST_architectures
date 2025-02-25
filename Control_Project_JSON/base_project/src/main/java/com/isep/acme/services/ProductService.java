@@ -1,5 +1,6 @@
 package com.isep.acme.services;
 
+import com.isep.acme.Dto.CreateProductDTO;
 import com.isep.acme.Dto.ProductDTO;
 import com.isep.acme.Dto.ProductDetailDTO;
 import com.isep.acme.model.H2Entity.Product;
@@ -18,7 +19,7 @@ public interface ProductService {
 
     ProductDetailDTO getDetails(final String sku);
 
-    ProductDTO create(final Product manager);
+    ProductDTO create(final CreateProductDTO manager);
 
     ProductDTO updateBySku(final String sku, final Product product);
 

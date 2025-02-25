@@ -67,7 +67,7 @@ public class ReviewServiceImpl implements ReviewService {
         if (funfact == null) return null;
 
 
-        Review review = new Review(createReviewDTO.getReviewText(), date, product.get(),  rating, user.get());
+        Review review = new Review(createReviewDTO.getReviewText(), date, product.get(), funfact, rating, user.get());
         repository.save(review);
 
         return ReviewMapper.toDto(review);

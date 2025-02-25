@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: control-project
+  namespace: app-namespace
 spec:
-  replicas: 1 # Adjust the number of replicas as needed
+  replicas: 1
   selector:
     matchLabels:
       app: control-project
@@ -18,27 +19,34 @@ spec:
           ports:
             - containerPort: 8080
               name: web
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "700m"
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: control-project
-  namespace: monitoring
+  namespace: app-namespace
   labels:
     app: control-project
 spec:
   selector:
     app: control-project
   ports:
-    - port: 8000
-      targetPort: 8000
+    - port: 8080
+      targetPort: 8080
       name: web
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: control-project
-  namespace: monitoring
+  namespace: app-namespace
   labels:
     release: prometheus # Match the release label of your Prometheus instance
 spec:
@@ -46,6 +54,6 @@ spec:
     matchLabels:
       app: control-project # Match the labels of your Spring Boot service
   endpoints:
-    - port: web # The port name or number where metrics are exposed
-      path: /actuator/prometheus # The path to the metrics endpoint
-      interval: 15s # Scrape interval
+    - port: web
+      path: /actuator/prometheus
+      interval: 15s

@@ -1,5 +1,6 @@
 package com.isep.acme.services;
 
+import com.isep.acme.Dto.CreateProductDTO;
 import com.isep.acme.Dto.ProductDTO;
 import com.isep.acme.Dto.ProductDetailDTO;
 import com.isep.acme.generators.Sku.ISkuGenerator;
@@ -73,8 +74,7 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public ProductDTO create(final Product product) {
-        System.out.println(skuGenerator.generateSku(product.getDesignation()));
+    public ProductDTO create(final CreateProductDTO product) {
         final Product p = new Product(skuGenerator.generateSku(product.getDesignation()), product.getDesignation(), product.getDescription());
         return repository.save(p).toDto();
     }
