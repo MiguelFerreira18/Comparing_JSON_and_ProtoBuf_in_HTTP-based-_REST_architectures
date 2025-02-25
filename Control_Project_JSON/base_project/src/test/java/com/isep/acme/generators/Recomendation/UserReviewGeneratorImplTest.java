@@ -75,22 +75,22 @@ class UserReviewGeneratorImplTest {
 
         List<Vote> downVote = List.of(vote2, vote4, vote10, vote11);
         List<Vote> upVote = List.of(vote1, vote3, vote5, vote6, vote7, vote8, vote9);
-        Review review1 = new Review(1l, 1, "approved", "reviewText1", upVote, downVote, "report", LocalDate.now(), "funFact", null, null, null);
+        Review review1 = new Review(1l, 1, "approved", "reviewText1", upVote, downVote, "report", LocalDate.now(),  null, null, null);
 
         List<Vote> downVote1 = List.of(vote2, vote4);
         List<Vote> upVote1 = List.of(vote1, vote3, vote5, vote6);
 
-        Review review2 = new Review(2l, 1, "approved", "reviewText2", upVote1, downVote1, "report", LocalDate.now(), "funFact", null, null, null);
+        Review review2 = new Review(2l, 1, "approved", "reviewText2", upVote1, downVote1, "report", LocalDate.now(),  null, null, null);
 
         List<Vote> downVote2 = List.of(vote2, vote4);
         List<Vote> upVote2 = List.of(vote1, vote3, vote5, vote6, vote7, vote8, vote9);
 
-        Review review3 = new Review(3l, 1, "approved", "reviewText3", upVote2, downVote2, "report", LocalDate.now(), "funFact", null, null, null);
+        Review review3 = new Review(3l, 1, "approved", "reviewText3", upVote2, downVote2, "report", LocalDate.now(), null, null, null);
 
         List<Vote> downVote3 = List.of(vote2, vote4, vote10, vote11);
         List<Vote> upVote3 = List.of(vote1, vote3, vote5, vote6, vote7);
 
-        Review review4 = new Review(4l, 1, "approved", "reviewText4", upVote3, downVote3, "report", LocalDate.now(), "funFact", null, null, null);
+        Review review4 = new Review(4l, 1, "approved", "reviewText4", upVote3, downVote3, "report", LocalDate.now(), null, null, null);
 
         return List.of(review1, review2, review3, review4); // Replace with actual data
     }
