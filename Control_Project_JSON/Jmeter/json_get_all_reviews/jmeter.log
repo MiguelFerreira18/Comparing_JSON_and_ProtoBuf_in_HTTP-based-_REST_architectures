@@ -1,242 +1,131 @@
-2025-02-26 11:09:56,179 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
-2025-02-26 11:09:56,200 INFO o.a.j.JMeter: Loading user properties from: C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\bin\user.properties
-2025-02-26 11:09:56,201 INFO o.a.j.JMeter: Loading system properties from: C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\bin\system.properties
-2025-02-26 11:09:56,207 INFO o.a.j.JMeter: Copyright (c) 1998-2024 The Apache Software Foundation
-2025-02-26 11:09:56,207 INFO o.a.j.JMeter: Version 5.6.3
-2025-02-26 11:09:56,207 INFO o.a.j.JMeter: java.version=17.0.10
-2025-02-26 11:09:56,207 INFO o.a.j.JMeter: java.vm.name=Java HotSpot(TM) 64-Bit Server VM
-2025-02-26 11:09:56,207 INFO o.a.j.JMeter: os.name=Windows 11
-2025-02-26 11:09:56,207 INFO o.a.j.JMeter: os.arch=amd64
-2025-02-26 11:09:56,207 INFO o.a.j.JMeter: os.version=10.0
-2025-02-26 11:09:56,207 INFO o.a.j.JMeter: file.encoding=Cp1252
-2025-02-26 11:09:56,207 INFO o.a.j.JMeter: java.awt.headless=true
-2025-02-26 11:09:56,208 INFO o.a.j.JMeter: Max memory     =1073741824
-2025-02-26 11:09:56,208 INFO o.a.j.JMeter: Available Processors =12
-2025-02-26 11:09:56,214 INFO o.a.j.JMeter: Default Locale=English (EN)
-2025-02-26 11:09:56,215 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
-2025-02-26 11:09:56,215 INFO o.a.j.JMeter: JMeterHome=C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3
-2025-02-26 11:09:56,215 INFO o.a.j.JMeter: user.dir  =C:\Users\migue\Documents\isep\DISSERTAﾇﾃO\Control_Project_JSON\Jmeter\json_get_all_reviews
-2025-02-26 11:09:56,215 INFO o.a.j.JMeter: PWD       =C:\Users\migue\Documents\isep\DISSERTAﾇﾃO\Control_Project_JSON\Jmeter\json_get_all_reviews
-2025-02-26 11:09:56,216 INFO o.a.j.JMeter: IP: 192.168.31.80 Name: Michi FullName: host.docker.internal
-2025-02-26 11:09:56,231 INFO o.a.j.JMeter: Setting property 'jmeter.reportgenerator.outputdir' to:'C:\Users\migue\Documents\isep\DISSERTAﾇﾃO\Control_Project_JSON\Jmeter\json_get_all_reviews\json_get_all_reviews_reports_3'
-2025-02-26 11:09:56,233 INFO o.a.j.s.FileServer: Default base='C:\Users\migue\Documents\isep\DISSERTAﾇﾃO\Control_Project_JSON\Jmeter\json_get_all_reviews'
-2025-02-26 11:09:56,234 INFO o.a.j.s.FileServer: Set new base='C:\Users\migue\Documents\isep\DISSERTAﾇﾃO\Control_Project_JSON\Jmeter\json_get_all_reviews'
-2025-02-26 11:09:56,358 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
-2025-02-26 11:09:56,375 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
-2025-02-26 11:09:56,376 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
-2025-02-26 11:09:56,379 INFO o.a.j.s.SaveService: Loading file: json_get_all_reviews.jmx
-2025-02-26 11:09:56,413 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2025-02-26 11:09:56,413 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2025-02-26 11:09:56,413 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2025-02-26 11:09:56,414 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2025-02-26 11:09:56,414 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
-2025-02-26 11:09:56,414 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
-2025-02-26 11:09:56,435 INFO o.a.j.JMeter: Creating summariser <summary>
-2025-02-26 11:09:56,438 INFO o.a.j.r.d.ReportGenerator: ReportGenerator will use for Parsing the separator: ','
-2025-02-26 11:09:56,438 INFO o.a.j.r.d.ReportGenerator: Will generate report at end of test from  results file: json_get_all_reviews_reports_3/json_get_all_reviews.csv
-2025-02-26 11:09:56,438 INFO o.a.j.r.d.ReportGenerator: Reading report generator properties from: C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\bin\reportgenerator.properties
-2025-02-26 11:09:56,439 INFO o.a.j.r.d.ReportGenerator: Merging with JMeter properties
-2025-02-26 11:09:56,442 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.temp_dir' not found, using default value 'temp' instead.
-2025-02-26 11:09:56,443 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.apdex_per_transaction' not found, using default value 'null' instead.
-2025-02-26 11:09:56,443 INFO o.a.j.r.c.ReportGeneratorConfiguration: apdex_per_transaction is empty, not APDEX per transaction customization
-2025-02-26 11:09:56,443 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.sample_filter' not found, using default value 'null' instead.
-2025-02-26 11:09:56,444 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.report_title' not found, using default value 'null' instead.
-2025-02-26 11:09:56,444 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.start_date' not found, using default value 'null' instead.
-2025-02-26 11:09:56,444 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.end_date' not found, using default value 'null' instead.
-2025-02-26 11:09:56,444 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.date_format' not found, using default value 'null' instead.
-2025-02-26 11:09:56,445 INFO o.a.j.r.c.ReportGeneratorConfiguration: Will use date range start date: null, end date: null
-2025-02-26 11:09:56,447 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.totalTPS.exclude_controllers' not found, using default value 'false' instead.
-2025-02-26 11:09:56,447 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.activeThreadsOverTime.exclude_controllers' not found, using default value 'false' instead.
-2025-02-26 11:09:56,447 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.timeVsThreads.exclude_controllers' not found, using default value 'false' instead.
-2025-02-26 11:09:56,447 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimeDistribution.exclude_controllers' not found, using default value 'false' instead.
-2025-02-26 11:09:56,447 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.transactionsPerSecond.exclude_controllers' not found, using default value 'false' instead.
-2025-02-26 11:09:56,447 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimePercentiles.exclude_controllers' not found, using default value 'false' instead.
-2025-02-26 11:09:56,448 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimePercentilesOverTime.exclude_controllers' not found, using default value 'false' instead.
-2025-02-26 11:09:56,448 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimesOverTime.exclude_controllers' not found, using default value 'false' instead.
-2025-02-26 11:09:56,448 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.connectTimeOverTime.exclude_controllers' not found, using default value 'false' instead.
-2025-02-26 11:09:56,448 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.latenciesOverTime.exclude_controllers' not found, using default value 'false' instead.
-2025-02-26 11:09:56,448 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.json.filters_only_sample_series' not found, using default value 'true' instead.
-2025-02-26 11:09:56,449 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.json.series_filter' not found, using default value '' instead.
-2025-02-26 11:09:56,449 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.json.show_controllers_only' not found, using default value 'false' instead.
-2025-02-26 11:09:56,449 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.html.filters_only_sample_series' not found, using default value 'true' instead.
-2025-02-26 11:09:56,449 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.html.series_filter' not found, using default value '' instead.
-2025-02-26 11:09:56,449 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.html.show_controllers_only' not found, using default value 'false' instead.
-2025-02-26 11:09:56,456 INFO o.a.j.e.StandardJMeterEngine: Running the test!
-2025-02-26 11:09:56,457 INFO o.a.j.s.SampleEvent: List of sample_variables: []
-2025-02-26 11:09:56,457 INFO o.a.j.s.SampleEvent: List of sample_variables: []
-2025-02-26 11:09:56,460 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
-2025-02-26 11:09:56,460 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
-2025-02-26 11:09:56,501 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\jmeter-plugins-casutg-2.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:09:56,508 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\jmeter-plugins-functions-2.2.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:09:56,512 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\jmeter-plugins-modalitycovcheck-1.2.2.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:09:56,516 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\jmeter-bzm-hls-3.1.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:09:56,524 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\jmeter-debugger-0.6.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:09:56,533 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\citrix-jmeter-0.7.7.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:09:56,856 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\jmeter-plugins-apdexcovcalculator-1.0.0.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:09:56,857 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\jmeter-plugins-cmd-2.2.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:09:56,858 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\ApacheJmeter_Schema_Assertion-1.1.0.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:10:00,079 ERROR o.a.j.r.ClassFinder: Error filtering class org.apache.tika.metadata.filter.DateNormalizingMetadataFilter, it will be ignored
-java.lang.IncompatibleClassChangeError: class org.apache.tika.metadata.filter.DateNormalizingMetadataFilter has interface org.apache.tika.metadata.filter.MetadataFilter as super class
-	at java.base/java.lang.ClassLoader.defineClass1(Native Method) ~[?:?]
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1012) ~[?:?]
-	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:150) ~[?:?]
-	at java.base/java.net.URLClassLoader.defineClass(URLClassLoader.java:524) ~[?:?]
-	at java.base/java.net.URLClassLoader$1.run(URLClassLoader.java:427) ~[?:?]
-	at java.base/java.net.URLClassLoader$1.run(URLClassLoader.java:421) ~[?:?]
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712) ~[?:?]
-	at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:420) ~[?:?]
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:587) ~[?:?]
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520) ~[?:?]
-	at java.base/java.lang.Class.forName0(Native Method) ~[?:?]
-	at java.base/java.lang.Class.forName(Class.java:467) ~[?:?]
-	at org.apache.jorphan.reflect.ClassFinder$ExtendsClassFilter.isChildOf(ClassFinder.java:198) ~[jorphan.jar:5.6.3]
-	at org.apache.jorphan.reflect.ClassFinder$ExtendsClassFilter.accept(ClassFinder.java:184) ~[jorphan.jar:5.6.3]
-	at org.apache.jorphan.reflect.ClassFinder.applyFiltering(ClassFinder.java:541) ~[jorphan.jar:5.6.3]
-	at org.apache.jorphan.reflect.ClassFinder.lambda$findClassesInOnePath$2(ClassFinder.java:501) ~[jorphan.jar:5.6.3]
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183) [?:?]
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179) [?:?]
-	at java.base/java.util.zip.ZipFile$EntrySpliterator.tryAdvance(ZipFile.java:567) [?:?]
-	at java.base/java.util.Spliterator.forEachRemaining(Spliterator.java:332) [?:?]
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) [?:?]
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) [?:?]
-	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150) [?:?]
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173) [?:?]
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) [?:?]
-	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596) [?:?]
-	at org.apache.jorphan.reflect.ClassFinder.findClassesInOnePath(ClassFinder.java:499) [jorphan.jar:5.6.3]
-	at org.apache.jorphan.reflect.ClassFinder.findClasses(ClassFinder.java:443) [jorphan.jar:5.6.3]
-	at org.apache.jorphan.reflect.ClassFinder.findClassesThatExtend(ClassFinder.java:413) [jorphan.jar:5.6.3]
-	at org.apache.jorphan.reflect.ClassFinder.findClassesThatExtend(ClassFinder.java:336) [jorphan.jar:5.6.3]
-	at org.apache.jorphan.reflect.ClassFinder.findClassesThatExtend(ClassFinder.java:315) [jorphan.jar:5.6.3]
-	at org.apache.jmeter.util.JMeterUtils.findClassesThatExtend(JMeterUtils.java:402) [ApacheJMeter_core.jar:5.6.3]
-	at org.apache.jmeter.util.JMeterUtils.loadServicesAndScanJars(JMeterUtils.java:349) [ApacheJMeter_core.jar:5.6.3]
-	at org.apache.jmeter.engine.util.CompoundVariable.<clinit>(CompoundVariable.java:73) [ApacheJMeter_core.jar:5.6.3]
-	at org.apache.jmeter.engine.util.ValueReplacer.<init>(ValueReplacer.java:43) [ApacheJMeter_core.jar:5.6.3]
-	at org.apache.jmeter.engine.PreCompiler.<init>(PreCompiler.java:54) [ApacheJMeter_core.jar:5.6.3]
-	at org.apache.jmeter.engine.StandardJMeterEngine.run(StandardJMeterEngine.java:412) [ApacheJMeter_core.jar:5.6.3]
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
-	at java.base/java.lang.Thread.run(Thread.java:842) [?:?]
-2025-02-26 11:10:00,084 ERROR o.a.j.r.ClassFinder: Error filtering class org.apache.tika.metadata.filter.FieldNameMappingFilter, it will be ignored
-java.lang.IncompatibleClassChangeError: class org.apache.tika.metadata.filter.FieldNameMappingFilter has interface org.apache.tika.metadata.filter.MetadataFilter as super class
-	at java.base/java.lang.ClassLoader.defineClass1(Native Method) ~[?:?]
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1012) ~[?:?]
-	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:150) ~[?:?]
-	at java.base/java.net.URLClassLoader.defineClass(URLClassLoader.java:524) ~[?:?]
-	at java.base/java.net.URLClassLoader$1.run(URLClassLoader.java:427) ~[?:?]
-	at java.base/java.net.URLClassLoader$1.run(URLClassLoader.java:421) ~[?:?]
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712) ~[?:?]
-	at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:420) ~[?:?]
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:587) ~[?:?]
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520) ~[?:?]
-	at java.base/java.lang.Class.forName0(Native Method) ~[?:?]
-	at java.base/java.lang.Class.forName(Class.java:467) ~[?:?]
-	at org.apache.jorphan.reflect.ClassFinder$ExtendsClassFilter.isChildOf(ClassFinder.java:198) ~[jorphan.jar:5.6.3]
-	at org.apache.jorphan.reflect.ClassFinder$ExtendsClassFilter.accept(ClassFinder.java:184) ~[jorphan.jar:5.6.3]
-	at org.apache.jorphan.reflect.ClassFinder.applyFiltering(ClassFinder.java:541) ~[jorphan.jar:5.6.3]
-	at org.apache.jorphan.reflect.ClassFinder.lambda$findClassesInOnePath$2(ClassFinder.java:501) ~[jorphan.jar:5.6.3]
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183) [?:?]
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179) [?:?]
-	at java.base/java.util.zip.ZipFile$EntrySpliterator.tryAdvance(ZipFile.java:567) [?:?]
-	at java.base/java.util.Spliterator.forEachRemaining(Spliterator.java:332) [?:?]
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) [?:?]
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) [?:?]
-	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150) [?:?]
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173) [?:?]
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) [?:?]
-	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596) [?:?]
-	at org.apache.jorphan.reflect.ClassFinder.findClassesInOnePath(ClassFinder.java:499) [jorphan.jar:5.6.3]
-	at org.apache.jorphan.reflect.ClassFinder.findClasses(ClassFinder.java:443) [jorphan.jar:5.6.3]
-	at org.apache.jorphan.reflect.ClassFinder.findClassesThatExtend(ClassFinder.java:413) [jorphan.jar:5.6.3]
-	at org.apache.jorphan.reflect.ClassFinder.findClassesThatExtend(ClassFinder.java:336) [jorphan.jar:5.6.3]
-	at org.apache.jorphan.reflect.ClassFinder.findClassesThatExtend(ClassFinder.java:315) [jorphan.jar:5.6.3]
-	at org.apache.jmeter.util.JMeterUtils.findClassesThatExtend(JMeterUtils.java:402) [ApacheJMeter_core.jar:5.6.3]
-	at org.apache.jmeter.util.JMeterUtils.loadServicesAndScanJars(JMeterUtils.java:349) [ApacheJMeter_core.jar:5.6.3]
-	at org.apache.jmeter.engine.util.CompoundVariable.<clinit>(CompoundVariable.java:73) [ApacheJMeter_core.jar:5.6.3]
-	at org.apache.jmeter.engine.util.ValueReplacer.<init>(ValueReplacer.java:43) [ApacheJMeter_core.jar:5.6.3]
-	at org.apache.jmeter.engine.PreCompiler.<init>(PreCompiler.java:54) [ApacheJMeter_core.jar:5.6.3]
-	at org.apache.jmeter.engine.StandardJMeterEngine.run(StandardJMeterEngine.java:412) [ApacheJMeter_core.jar:5.6.3]
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
-	at java.base/java.lang.Thread.run(Thread.java:842) [?:?]
-2025-02-26 11:10:00,143 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\jmeter-plugins-csl-0.1.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:10:00,144 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\jmeter-plugins-senseuploader-3.5.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:10:00,150 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\jmeter-plugins-cohendeffectsize-1.2.2.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:10:00,152 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\jmeter-bzm-rte-3.3.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:10:00,174 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\jmeter-plugins-graphs-composite-2.0.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:10:00,177 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\jmeter-bzm-correlation-recorder-2.6.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:10:00,223 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\bzm-repositories-plugin-1.3.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:10:00,232 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\jmeter-bzm-correlation-recorder-3.1.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:10:00,234 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\jmeter-plugins-cohendeffectsize-1.2.0.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:10:00,234 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\jmeter-plugins-casutg-3.0.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:10:00,234 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\jmeter-plugins-modalitycovcheck-1.2.1.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:10:00,235 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\jmeter-bzm-http2-2.0.5.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:10:00,246 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:10:00,318 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\bzm-repositories-plugin-1.2.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:10:00,319 INFO o.a.j.r.ClassFinder: Will scan jar C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\lib\ext\CustomSoapSampler-1.3.3.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-02-26 11:10:00,334 INFO o.a.j.JMeter: Running test (1740568200334)
-2025-02-26 11:10:00,354 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : Thread Group
-2025-02-26 11:10:00,354 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group Thread Group.
-2025-02-26 11:10:00,354 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
-2025-02-26 11:10:00,354 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
-2025-02-26 11:10:00,357 INFO o.a.j.t.ThreadGroup: Started thread group number 1
-2025-02-26 11:10:00,357 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
-2025-02-26 11:10:00,358 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-1
-2025-02-26 11:10:00,366 INFO o.a.j.p.h.s.HTTPHCAbstractImpl: Local host = Michi
-2025-02-26 11:10:00,370 INFO o.a.j.p.h.s.HTTPHC4Impl: HTTP request retry count = 0
-2025-02-26 11:10:00,370 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
-2025-02-26 11:10:00,370 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to UTF-8
-2025-02-26 11:10:00,371 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
-2025-02-26 11:10:00,371 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
-2025-02-26 11:10:00,425 INFO o.a.j.r.Summariser: summary +      1 in 00:00:00 =   11.0/s Avg:    23 Min:    23 Max:    23 Err:     0 (0.00%) Active: 1 Started: 1 Finished: 0
-2025-02-26 11:10:20,802 INFO o.a.j.t.JMeterThread: Thread is done: Thread Group 1-1
-2025-02-26 11:10:20,802 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-1
-2025-02-26 11:10:20,802 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
-2025-02-26 11:10:20,803 INFO o.a.j.r.Summariser: summary +  14999 in 00:00:20 =  736.0/s Avg:     1 Min:     1 Max:    53 Err:     0 (0.00%) Active: 0 Started: 1 Finished: 1
-2025-02-26 11:10:20,804 INFO o.a.j.r.Summariser: summary =  15000 in 00:00:20 =  732.8/s Avg:     1 Min:     1 Max:    53 Err:     0 (0.00%)
-2025-02-26 11:10:20,804 INFO o.a.j.JMeter: Generating Dashboard
-2025-02-26 11:10:20,804 INFO o.a.j.r.d.ReportGenerator: Flushing result collector before report Generation
-2025-02-26 11:10:20,810 INFO o.a.j.r.p.NormalizerSampleConsumer: Using format, 'ms', to parse timeStamp field
-2025-02-26 11:10:21,294 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.AggregateConsumer#stopProducing(): beginDate produced 0 samples
-2025-02-26 11:10:21,294 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.AggregateConsumer#stopProducing(): endDate produced 0 samples
-2025-02-26 11:10:21,295 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.ApdexSummaryConsumer#stopProducing(): apdexSummary produced 0 samples
-2025-02-26 11:10:21,295 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.RequestsSummaryConsumer#stopProducing(): requestsSummary produced 0 samples
-2025-02-26 11:10:21,305 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.StatisticsSummaryConsumer#stopProducing(): statisticsSummary produced 0 samples
-2025-02-26 11:10:21,307 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.Top5ErrorsBySamplerConsumer#stopProducing(): top5ErrorsBySampler produced 0 samples
-2025-02-26 11:10:21,307 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.ErrorsSummaryConsumer#stopProducing(): errorsSummary produced 0 samples
-2025-02-26 11:10:21,307 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.HitsPerSecondGraphConsumer#stopProducing(): hitsPerSecond produced 0 samples
-2025-02-26 11:10:21,409 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.LatencyVSRequestGraphConsumer#stopProducing(): latencyVsRequest produced 0 samples
-2025-02-26 11:10:21,410 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.SyntheticResponseTimeDistributionGraphConsumer#stopProducing(): syntheticResponseTimeDistribution produced 0 samples
-2025-02-26 11:10:21,410 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.BytesThroughputGraphConsumer#stopProducing(): bytesThroughputOverTime produced 0 samples
-2025-02-26 11:10:21,410 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.CodesPerSecondGraphConsumer#stopProducing(): codesPerSecond produced 0 samples
-2025-02-26 11:10:21,463 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimeVSRequestGraphConsumer#stopProducing(): responseTimeVsRequest produced 0 samples
-2025-02-26 11:10:21,465 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.FilterConsumer#stopProducing(): startIntervalControlerFilter produced 105000 samples
-2025-02-26 11:10:21,465 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.TotalTPSGraphConsumer#stopProducing(): totalTPS produced 0 samples
-2025-02-26 11:10:21,465 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ActiveThreadsGraphConsumer#stopProducing(): activeThreadsOverTime produced 0 samples
-2025-02-26 11:10:21,465 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.TimeVSThreadGraphConsumer#stopProducing(): timeVsThreads produced 0 samples
-2025-02-26 11:10:21,465 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimeDistributionGraphConsumer#stopProducing(): responseTimeDistribution produced 0 samples
-2025-02-26 11:10:21,465 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.TransactionsPerSecondGraphConsumer#stopProducing(): transactionsPerSecond produced 0 samples
-2025-02-26 11:10:21,465 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimePercentilesGraphConsumer#stopProducing(): responseTimePercentiles produced 0 samples
-2025-02-26 11:10:21,466 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimePercentilesOverTimeGraphConsumer#stopProducing(): responseTimePercentilesOverTime produced 0 samples
-2025-02-26 11:10:21,467 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimeOverTimeGraphConsumer#stopProducing(): responseTimesOverTime produced 0 samples
-2025-02-26 11:10:21,468 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ConnectTimeOverTimeGraphConsumer#stopProducing(): connectTimeOverTime produced 0 samples
-2025-02-26 11:10:21,468 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.LatencyOverTimeGraphConsumer#stopProducing(): latenciesOverTime produced 0 samples
-2025-02-26 11:10:21,468 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.FilterConsumer#stopProducing(): nameFilter produced 225000 samples
-2025-02-26 11:10:21,468 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.FilterConsumer#stopProducing(): dateRangeFilter produced 45000 samples
-2025-02-26 11:10:21,468 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.NormalizerSampleConsumer#stopProducing(): normalizer produced 15000 samples
-2025-02-26 11:10:21,468 INFO o.a.j.r.p.CsvFileSampleSource: produce(): 15000 samples produced in 649ms on channel 0
-2025-02-26 11:10:21,468 INFO o.a.j.r.d.ReportGenerator: Exporting data using exporter:'json' of className:'org.apache.jmeter.report.dashboard.JsonExporter'
-2025-02-26 11:10:21,485 INFO o.a.j.r.d.JsonExporter: Found data for consumer statisticsSummaryin context
-2025-02-26 11:10:21,486 INFO o.a.j.r.d.JsonExporter: Creating statistics for overall
-2025-02-26 11:10:21,486 INFO o.a.j.r.d.JsonExporter: Creating statistics for other transactions
-2025-02-26 11:10:21,486 INFO o.a.j.r.d.JsonExporter: Checking output folder
-2025-02-26 11:10:21,487 INFO o.a.j.r.d.JsonExporter: Writing statistics JSON to C:\Users\migue\Documents\isep\DISSERTAﾇﾃO\Control_Project_JSON\Jmeter\json_get_all_reviews\json_get_all_reviews_reports_3\statistics.json
-2025-02-26 11:10:21,504 INFO o.a.j.r.d.ReportGenerator: Exporting data using exporter:'html' of className:'org.apache.jmeter.report.dashboard.HtmlTemplateExporter'
-2025-02-26 11:10:21,505 INFO o.a.j.r.d.HtmlTemplateExporter: Will generate dashboard in folder: C:\Users\migue\Documents\isep\DISSERTAﾇﾃO\Control_Project_JSON\Jmeter\json_get_all_reviews\json_get_all_reviews_reports_3
-2025-02-26 11:10:21,564 INFO o.a.j.r.d.HtmlTemplateExporter: Report will be generated in: C:\Users\migue\Documents\isep\DISSERTAﾇﾃO\Control_Project_JSON\Jmeter\json_get_all_reviews\json_get_all_reviews_reports_3, creating folder structure
-2025-02-26 11:10:21,566 INFO o.a.j.r.d.TemplateVisitor: Copying folder from 'C:\apache-jmeter-5.6.3\apache-jmeter-5.6.3\bin\report-template' to 'C:\Users\migue\Documents\isep\DISSERTAﾇﾃO\Control_Project_JSON\Jmeter\json_get_all_reviews\json_get_all_reviews_reports_3', got message: C:\Users\migue\Documents\isep\DISSERTAﾇﾃO\Control_Project_JSON\Jmeter\json_get_all_reviews\json_get_all_reviews_reports_3, found non empty folder with following content [C:\Users\migue\Documents\isep\DISSERTAﾇﾃO\Control_Project_JSON\Jmeter\json_get_all_reviews\json_get_all_reviews_reports_3\json_get_all_reviews.csv, C:\Users\migue\Documents\isep\DISSERTAﾇﾃO\Control_Project_JSON\Jmeter\json_get_all_reviews\json_get_all_reviews_reports_3\statistics.json], will be ignored
-2025-02-26 11:10:21,775 INFO o.a.j.JMeter: Dashboard generated
+2025-02-26 15:37:20,035 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2025-02-26 15:37:20,070 INFO o.a.j.JMeter: Loading user properties from: /home/michi/.config/apache-jmeter-5.6.3/bin/user.properties
+2025-02-26 15:37:20,071 INFO o.a.j.JMeter: Loading system properties from: /home/michi/.config/apache-jmeter-5.6.3/bin/system.properties
+2025-02-26 15:37:20,081 INFO o.a.j.JMeter: Copyright (c) 1998-2024 The Apache Software Foundation
+2025-02-26 15:37:20,081 INFO o.a.j.JMeter: Version 5.6.3
+2025-02-26 15:37:20,081 INFO o.a.j.JMeter: java.version=17.0.14
+2025-02-26 15:37:20,081 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
+2025-02-26 15:37:20,081 INFO o.a.j.JMeter: os.name=Linux
+2025-02-26 15:37:20,081 INFO o.a.j.JMeter: os.arch=amd64
+2025-02-26 15:37:20,082 INFO o.a.j.JMeter: os.version=6.11.0-17-generic
+2025-02-26 15:37:20,082 INFO o.a.j.JMeter: file.encoding=UTF-8
+2025-02-26 15:37:20,082 INFO o.a.j.JMeter: java.awt.headless=true
+2025-02-26 15:37:20,082 INFO o.a.j.JMeter: Max memory     =1073741824
+2025-02-26 15:37:20,082 INFO o.a.j.JMeter: Available Processors =16
+2025-02-26 15:37:20,097 INFO o.a.j.JMeter: Default Locale=English (EN)
+2025-02-26 15:37:20,098 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2025-02-26 15:37:20,098 INFO o.a.j.JMeter: JMeterHome=/home/michi/.config/apache-jmeter-5.6.3
+2025-02-26 15:37:20,098 INFO o.a.j.JMeter: user.dir  =/home/michi/Documents/DISSERTAﾃ�ﾃグ/Comparing_JSON_and_ProtoBuf_in_HTTP-based-_REST_architectures/Control_Project_JSON/Jmeter/json_get_all_reviews
+2025-02-26 15:37:20,098 INFO o.a.j.JMeter: PWD       =/home/michi/Documents/DISSERTAﾃ�ﾃグ/Comparing_JSON_and_ProtoBuf_in_HTTP-based-_REST_architectures/Control_Project_JSON/Jmeter/json_get_all_reviews
+2025-02-26 15:37:20,099 INFO o.a.j.JMeter: IP: 127.0.1.1 Name: michi FullName: michi
+2025-02-26 15:37:20,119 INFO o.a.j.JMeter: Setting property 'jmeter.reportgenerator.outputdir' to:'/home/michi/Documents/DISSERTAﾃ�ﾃグ/Comparing_JSON_and_ProtoBuf_in_HTTP-based-_REST_architectures/Control_Project_JSON/Jmeter/json_get_all_reviews/json_get_all_reviews_reports_3'
+2025-02-26 15:37:20,124 INFO o.a.j.s.FileServer: Default base='/home/michi/Documents/DISSERTAﾃ�ﾃグ/Comparing_JSON_and_ProtoBuf_in_HTTP-based-_REST_architectures/Control_Project_JSON/Jmeter/json_get_all_reviews'
+2025-02-26 15:37:20,127 INFO o.a.j.s.FileServer: Set new base='/home/michi/Documents/DISSERTAﾃ�ﾃグ/Comparing_JSON_and_ProtoBuf_in_HTTP-based-_REST_architectures/Control_Project_JSON/Jmeter/json_get_all_reviews'
+2025-02-26 15:37:20,404 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2025-02-26 15:37:20,445 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2025-02-26 15:37:20,450 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2025-02-26 15:37:20,456 INFO o.a.j.s.SaveService: Loading file: json_get_all_reviews.jmx
+2025-02-26 15:37:20,539 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-02-26 15:37:20,539 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-02-26 15:37:20,539 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-02-26 15:37:20,539 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-02-26 15:37:20,539 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2025-02-26 15:37:20,539 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2025-02-26 15:37:20,583 INFO o.a.j.JMeter: Creating summariser <summary>
+2025-02-26 15:37:20,589 INFO o.a.j.r.d.ReportGenerator: ReportGenerator will use for Parsing the separator: ','
+2025-02-26 15:37:20,589 INFO o.a.j.r.d.ReportGenerator: Will generate report at end of test from  results file: json_get_all_reviews_reports_3/json_all_reviews_3.csv
+2025-02-26 15:37:20,589 INFO o.a.j.r.d.ReportGenerator: Reading report generator properties from: /home/michi/.config/apache-jmeter-5.6.3/bin/reportgenerator.properties
+2025-02-26 15:37:20,590 INFO o.a.j.r.d.ReportGenerator: Merging with JMeter properties
+2025-02-26 15:37:20,596 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.temp_dir' not found, using default value 'temp' instead.
+2025-02-26 15:37:20,599 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.apdex_per_transaction' not found, using default value 'null' instead.
+2025-02-26 15:37:20,600 INFO o.a.j.r.c.ReportGeneratorConfiguration: apdex_per_transaction is empty, not APDEX per transaction customization
+2025-02-26 15:37:20,600 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.sample_filter' not found, using default value 'null' instead.
+2025-02-26 15:37:20,600 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.report_title' not found, using default value 'null' instead.
+2025-02-26 15:37:20,600 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.start_date' not found, using default value 'null' instead.
+2025-02-26 15:37:20,600 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.end_date' not found, using default value 'null' instead.
+2025-02-26 15:37:20,601 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.date_format' not found, using default value 'null' instead.
+2025-02-26 15:37:20,601 INFO o.a.j.r.c.ReportGeneratorConfiguration: Will use date range start date: null, end date: null
+2025-02-26 15:37:20,607 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.totalTPS.exclude_controllers' not found, using default value 'false' instead.
+2025-02-26 15:37:20,607 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.activeThreadsOverTime.exclude_controllers' not found, using default value 'false' instead.
+2025-02-26 15:37:20,607 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.timeVsThreads.exclude_controllers' not found, using default value 'false' instead.
+2025-02-26 15:37:20,608 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimeDistribution.exclude_controllers' not found, using default value 'false' instead.
+2025-02-26 15:37:20,608 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.transactionsPerSecond.exclude_controllers' not found, using default value 'false' instead.
+2025-02-26 15:37:20,608 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimePercentiles.exclude_controllers' not found, using default value 'false' instead.
+2025-02-26 15:37:20,608 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimePercentilesOverTime.exclude_controllers' not found, using default value 'false' instead.
+2025-02-26 15:37:20,608 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimesOverTime.exclude_controllers' not found, using default value 'false' instead.
+2025-02-26 15:37:20,609 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.connectTimeOverTime.exclude_controllers' not found, using default value 'false' instead.
+2025-02-26 15:37:20,609 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.latenciesOverTime.exclude_controllers' not found, using default value 'false' instead.
+2025-02-26 15:37:20,610 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.json.filters_only_sample_series' not found, using default value 'true' instead.
+2025-02-26 15:37:20,611 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.json.series_filter' not found, using default value '' instead.
+2025-02-26 15:37:20,611 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.json.show_controllers_only' not found, using default value 'false' instead.
+2025-02-26 15:37:20,611 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.html.filters_only_sample_series' not found, using default value 'true' instead.
+2025-02-26 15:37:20,612 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.html.series_filter' not found, using default value '' instead.
+2025-02-26 15:37:20,612 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.html.show_controllers_only' not found, using default value 'false' instead.
+2025-02-26 15:37:20,629 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-02-26 15:37:20,631 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-02-26 15:37:20,631 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-02-26 15:37:20,640 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
+2025-02-26 15:37:20,640 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
+2025-02-26 15:37:20,749 INFO o.a.j.r.ClassFinder: Will scan jar /home/michi/.config/apache-jmeter-5.6.3/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-02-26 15:37:20,910 INFO o.a.j.JMeter: Running test (1740584240910)
+2025-02-26 15:37:20,941 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : Thread Group
+2025-02-26 15:37:20,942 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group Thread Group.
+2025-02-26 15:37:20,942 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2025-02-26 15:37:20,943 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2025-02-26 15:37:20,949 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2025-02-26 15:37:20,949 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2025-02-26 15:37:20,953 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-1
+2025-02-26 15:37:20,979 INFO o.a.j.p.h.s.HTTPHCAbstractImpl: Local host = michi
+2025-02-26 15:37:20,988 INFO o.a.j.p.h.s.HTTPHC4Impl: HTTP request retry count = 0
+2025-02-26 15:37:20,990 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2025-02-26 15:37:20,991 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to UTF-8
+2025-02-26 15:37:20,991 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2025-02-26 15:37:20,991 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2025-02-26 15:37:30,002 INFO o.a.j.r.Summariser: summary +   2540 in 00:00:09 =  279.4/s Avg:     3 Min:     1 Max:    51 Err:     0 (0.00%) Active: 1 Started: 1 Finished: 0
+2025-02-26 15:37:57,311 INFO o.a.j.t.JMeterThread: Thread is done: Thread Group 1-1
+2025-02-26 15:37:57,311 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-1
+2025-02-26 15:37:57,312 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2025-02-26 15:37:57,313 INFO o.a.j.r.Summariser: summary +  12460 in 00:00:27 =  456.2/s Avg:     2 Min:     0 Max:    14 Err:     0 (0.00%) Active: 0 Started: 1 Finished: 1
+2025-02-26 15:37:57,313 INFO o.a.j.r.Summariser: summary =  15000 in 00:00:36 =  412.1/s Avg:     2 Min:     0 Max:    51 Err:     0 (0.00%)
+2025-02-26 15:37:57,313 INFO o.a.j.JMeter: Generating Dashboard
+2025-02-26 15:37:57,313 INFO o.a.j.r.d.ReportGenerator: Flushing result collector before report Generation
+2025-02-26 15:37:57,325 INFO o.a.j.r.p.NormalizerSampleConsumer: Using format, 'ms', to parse timeStamp field
+2025-02-26 15:37:58,086 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.AggregateConsumer#stopProducing(): beginDate produced 0 samples
+2025-02-26 15:37:58,086 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.AggregateConsumer#stopProducing(): endDate produced 0 samples
+2025-02-26 15:37:58,089 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.ApdexSummaryConsumer#stopProducing(): apdexSummary produced 0 samples
+2025-02-26 15:37:58,089 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.RequestsSummaryConsumer#stopProducing(): requestsSummary produced 0 samples
+2025-02-26 15:37:58,109 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.StatisticsSummaryConsumer#stopProducing(): statisticsSummary produced 0 samples
+2025-02-26 15:37:58,112 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.Top5ErrorsBySamplerConsumer#stopProducing(): top5ErrorsBySampler produced 0 samples
+2025-02-26 15:37:58,112 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.ErrorsSummaryConsumer#stopProducing(): errorsSummary produced 0 samples
+2025-02-26 15:37:58,113 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.HitsPerSecondGraphConsumer#stopProducing(): hitsPerSecond produced 0 samples
+2025-02-26 15:37:58,380 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.LatencyVSRequestGraphConsumer#stopProducing(): latencyVsRequest produced 0 samples
+2025-02-26 15:37:58,383 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.SyntheticResponseTimeDistributionGraphConsumer#stopProducing(): syntheticResponseTimeDistribution produced 0 samples
+2025-02-26 15:37:58,384 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.BytesThroughputGraphConsumer#stopProducing(): bytesThroughputOverTime produced 0 samples
+2025-02-26 15:37:58,384 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.CodesPerSecondGraphConsumer#stopProducing(): codesPerSecond produced 0 samples
+2025-02-26 15:37:58,592 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimeVSRequestGraphConsumer#stopProducing(): responseTimeVsRequest produced 0 samples
+2025-02-26 15:37:58,595 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.FilterConsumer#stopProducing(): startIntervalControlerFilter produced 105000 samples
+2025-02-26 15:37:58,595 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.TotalTPSGraphConsumer#stopProducing(): totalTPS produced 0 samples
+2025-02-26 15:37:58,595 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ActiveThreadsGraphConsumer#stopProducing(): activeThreadsOverTime produced 0 samples
+2025-02-26 15:37:58,596 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.TimeVSThreadGraphConsumer#stopProducing(): timeVsThreads produced 0 samples
+2025-02-26 15:37:58,596 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimeDistributionGraphConsumer#stopProducing(): responseTimeDistribution produced 0 samples
+2025-02-26 15:37:58,596 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.TransactionsPerSecondGraphConsumer#stopProducing(): transactionsPerSecond produced 0 samples
+2025-02-26 15:37:58,596 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimePercentilesGraphConsumer#stopProducing(): responseTimePercentiles produced 0 samples
+2025-02-26 15:37:58,597 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimePercentilesOverTimeGraphConsumer#stopProducing(): responseTimePercentilesOverTime produced 0 samples
+2025-02-26 15:37:58,600 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimeOverTimeGraphConsumer#stopProducing(): responseTimesOverTime produced 0 samples
+2025-02-26 15:37:58,600 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ConnectTimeOverTimeGraphConsumer#stopProducing(): connectTimeOverTime produced 0 samples
+2025-02-26 15:37:58,601 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.LatencyOverTimeGraphConsumer#stopProducing(): latenciesOverTime produced 0 samples
+2025-02-26 15:37:58,601 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.FilterConsumer#stopProducing(): nameFilter produced 225000 samples
+2025-02-26 15:37:58,601 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.FilterConsumer#stopProducing(): dateRangeFilter produced 45000 samples
+2025-02-26 15:37:58,601 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.NormalizerSampleConsumer#stopProducing(): normalizer produced 15000 samples
+2025-02-26 15:37:58,602 INFO o.a.j.r.p.CsvFileSampleSource: produce(): 15000 samples produced in 1s 241 ms on channel 0
+2025-02-26 15:37:58,602 INFO o.a.j.r.d.ReportGenerator: Exporting data using exporter:'json' of className:'org.apache.jmeter.report.dashboard.JsonExporter'
+2025-02-26 15:37:58,722 INFO o.a.j.r.d.JsonExporter: Found data for consumer statisticsSummaryﾂin context
+2025-02-26 15:37:58,722 INFO o.a.j.r.d.JsonExporter: Creating statistics for overall
+2025-02-26 15:37:58,723 INFO o.a.j.r.d.JsonExporter: Creating statistics for other transactions
+2025-02-26 15:37:58,723 INFO o.a.j.r.d.JsonExporter: Checking output folder
+2025-02-26 15:37:58,724 INFO o.a.j.r.d.JsonExporter: Writing statistics JSON to /home/michi/Documents/DISSERTAﾃ�ﾃグ/Comparing_JSON_and_ProtoBuf_in_HTTP-based-_REST_architectures/Control_Project_JSON/Jmeter/json_get_all_reviews/json_get_all_reviews_reports_3/statistics.json
+2025-02-26 15:37:58,778 INFO o.a.j.r.d.ReportGenerator: Exporting data using exporter:'html' of className:'org.apache.jmeter.report.dashboard.HtmlTemplateExporter'
+2025-02-26 15:37:58,782 INFO o.a.j.r.d.HtmlTemplateExporter: Will generate dashboard in folder: /home/michi/Documents/DISSERTAﾃ�ﾃグ/Comparing_JSON_and_ProtoBuf_in_HTTP-based-_REST_architectures/Control_Project_JSON/Jmeter/json_get_all_reviews/json_get_all_reviews_reports_3
+2025-02-26 15:37:58,936 INFO o.a.j.r.d.HtmlTemplateExporter: Report will be generated in: /home/michi/Documents/DISSERTAﾃ�ﾃグ/Comparing_JSON_and_ProtoBuf_in_HTTP-based-_REST_architectures/Control_Project_JSON/Jmeter/json_get_all_reviews/json_get_all_reviews_reports_3, creating folder structure
+2025-02-26 15:37:58,940 INFO o.a.j.r.d.TemplateVisitor: Copying folder from '/home/michi/.config/apache-jmeter-5.6.3/bin/report-template' to '/home/michi/Documents/DISSERTAﾃ�ﾃグ/Comparing_JSON_and_ProtoBuf_in_HTTP-based-_REST_architectures/Control_Project_JSON/Jmeter/json_get_all_reviews/json_get_all_reviews_reports_3', got message: /home/michi/Documents/DISSERTAﾃ�ﾃグ/Comparing_JSON_and_ProtoBuf_in_HTTP-based-_REST_architectures/Control_Project_JSON/Jmeter/json_get_all_reviews/json_get_all_reviews_reports_3, found non empty folder with following content [/home/michi/Documents/DISSERTAﾃ�ﾃグ/Comparing_JSON_and_ProtoBuf_in_HTTP-based-_REST_architectures/Control_Project_JSON/Jmeter/json_get_all_reviews/json_get_all_reviews_reports_3/json_all_reviews_3.csv, /home/michi/Documents/DISSERTAﾃ�ﾃグ/Comparing_JSON_and_ProtoBuf_in_HTTP-based-_REST_architectures/Control_Project_JSON/Jmeter/json_get_all_reviews/json_get_all_reviews_reports_3/statistics.json], will be ignored
+2025-02-26 15:37:59,192 INFO o.a.j.JMeter: Dashboard generated

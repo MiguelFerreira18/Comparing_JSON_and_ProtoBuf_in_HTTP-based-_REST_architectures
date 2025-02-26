@@ -22,7 +22,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="true">
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">8080</stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -66,13 +66,13 @@
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJleGFtcGxlLmlvIiwic3ViIjoiMzAsYWRtaW4xQG1haWwuY29tIiwiZXhwIjoxNzQwNjA3MTY0LCJpYXQiOjE3NDA1NzExNjQsInJvbGVzIjoiQWRtaW4ifQ.HA1qKXXlvlLYQJq5DMwOAkLPB2k047LYOsTIPafMd8QVq1WQhww4fKPljt6YjbSRWvhQeCqwwTl1uGwAeKgCNyhOuHZXsriFudmFwbDI7tEqhmErxv5XPCvjQ5qoDpOxMDWX8K7f0Oy99GPDgw9lbzx6R5Cnfqa6xTozZCzG6ViEf06hYQs4OG3k_jws6E1sCRLEJtPnX9AF0LF3aeZW3vKy-qj9_PWF6CIROUR3trHkVwdyI6_iP09_3Gv1k-4qUi04TpYYv-c0p-byH64d1XkXC2lgPAxM8BvOPDRinUH5npeiX7_M5f4dwsml9qwpZQTYnRMS1aAlpXNIx-elDP5o-iSPZtfnWtZ3NUjoRwH7qQ1ZPmEvxo07T5rkqxo-n9u6zdJbOBGHFLQsK1NSQ9XqaWPQLW76rFBrL0xQGOrszVxA7CdAKYcsXCMpZDwMZx5dM18eBiXpdnT-IXj6GTioTJYR0iN9yv9kwc7Cchi7mgI_fT3k8-Hi84icDvLPmgZywZVL26D_5s24RoQT_W0BuG-Ew_OPxnuwt9TIijFXnK69r5lpA-NGgDksHWxIbu5hG2ZlTTULt6B8cAsZ3IqKmSRTqzRa6E1xBeoxE4O_F40RWfOii9UNrooZl6WPIaCtcFYf5ZZ31qo-_z6pCkDKDhQ-819HcLk1vfZ5rCk</stringProp>
+                <stringProp name="Header.value">eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJleGFtcGxlLmlvIiwic3ViIjoiMzAsYWRtaW4xQG1haWwuY29tIiwiZXhwIjoxNzQwNjIwNDQ4LCJpYXQiOjE3NDA1ODQ0NDgsInJvbGVzIjoiQWRtaW4ifQ.DpGUJI9hvrN8njw6NVuIdAv2gNKqXMV6WK4DedfB1vqs0715ZjzZP2lgXkje_nuzeUbRp6VjHUntzBCCQZt1LDy2-IBx9sxXhQFONYXhtnbjXtldN1vR__6WXnv9ZXjpQJtdnVfb7zy1FLJmhZGciGnOwzCRiaL7jwaXXsPM3or1tsGtWENdalx5ZsNbZz7QsfM5hwKvLWEF3bu6dxRYSDkYzpRd2NJIAJHMCs9YGC7q6oS46B-bCzowFSLxh1p94pmRVv_BFpDMbkoBl3P5_zF8JnpmL8Gh7TSLgvtTi-SFStGXsp6Nz_ToFbW4y2bX4M_9rCTIlSn3fR2wX6MHAf99bF8L7m5P5yFQiq4KcLJEKTXkdcYmnlK5I7XiJICQrjzUCVPEURrfQNzkJjQ22jEfmw7sYe0UXPq1hLBqXjPpHigJltrWrbc-mBGmrIwt2PAWYrOOxp0SOe5LUkmZvyti_u4VKvHgCYXW0q5_nnvms1mu4SSFHNpbaLQMkkXgAmqnyluosEZhe0FsE18T4jJr62zd9vBjaZwjW4eGX_TwETDIOL5sSaQ-0jDi5KSDjor8dbGZH3tqaxOVoou15XPAWbJiffMYxBHywnn1SnZ8lZ_OztaxXbDbulGT79pJAN4alP5UVfvVmQSd0hR6BCWrB58hW0yh_gTcaOf3kT4</stringProp>
               </elementProp>
             </collectionProp>
           </HeaderManager>
           <hashTree/>
         </hashTree>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
