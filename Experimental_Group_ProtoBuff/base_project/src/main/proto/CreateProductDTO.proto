@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "com.isep.acme.protobuf";
+
+message CreateProductDTO {
+  string designation = 1;
+  string description = 2;
+}
+

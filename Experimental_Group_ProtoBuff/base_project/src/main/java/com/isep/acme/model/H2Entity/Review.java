@@ -1,6 +1,8 @@
 package com.isep.acme.model.H2Entity;
 
 import com.isep.acme.Dto.ReviewDTO;
+import com.isep.acme.protobuf.ReviewDTOOuterClass;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -39,9 +41,6 @@ public class Review {
     @Column(nullable = false)
     private LocalDate publishingDate;
 
-    @Column(nullable = false)
-    private String funFact;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
@@ -56,17 +55,16 @@ public class Review {
     protected Review() {
     }
 
-    public Review(final Long idReview, final long version, final String approvalStatus, final String reviewText, final LocalDate publishingDate, final String funFact) {
+    public Review(final Long idReview, final long version, final String approvalStatus, final String reviewText, final LocalDate publishingDate) {
         this.idReview = Objects.requireNonNull(idReview);
         this.version = Objects.requireNonNull(version);
         setApprovalStatus(approvalStatus);
         setReviewText(reviewText);
         setPublishingDate(publishingDate);
-        setFunFact(funFact);
     }
 
-    public Review(final Long idReview, final long version, final String approvalStatus, final String reviewText, final List<Vote> upVote, final List<Vote> downVote, final String report, final LocalDate publishingDate, final String funFact, Product product, Rating rating, User user) {
-        this(idReview, version, approvalStatus, reviewText, publishingDate, funFact);
+    public Review(final Long idReview, final long version, final String approvalStatus, final String reviewText, final List<Vote> upVote, final List<Vote> downVote, final String report, final LocalDate publishingDate,  Product product, Rating rating, User user) {
+        this(idReview, version, approvalStatus, reviewText, publishingDate);
 
         setUpVote(upVote);
         setDownVote(downVote);
@@ -77,12 +75,11 @@ public class Review {
 
     }
 
-    public Review(final String reviewText, LocalDate publishingDate, Product product, String funFact, Rating rating, User user) {
+    public Review(final String reviewText, LocalDate publishingDate, Product product, Rating rating, User user) {
         setReviewText(reviewText);
         setProduct(product);
         setPublishingDate(publishingDate);
         setApprovalStatus("pending");
-        setFunFact(funFact);
         setRating(rating);
         setUser(user);
         this.upVote = new ArrayList<>();
@@ -149,13 +146,7 @@ public class Review {
         return version;
     }
 
-    public String getFunFact() {
-        return funFact;
-    }
 
-    public void setFunFact(String funFact) {
-        this.funFact = funFact;
-    }
 
     public void setProduct(Product product) {
         this.product = product;
@@ -225,7 +216,22 @@ public class Review {
         return false;
     }
 
-    public ReviewDTO toDTO() {
-        return new ReviewDTO(idReview, reviewText, publishingDate, approvalStatus, funFact, getRating().getRate(), getDownVote().size() + getUpVote().size(), product.toDto());
+    public ReviewDTOOuterClass.ReviewDTO toDTO() {
+        return ReviewDTOOuterClass.ReviewDTO.newBuilder()
+                .setIdReview(idReview)
+                .setReviewText(reviewText)
+                .setPublishingDate(toProto(publishingDate))
+                .setApprovalStatus(approvalStatus)
+                .setRating(getRating().getRate())
+                .setVote(getDownVote().size() + getUpVote().size())
+                .setProduct(product.toDto())
+                .build();
+    }
+    private ReviewDTOOuterClass.LocalDate toProto(LocalDate date) {
+        return ReviewDTOOuterClass.LocalDate.newBuilder()
+                .setDay(date.getDayOfMonth())
+                .setMonth(date.getMonthValue())
+                .setYear(date.getYear())
+                .build();
     }
 }

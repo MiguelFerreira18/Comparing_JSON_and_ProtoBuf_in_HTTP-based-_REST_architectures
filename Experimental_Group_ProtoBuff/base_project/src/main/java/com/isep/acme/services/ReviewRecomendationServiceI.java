@@ -4,6 +4,7 @@ import com.isep.acme.Dto.ReviewDTO;
 import com.isep.acme.generators.Recomendation.ReviewRecomendationGenerator;
 import com.isep.acme.model.H2Entity.Review;
 import com.isep.acme.model.H2Entity.User;
+import com.isep.acme.protobuf.ReviewDTOOuterClass;
 import com.isep.acme.repositories.ReviewServiceRepo;
 import com.isep.acme.repositories.UserServiceRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class ReviewRecomendationServiceI implements ReviewRecomendationService {
     private ReviewServiceRepo reviewServiceRepo;
 
     @Transactional
-    public List<ReviewDTO> getRecomendations(Long userId) {
+    public ReviewDTOOuterClass.ReviewCatalog getRecomendations(Long userId) {
         List<User> users = userServiceRepo.getAllUser();
         Optional<List<Review>> r = reviewServiceRepo.findActiveReviews();
 

@@ -1,6 +1,7 @@
 package com.isep.acme.model.H2Entity;
 
 import com.isep.acme.Dto.ProductDTO;
+import com.isep.acme.protobuf.ProductDTOOuterClass;
 import org.springframework.context.annotation.Profile;
 
 import javax.persistence.*;
@@ -96,8 +97,8 @@ public class Product {
         return productID;
     }
 
-    public ProductDTO toDto() {
-        return new ProductDTO(this.sku, this.designation);
+    public ProductDTOOuterClass.ProductDTO toDto() {
+        return ProductDTOOuterClass.ProductDTO.newBuilder().setSku(this.sku).setDesignation(this.designation).build();
     }
 /*
     public List<Review> getReview() {

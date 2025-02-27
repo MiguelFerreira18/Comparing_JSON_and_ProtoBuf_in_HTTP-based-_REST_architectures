@@ -1,9 +1,12 @@
 package com.isep.acme.services;
 
+import com.isep.acme.Dto.CreateProductDTO;
 import com.isep.acme.Dto.ProductDTO;
 import com.isep.acme.Dto.ProductDetailDTO;
 import com.isep.acme.generators.Sku.ISkuGenerator;
 import com.isep.acme.model.H2Entity.Product;
+import com.isep.acme.protobuf.CreateProductDTOOuterClass;
+import com.isep.acme.protobuf.ProductDTOOuterClass;
 import com.isep.acme.repositories.ProductServiceRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +31,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<ProductDTO> findBySku(String sku) {
+    public Optional<ProductDTOOuterClass.ProductDTO> findBySku(String sku) {
         final Optional<Product> product = repository.findBySku(sku);
 
         if (product.isEmpty()) {
@@ -40,25 +43,25 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public Iterable<ProductDTO> findByDesignation(final String designation) {
+    public ProductDTOOuterClass.ProductCatalogDTO findByDesignation(final String designation) {
         Iterable<Product> p = repository.findByDesignation(designation);
-        List<ProductDTO> pDto = new ArrayList<>();
+        List<ProductDTOOuterClass.ProductDTO> pDto = new ArrayList<>();
         for (Product pd : p) {
             pDto.add(pd.toDto());
         }
 
-        return pDto;
+        return ProductDTOOuterClass.ProductCatalogDTO.newBuilder().addAllProducts(pDto).build();
     }
 
     @Override
-    public Iterable<ProductDTO> getCatalog() {
+    public ProductDTOOuterClass.ProductCatalogDTO getCatalog() {
         Iterable<Product> p = repository.findAll();
-        List<ProductDTO> pDto = new ArrayList();
+        List<ProductDTOOuterClass.ProductDTO> pDto = new ArrayList<>();
         for (Product pd : p) {
             pDto.add(pd.toDto());
         }
 
-        return pDto;
+        return ProductDTOOuterClass.ProductCatalogDTO.newBuilder().addAllProducts(pDto).build();
     }
 
     public ProductDetailDTO getDetails(String sku) {
@@ -73,14 +76,13 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public ProductDTO create(final Product product) {
-        System.out.println(skuGenerator.generateSku(product.getDesignation()));
+    public ProductDTOOuterClass.ProductDTO create(final CreateProductDTOOuterClass.CreateProductDTO product) {
         final Product p = new Product(skuGenerator.generateSku(product.getDesignation()), product.getDesignation(), product.getDescription());
         return repository.save(p).toDto();
     }
 
     @Override
-    public ProductDTO updateBySku(String sku, Product product) {
+    public ProductDTOOuterClass.ProductDTO updateBySku(String sku, Product product) {
         return repository.updateBySku(assignNewProduct(sku, product)).toDto();
     }
 

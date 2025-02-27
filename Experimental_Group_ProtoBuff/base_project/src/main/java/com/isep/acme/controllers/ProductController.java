@@ -1,12 +1,13 @@
 package com.isep.acme.controllers;
 
+import com.isep.acme.Dto.CreateProductDTO;
 import com.isep.acme.Dto.ProductDTO;
 import com.isep.acme.model.H2Entity.Product;
+import com.isep.acme.protobuf.CreateProductDTOOuterClass;
+import com.isep.acme.protobuf.ProductDTOOuterClass;
 import com.isep.acme.services.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,23 +29,16 @@ class ProductController {
 
 
     @Operation(summary = "gets catalog, i.e. all products")
-    @GetMapping
-    public ResponseEntity<Iterable<ProductDTO>> getCatalog() {
-        final var products = service.getCatalog();
-        List<ProductDTO> pDto = new ArrayList();
-        for (ProductDTO pd : products) {
-            pDto.add(pd);
-        }
-
-
-        return ResponseEntity.ok().body(pDto);
+    @GetMapping(produces = "application/x-protobuf")
+    public ResponseEntity<ProductDTOOuterClass.ProductCatalogDTO> getCatalog() { //! to protobufs
+        return ResponseEntity.ok().body( service.getCatalog());
     }
 
     @Operation(summary = "finds product by sku")
-    @GetMapping(value = "/{sku}")
-    public ResponseEntity<ProductDTO> getProductBySku(@PathVariable("sku") final String sku) {
+    @GetMapping(value = "/{sku}", produces = "application/x-protobuf")
+    public ResponseEntity<ProductDTOOuterClass.ProductDTO> getProductBySku(@PathVariable("sku") final String sku) { //! to protobufs
 
-        final Optional<ProductDTO> product = Optional.ofNullable(service.findBySku(sku).get());
+        final Optional<ProductDTOOuterClass.ProductDTO> product = Optional.ofNullable(service.findBySku(sku).get());
 
         if (product.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found.");
@@ -54,19 +48,17 @@ class ProductController {
 
     @Operation(summary = "finds product by designation")
     @GetMapping(value = "/designation/{designation}")
-    public ResponseEntity<Iterable<ProductDTO>> findAllByDesignation(@PathVariable("designation") final String designation) {
-        List<ProductDTO> p = (List<ProductDTO>) service.findByDesignation(designation);
-
-        return ResponseEntity.ok().body(p);
+    public ResponseEntity<ProductDTOOuterClass.ProductCatalogDTO> findAllByDesignation(@PathVariable("designation") final String designation) {
+        return ResponseEntity.ok().body(service.findByDesignation(designation));
     }
 
     @Operation(summary = "creates a product")
-    @PostMapping
+    @PostMapping(consumes = "application/x-protobuf", produces = "application/x-protobuf")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<ProductDTO> create(@RequestBody Product manager) {
+    public ResponseEntity<ProductDTOOuterClass.ProductDTO> create(@RequestBody CreateProductDTOOuterClass.CreateProductDTO manager) { //! to protobufs
         try {
-            final ProductDTO product = service.create(manager);
-            return new ResponseEntity<ProductDTO>(product, HttpStatus.CREATED);
+            final ProductDTOOuterClass.ProductDTO product = service.create(manager);
+            return new ResponseEntity<>(product, HttpStatus.CREATED);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Product must have a unique SKU.");
         }
@@ -74,9 +66,9 @@ class ProductController {
 
     @Operation(summary = "updates a product")
     @PatchMapping(value = "/{sku}")
-    public ResponseEntity<ProductDTO> Update(@PathVariable("sku") final String sku, @RequestBody final Product product) {
+    public ResponseEntity<ProductDTOOuterClass.ProductDTO> Update(@PathVariable("sku") final String sku, @RequestBody final Product product) {
 
-        final ProductDTO productDTO = service.updateBySku(sku, product);
+        final ProductDTOOuterClass.ProductDTO productDTO = service.updateBySku(sku, product);
 
         if (productDTO == null)
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found.");

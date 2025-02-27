@@ -4,6 +4,8 @@ import com.isep.acme.Dto.CreateReviewDTO;
 import com.isep.acme.Dto.ReviewDTO;
 import com.isep.acme.Dto.VoteReviewDTO;
 import com.isep.acme.model.H2Entity.Review;
+import com.isep.acme.protobuf.CreateReviewDTOOuterClass;
+import com.isep.acme.protobuf.ReviewDTOOuterClass;
 import com.isep.acme.services.ReviewService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -41,8 +43,8 @@ class ReviewController {
     }
 
     @Operation(summary = "gets all reviews")
-    @GetMapping("/reviews")
-    public ResponseEntity<Iterable<ReviewDTO>> findReviewByUser() {
+    @GetMapping(value = "/reviews",produces = "application/x-protobuf")
+    public ResponseEntity<ReviewDTOOuterClass.ReviewCatalog> findReviewByUser() { //! to protobufs
 
         final var review = rService.getAll();
 
@@ -50,16 +52,16 @@ class ReviewController {
     }
 
     @Operation(summary = "creates review")
-    @PostMapping("/products/{sku}/reviews")
-    public ResponseEntity<ReviewDTO> createReview(@PathVariable(value = "sku") final String sku, @RequestBody CreateReviewDTO createReviewDTO) {
+    @PostMapping(value = "/products/{sku}/reviews", consumes = "application/x-protobuf", produces = "application/x-protobuf")
+    public ResponseEntity<ReviewDTOOuterClass.ReviewDTO> createReview(@PathVariable(value = "sku") final String sku, @RequestBody CreateReviewDTOOuterClass.CreateReviewDTO createReviewDTO) { //! to protobufs
 
-        final var review = rService.create(createReviewDTO, sku);
+        final ReviewDTOOuterClass.ReviewDTO review = rService.create(createReviewDTO, sku);
 
         if (review == null) {
             return ResponseEntity.badRequest().build();
         }
 
-        return new ResponseEntity<ReviewDTO>(review, HttpStatus.CREATED);
+        return new ResponseEntity<ReviewDTOOuterClass.ReviewDTO>(review, HttpStatus.CREATED);
     }
 
     @Operation(summary = "add vote")

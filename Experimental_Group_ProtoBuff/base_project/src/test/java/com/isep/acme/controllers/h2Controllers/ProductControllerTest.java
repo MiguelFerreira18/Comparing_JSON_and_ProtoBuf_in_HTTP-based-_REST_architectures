@@ -1,8 +1,11 @@
 package com.isep.acme.controllers.h2Controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.isep.acme.Dto.CreateProductDTO;
 import com.isep.acme.Dto.ProductDTO;
 import com.isep.acme.model.H2Entity.Product;
+import com.isep.acme.protobuf.CreateProductDTOOuterClass;
+import com.isep.acme.protobuf.ProductDTOOuterClass;
 import com.isep.acme.services.ProductService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -42,8 +45,9 @@ class ProductControllerTest {
         // Replace "sampleSku" with an actual SKU that you want to test
         String sampleSku = "c1d4e7r8d5f2";
 
-        // You might want to mock productService to return a specific product for this SKU
-        Mockito.when(productService.findBySku(sampleSku)).thenReturn(Optional.of(new ProductDTO("987789", "Sample Designation")));
+        ProductDTOOuterClass.ProductDTO product = ProductDTOOuterClass.ProductDTO.newBuilder().setSku("123554").setDesignation("Sample Designation").build();
+
+        Mockito.when(productService.findBySku(sampleSku)).thenReturn(Optional.of(product));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/products/" + sampleSku)
                         .contentType(MediaType.APPLICATION_JSON))
@@ -63,13 +67,12 @@ class ProductControllerTest {
 
     @Test
     void testCreateProduct() throws Exception {
-        Product newProduct = new Product("unbjh8123123", " mug ", " drink something from it");
+        CreateProductDTO newProduct = new CreateProductDTO(" mug ", " drink something from it");
 
         // Serialize the newProduct object to JSON using the objectMapper
         String requestJson = objectMapper.writeValueAsString(newProduct);
-
-        // Mock the productService behavior for the "create" operation
-        Mockito.when(productService.create(Mockito.any(Product.class))).thenReturn(new ProductDTO("123654", "Sample Designation"));
+        ProductDTOOuterClass.ProductDTO product = ProductDTOOuterClass.ProductDTO.newBuilder().setSku("123554").setDesignation("Sample Designation").build();
+        Mockito.when(productService.create(Mockito.any(CreateProductDTOOuterClass.CreateProductDTO.class))).thenReturn(product);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/products")
                         .contentType(MediaType.APPLICATION_JSON)

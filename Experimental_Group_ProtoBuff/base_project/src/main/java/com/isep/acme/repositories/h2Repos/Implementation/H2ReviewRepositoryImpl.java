@@ -5,6 +5,7 @@ import com.isep.acme.Mapper.ReviewMapper;
 import com.isep.acme.model.H2Entity.Product;
 import com.isep.acme.model.H2Entity.Review;
 import com.isep.acme.model.H2Entity.User;
+import com.isep.acme.protobuf.ReviewDTOOuterClass;
 import com.isep.acme.repositories.ReviewServiceRepo;
 import com.isep.acme.repositories.h2Repos.Repos.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,12 +81,13 @@ public class H2ReviewRepositoryImpl implements ReviewServiceRepo {
 
     @Transactional
     @Override
-    public List<ReviewDTO> findAll() {
-        List<ReviewDTO> reviews = new ArrayList<>();
-        repository.findAll().forEach(review -> {
-            reviews.add(ReviewMapper.toDto(review));
-        });
+    public ReviewDTOOuterClass.ReviewCatalog findAll() {
+        Iterable<Review> reviews = repository.findAll();
+        List<ReviewDTOOuterClass.ReviewDTO> reviewsDTO = new ArrayList<>();
+        for (Review r : reviews) {
+            reviewsDTO.add(r.toDTO());
+        }
 
-        return reviews;
+        return ReviewDTOOuterClass.ReviewCatalog.newBuilder().addAllReviews(reviewsDTO).build();
     }
 }

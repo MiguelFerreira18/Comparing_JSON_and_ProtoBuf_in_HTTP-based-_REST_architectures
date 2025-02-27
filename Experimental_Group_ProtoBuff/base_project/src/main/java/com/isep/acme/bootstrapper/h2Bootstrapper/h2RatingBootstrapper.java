@@ -54,10 +54,7 @@ public class h2RatingBootstrapper implements CommandLineRunner {
             repository.save(rate35);
         }
 
-        if (repository.findByRate(4.0).isEmpty()) {
-            Rating rate4 = new Rating(4.0);
-            repository.save(rate4);
-        }
+
 
         if (repository.findByRate(4.5).isEmpty()) {
             Rating rate45 = new Rating(4.5);

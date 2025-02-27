@@ -11,7 +11,7 @@ import java.util.List;
 public class ReviewMapper {
 
     public static ReviewDTO toDto(Review review) {
-        return new ReviewDTO(review.getIdReview(), review.getReviewText(), review.getPublishingDate(), review.getApprovalStatus(), review.getFunFact(), review.getRating().getRate(), review.getUpVote().size(),review.getProduct().toDto());
+        return new ReviewDTO(review.getIdReview(), review.getReviewText(), review.getPublishingDate(), review.getApprovalStatus(), review.getRating().getRate(), review.getUpVote().size(),review.getProduct().toDto());
     }
 
     public static List<ReviewDTO> toDtoList(List<Review> review) {

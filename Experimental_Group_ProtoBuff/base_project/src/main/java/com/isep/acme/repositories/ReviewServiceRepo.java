@@ -4,6 +4,7 @@ import com.isep.acme.Dto.ReviewDTO;
 import com.isep.acme.model.H2Entity.Product;
 import com.isep.acme.model.H2Entity.Review;
 import com.isep.acme.model.H2Entity.User;
+import com.isep.acme.protobuf.ReviewDTOOuterClass;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +30,7 @@ public interface ReviewServiceRepo {
 
     Optional<List<Review>> findTopReviews();
 
-    List<ReviewDTO> findAll();
+    ReviewDTOOuterClass.ReviewCatalog findAll();
 
 
 }

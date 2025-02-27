@@ -5,16 +5,18 @@ import com.isep.acme.Dto.ReviewDTO;
 import com.isep.acme.Dto.VoteReviewDTO;
 import com.isep.acme.model.H2Entity.Product;
 import com.isep.acme.model.H2Entity.Review;
+import com.isep.acme.protobuf.CreateReviewDTOOuterClass;
+import com.isep.acme.protobuf.ReviewDTOOuterClass;
 
 import java.util.List;
 
 public interface ReviewService {
 
-    Iterable<ReviewDTO> getAll();
+    ReviewDTOOuterClass.ReviewCatalog getAll();
 
     List<ReviewDTO> getReviewsOfProduct(String sku, String status);
 
-    ReviewDTO create(CreateReviewDTO createReviewDTO, String sku);
+    ReviewDTOOuterClass.ReviewDTO create(CreateReviewDTOOuterClass.CreateReviewDTO createReviewDTO, String sku);
 
     boolean addVoteToReview(Long reviewID, VoteReviewDTO voteReviewDTO);
 

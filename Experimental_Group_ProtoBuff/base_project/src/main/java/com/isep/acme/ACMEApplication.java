@@ -7,6 +7,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.BufferedImageHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.protobuf.ProtobufHttpMessageConverter;
 
 import java.awt.image.BufferedImage;
 
@@ -18,6 +19,11 @@ public class ACMEApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ACMEApplication.class, args);
+    }
+
+    @Bean
+    ProtobufHttpMessageConverter protobufHttpMessageConverter(){
+        return new ProtobufHttpMessageConverter();
     }
 
     @Bean

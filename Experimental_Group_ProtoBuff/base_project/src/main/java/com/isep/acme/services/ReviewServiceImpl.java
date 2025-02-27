@@ -6,6 +6,8 @@ import com.isep.acme.Dto.VoteReviewDTO;
 import com.isep.acme.Mapper.ReviewMapper;
 import com.isep.acme.controllers.ResourceNotFoundException;
 import com.isep.acme.model.H2Entity.*;
+import com.isep.acme.protobuf.CreateReviewDTOOuterClass;
+import com.isep.acme.protobuf.ReviewDTOOuterClass;
 import com.isep.acme.repositories.ProductServiceRepo;
 import com.isep.acme.repositories.ReviewServiceRepo;
 import com.isep.acme.repositories.UserServiceRepo;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,12 +42,12 @@ public class ReviewServiceImpl implements ReviewService {
     RestService restService;
 
     @Override
-    public Iterable<ReviewDTO> getAll() {
+    public ReviewDTOOuterClass.ReviewCatalog getAll() {
         return repository.findAll();
     }
 
     @Override
-    public ReviewDTO create(final CreateReviewDTO createReviewDTO, String sku) {
+    public ReviewDTOOuterClass.ReviewDTO create(final CreateReviewDTOOuterClass.CreateReviewDTO createReviewDTO, String sku) {
 
         final Optional<Product> product = pRepository.findBySku(sku);
 
@@ -67,10 +70,10 @@ public class ReviewServiceImpl implements ReviewService {
         if (funfact == null) return null;
 
 
-        Review review = new Review(createReviewDTO.getReviewText(), date, product.get(), funfact, rating, user.get());
+        Review review = new Review(createReviewDTO.getReviewText(), date, product.get(),  rating, user.get());
         repository.save(review);
 
-        return ReviewMapper.toDto(review);
+        return review.toDTO();
     }
 
     @Override
@@ -198,4 +201,7 @@ public class ReviewServiceImpl implements ReviewService {
 
         return r.get();
     }
+
+
+
 }

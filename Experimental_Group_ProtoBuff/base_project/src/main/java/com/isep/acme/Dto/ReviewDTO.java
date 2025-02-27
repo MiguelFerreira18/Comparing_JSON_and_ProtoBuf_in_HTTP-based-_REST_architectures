@@ -1,6 +1,7 @@
 package com.isep.acme.Dto;
 
 import com.isep.acme.model.H2Entity.Product;
+import com.isep.acme.protobuf.ProductDTOOuterClass;
 
 import java.time.LocalDate;
 
@@ -10,17 +11,15 @@ public class ReviewDTO {
     private String reviewText;
     private LocalDate publishingDate;
     private String approvalStatus;
-    private String funFact;
     private Double rating;
     private Integer vote;
-    private ProductDTO product;
+    private ProductDTOOuterClass.ProductDTO product;
 
-    public ReviewDTO(Long idReview, String reviewText, LocalDate publishingDate, String approvalStatus, String funFact, Double rating, Integer vote, ProductDTO product) {
+    public ReviewDTO(Long idReview, String reviewText, LocalDate publishingDate, String approvalStatus, Double rating, Integer vote, ProductDTOOuterClass.ProductDTO product) {
         this.idReview = idReview;
         this.reviewText = reviewText;
         this.publishingDate = publishingDate;
         this.approvalStatus = approvalStatus;
-        this.funFact = funFact;
         this.rating = rating;
         this.vote = vote;
         this.product = product;
@@ -58,14 +57,6 @@ public class ReviewDTO {
         this.approvalStatus = approvalStatus;
     }
 
-    public String getFunFact() {
-        return funFact;
-    }
-
-    public void setFunFact(String funFact) {
-        this.funFact = funFact;
-    }
-
     public Double getRating() {
         return rating;
     }
@@ -82,11 +73,11 @@ public class ReviewDTO {
         this.vote = vote;
     }
 
-    public ProductDTO getProduct() {
+    public ProductDTOOuterClass.ProductDTO getProduct() {
         return product;
     }
 
-    public void setProduct(ProductDTO product) {
+    public void setProduct(ProductDTOOuterClass.ProductDTO product) {
         this.product = product;
     }
 }

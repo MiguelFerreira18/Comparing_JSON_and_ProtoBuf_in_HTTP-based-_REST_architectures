@@ -4,6 +4,7 @@ import com.isep.acme.Dto.ReviewDTO;
 import com.isep.acme.model.H2Entity.Review;
 import com.isep.acme.model.H2Entity.User;
 import com.isep.acme.model.H2Entity.Vote;
+import com.isep.acme.protobuf.ReviewDTOOuterClass;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class PercentageReviewGeneratorImpl implements ReviewRecomendationGenerat
 
     @Transactional
     @Override
-    public List<ReviewDTO> generateReviewRecomendations(Long userIdOptional, Optional<List<User>> usersOptionalList, Optional<List<Review>> reviewsOptionalList) {
+    public ReviewDTOOuterClass.ReviewCatalog generateReviewRecomendations(Long userIdOptional, Optional<List<User>> usersOptionalList, Optional<List<Review>> reviewsOptionalList) {
         Long userId = userIdOptional;
         List<User> users = usersOptionalList.get();
         List<Review> reviewsList = reviewsOptionalList.get();
@@ -37,12 +38,12 @@ public class PercentageReviewGeneratorImpl implements ReviewRecomendationGenerat
         }
 
 
-        List<ReviewDTO> reviews = new ArrayList<>();
+        List<ReviewDTOOuterClass.ReviewDTO> reviews = new ArrayList<>();
         for (Review review : recommendations) {
             reviews.add(review.toDTO());
         }
 
-        return reviews;
+        return ReviewDTOOuterClass.ReviewCatalog.newBuilder().addAllReviews(reviews).build();
     }
 
 

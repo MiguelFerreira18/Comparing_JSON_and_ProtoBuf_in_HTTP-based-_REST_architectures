@@ -1,6 +1,7 @@
 package com.isep.acme.controllers;
 
 import com.isep.acme.Dto.ReviewDTO;
+import com.isep.acme.protobuf.ReviewDTOOuterClass;
 import com.isep.acme.services.ReviewRecomendationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ public class RecommendationController {
     ReviewRecomendationService reviewRecomendationServiceI;
 
     @GetMapping("/get/{userId}")
-    public List<ReviewDTO> getRecommendation(@PathVariable final Long userId) {
+    public ReviewDTOOuterClass.ReviewCatalog getRecommendation(@PathVariable final Long userId) {
         return reviewRecomendationServiceI.getRecomendations(userId);
     }
 }
