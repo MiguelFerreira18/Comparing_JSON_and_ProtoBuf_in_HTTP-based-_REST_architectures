@@ -8,12 +8,11 @@ import { textSummary } from 'https://jslib.k6.io/k6-summary/0.0.1/index.js';
 const responseTime = new Trend('response_time');
 const responseSizeMetric = new Trend('reponse_size');
 
-const requestSizePayloadMetric = new Trend('request_size_payload');
 
 export const options = {
     summaryTrendStats: ['avg', 'min', 'med', 'max', 'p(50)', 'p(90)', 'p(95)', 'p(99)', 'p(99.99)', 'count'],
     vus: 1,
-    iterations: 5,
+    iterations: 5000,
     duration: '20m',
     summaryTimeUnit: 'ms',
 };
@@ -32,7 +31,7 @@ export default function () {
             'Connection': 'keep-alive',
             'Accept': '*/*',
             'Cache-Control': 'no-cache',
-            'Authorization': 'eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJleGFtcGxlLmlvIiwic3ViIjoiMzAsYWRtaW4xQG1haWwuY29tIiwiZXhwIjoxNzQwNzE1MzMyLCJpYXQiOjE3NDA2NzkzMzIsInJvbGVzIjoiQWRtaW4ifQ.f5zncTtDmJA9q76Vqk0PyvdDwfKPwSh4fXmSIvTp2RyqM76RaXMM76DhMTHpoOmz0MOh67BhpW9U09wmVBX6epucUYXPjqE53u5Thf1MLfZLM7J92JZ5sAE16yMcuZYhAdyep5jalRRkyw34FZ8hF9yE8UjgR5q2CL5p0jaVDE7fPShbj8D4XqvUd2U995pD8ptMPZc4MEpqnOmLCED-i_Cy1DpYG3MYjiHeE5xToCrqLp7tVgZjjBGjrpGDkAofmCWRfJ7X3VHrRKRt-WXwqlWP_3WHmcV0lmu0JSpfIGTTEwVyU_KOv1OTI4msYFDMzsE6zG9TyZzciuyVvdH_L9Kih0AvtvP0NSdmtA5ryPeTBdjyZAECEmymHAnViZABdyrGZOHUtWrF6HTLF9MF6NhK0xWmMNvIqQ8UrIt0e2s94gSvfdOk52eQf4JE4Rzi3ddYRCiIf_jYhCBnFJdWwcwBuSVPpK5NK02y5tDQkSS1yESIWtc_D5z5gemzRAOj7wmqkMNgm3QTiyLGzLxjwq9UgMc5syH2OLxQFgOKKmbXDtA9joPDFBcuoktXTqHJh5yqg0JLYrDgqUd0ZjRW1IYdiGCaRDUx3I9sgiZdAz92M_5Ka5EmOR-CzpnlKMsvgQR4D4BJQy97A6XeKVQE5Pgm5eJjG1Knn8IAtnll_RE'
+            'Authorization': 'eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJleGFtcGxlLmlvIiwic3ViIjoiMzAsYWRtaW4xQG1haWwuY29tIiwiZXhwIjoxNzQwNzcyNDk1LCJpYXQiOjE3NDA3MzY0OTUsInJvbGVzIjoiQWRtaW4ifQ.G3H9dVF1nAZwbY0b1s797MisW_mpFtYTFf-FYSujvARK_oiCEDuR8VMwNKnxVBxCpAk5zZRIapVovk6VRkVm_wHgPOAjJpwDBb6ZTmoiTVdhd4BY8OMu_i1OFydmRAWIh9P-ULcz_CWCpR7EPlG7HvMKh-LHfnjsnXegk5w7LrMtZJShQEU3rSjZwJtebHjW3vRl5PwxGc-1cZ8-lzDJ48mzEYjUtkz65f2hEdeIUC3h1wZbngZ8WXnJPrBNTveSXjsrLZ8SiM4K_M9IQ8M6Xr16rb5h-iBdUUsiPNLODkGu6hVhV_sz3an7TXdOY2MatH2pBf1Ipy-janAUXPi4uE-m0f2TKwNohsGiHP1yuBTS2mZObPG2NFaxAVdBaAlovGiY4u0iMNavuQzllMYmz1nXX78BhQTXfKqA5FtdGVw7P8Y2kBUpCxi9hJAvcgX9wt9ktl9yOYpBk5P-McbyOmARhXIFNVWFj-5T0fjYANF1ukzx5wstJ-yhx6NPRVl0t7f_xAJARPHADo1SQ-XkYcLqsaH04nY8Gp-CwD5Nc2_z-M-evrmiJ8CgZnAtDK2NZDVFuxBqZ-0VjBVNOrLhmpnxmyQ_cZHt3FDPLRlHuAARXbOom_fYqTXm91ZuoV_g9muezKI8i_yUzRvuNTLpjU5h7Ufw6pbw_-zLFbAe04I'
         },
     };
 
@@ -41,10 +40,6 @@ export default function () {
 
     const responseSize = res.body ? res.body.length : 0;
     responseSizeMetric.add(responseSize);
-
-    const requestSizePayload = new TextEncoder().encode(payload).length;
-    requestSizePayloadMetric.add(requestSizePayload);
-
 
     check(res, {
         'is status 200': (r) => r.status === 201,
