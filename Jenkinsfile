@@ -33,7 +33,9 @@ pipeline {
         }
         stage('Build dockerfile'){
             steps{
+                chooseOsCommand("ls")
                 dir('Control_Project_JSON/convenience.store.api-main'){
+                    chooseOsCommand("ls")
                     chooseOsCommand("docker build -t ${dockerhub_id}/${docker_control_repo}:${tag} .")
                 }
             }
