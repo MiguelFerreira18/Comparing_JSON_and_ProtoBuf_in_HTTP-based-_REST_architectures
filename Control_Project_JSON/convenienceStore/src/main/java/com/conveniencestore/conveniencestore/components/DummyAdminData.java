@@ -9,6 +9,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.Random;
+
 @Component
 public class DummyAdminData implements CommandLineRunner {
     @Autowired
@@ -20,5 +22,23 @@ public class DummyAdminData implements CommandLineRunner {
         UserDTO userDTO = new UserDTO("diego", "diego@email.com", password, UserRoles.ADMIN);
         User user = new User(userDTO);
         this.userRepository.save(user);
+
+        for (int i = 0; i < 400; i++){
+            String pwd = new BCryptPasswordEncoder().encode(generateRandomPassword());
+            UserDTO userDTO1 = new UserDTO("user" + i, "user" + i + "@email.com", pwd, UserRoles.EMPLOYEE);
+            User user1 = new User(userDTO1);
+            this.userRepository.save(user1);
+        }
+    }
+
+    private String generateRandomPassword(){
+        Random random = new Random();
+        int length = random.nextInt(10) + 6;
+        StringBuilder password = new StringBuilder();
+        for (int i = 0; i < length; i++){
+            password.append((char) (random.nextInt(94) + 33));
+        }
+        return password.toString();
+
     }
 }
