@@ -34,7 +34,7 @@ export default function () {
             'Connection': 'keep-alive',
             'Accept': '*/*',
             'Cache-Control': 'no-cache',
-            'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLXByb3ZpZGVyIiwic3ViIjoiZGllZ29AZW1haWwuY29tIiwiZXhwIjoxNzQwOTQwNjY2fQ.PEqIZfnOFiCJSAHf_UA0D_UJZNEeUZR65ZjFl6itOlE'
+            'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLXByb3ZpZGVyIiwic3ViIjoiZGllZ29AZW1haWwuY29tIiwiZXhwIjoxNzQwOTQzMjI4fQ.45WhOJhQA2m3DJia4cuasl6LMMFroIxGu5xn3CIqLes'
         },
     };
 
