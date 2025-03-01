@@ -1,0 +1,18 @@
+syntax = "proto3";
+import "user_roles.proto";
+import "local_date_time.proto";
+option java_package = "com.conveniencestore.conveniencestore.protobuf";
+
+message UserResponseDTO {
+  int32 id = 1;
+  string username = 2;
+  string email = 3;
+  UserRoles role = 4;
+  LocalDateTime created_at = 5;
+  LocalDateTime updated_at = 6;
+}
+
+
+message UserResponseCatalog {
+  repeated UserResponseDTO users = 1;
+}

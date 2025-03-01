@@ -1,0 +1,17 @@
+syntax = "proto3";
+import "local_date_time.proto";
+import "product.proto";
+option java_package = "com.conveniencestore.conveniencestore.protobuf";
+
+message ProductEntity {
+  int32 id = 1;
+  string name = 2;
+  LocalDateTime created_at = 3;
+  LocalDateTime updated_at = 4;
+  repeated Product products = 5;
+}
+
+
+message ProductEntityCatalog {
+  repeated ProductEntity products = 1;
+}

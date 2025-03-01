@@ -1,0 +1,46 @@
+# Tables
+
+## Product entity
+```sql
+CREATE TABLE ProductEntity (
+  id BIGINT IDENTITY NOT NULL PRIMARY KEY,
+  name VARCHAR(90) NOT NULL UNIQUE,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+## Product 
+```sql
+CREATE TABLE Products (
+  id BIGINT IDENTITY NOT NULL PRIMARY KEY,
+  entity_id BIGINT NOT NULL,
+  sold BOOLEAN DEFAULT FALSE,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_product_entity_id FOREIGN KEY (entity_id) REFERENCES ProductEntity(id) ON DELETE CASCADE
+);
+```
+## Transaction
+```sql
+CREATE TABLE Transactions (
+    id BIGINT IDENTITY NOT NULL PRIMARY KEY,
+    cpf VARCHAR(255) NOT NULL,
+    product_id BIGINT NOT NULL,
+    created_at DATETIME NOT NULL,
+    CONSTRAINT fk_products_id FOREIGN KEY (product_id) REFERENCES Products(id)
+);
+```
+
+## Users 
+```sql
+CREATE TABLE Users (
+    id BIGINT IDENTITY NOT NULL PRIMARY KEY,
+    username VARCHAR(80) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(15) NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+```
