@@ -36,6 +36,7 @@ pipeline {
                 chooseOsCommand("dir")
                 dir('Control_Project_JSON/convenience.store'){
                     chooseOsCommand("dir")
+                    chooseOsCommand("dir target")
                     chooseOsCommand("docker build -t ${dockerhub_id}/${docker_control_repo}:${tag} .")
                 }
             }
@@ -49,7 +50,7 @@ pipeline {
         }
         stage('Push to Dockerhub'){
             steps{
-                dir('Control_Project_JSON/convenience.store.api'){
+                dir('Control_Project_JSON/convenience.store'){
                     chooseOsCommand("docker push ${dockerhub_id}/${docker_control_repo}:${tag}")
                 }
             }
