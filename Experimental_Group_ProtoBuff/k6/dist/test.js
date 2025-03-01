@@ -1,0 +1,1 @@
+(()=>{"use strict";var r={663:r=>{r.exports=require("./protobuf_create_product/protobuf_create_product_k6.js")}},e={},t=function t(o){var u=e[o];if(void 0!==u)return u.exports;var p=e[o]={exports:{}};return r[o](p,p.exports,t),p.exports}(663),o=exports;for(var u in t)o[u]=t[u];t.__esModule&&Object.defineProperty(o,"__esModule",{value:!0})})();

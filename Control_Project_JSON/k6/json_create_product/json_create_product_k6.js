@@ -4,16 +4,16 @@ import { randomString, randomIntBetween } from 'https://jslib.k6.io/k6-utils/1.4
 import { Trend } from 'k6/metrics';
 import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 import { textSummary } from 'https://jslib.k6.io/k6-summary/0.0.1/index.js';
+import encoding from 'k6/encoding';
 
 const responseTime = new Trend('response_time');
 const responseSizeMetric = new Trend('reponse_size');
 
-const requestSizePayloadMetric = new Trend('request_size_payload');
 
 export const options = {
     summaryTrendStats: ['avg', 'min', 'med', 'max', 'p(50)', 'p(90)', 'p(95)', 'p(99)', 'p(99.99)', 'count'],
     vus: 1,
-    iterations: 5,
+    iterations: 1,
     duration: '20m',
     summaryTimeUnit: 'ms',
 };
@@ -25,6 +25,9 @@ export default function () {
         designation: randomString(40, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'),
         description: randomString(20, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'),
     });
+
+    console.log(`Payload: ${payload}`);
+
 
     const params = {
         headers: {
@@ -41,9 +44,6 @@ export default function () {
 
     const responseSize = res.body ? res.body.length : 0;
     responseSizeMetric.add(responseSize);
-
-    const requestSizePayload = new TextEncoder().encode(payload).length;
-    requestSizePayloadMetric.add(requestSizePayload);
 
 
     check(res, {

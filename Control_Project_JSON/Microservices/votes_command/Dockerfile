@@ -1,7 +1,0 @@
-FROM openjdk:11
-
-COPY target/ACME-0.0.1-SNAPSHOT.jar ACME-0.0.1-SNAPSHOT.jar
-
-EXPOSE 8091
-
-ENTRYPOINT ["java","-jar","ACME-0.0.1-SNAPSHOT.jar"]

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+
+option java_package = "com.isep.acme.protobuf";
+
+
+message ProductDTO {
+  string sku = 1;
+  string designation = 2;
+}
+
+message ProductCatalogDTO {
+  repeated ProductDTO products = 1;
+}
