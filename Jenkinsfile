@@ -26,7 +26,7 @@ pipeline {
         }
         stage('Build jar'){
             steps{
-                dir('Control_Project_JSON/convenience.store.api-main'){
+                dir('Control_Project_JSON/convenience.store'){
                     chooseOsCommand('mvn clean package -DskipTests')
                 }
             }
@@ -34,7 +34,7 @@ pipeline {
         stage('Build dockerfile'){
             steps{
                 chooseOsCommand("ls")
-                dir('Control_Project_JSON/convenience.store.api-main'){
+                dir('Control_Project_JSON/convenience.store'){
                     chooseOsCommand("ls")
                     chooseOsCommand("docker build -t ${dockerhub_id}/${docker_control_repo}:${tag} .")
                 }
@@ -49,7 +49,7 @@ pipeline {
         }
         stage('Push to Dockerhub'){
             steps{
-                dir('Control_Project_JSON/convenience.store.api-main'){
+                dir('Control_Project_JSON/convenience.store.api'){
                     chooseOsCommand("docker push ${dockerhub_id}/${docker_control_repo}:${tag}")
                 }
             }
