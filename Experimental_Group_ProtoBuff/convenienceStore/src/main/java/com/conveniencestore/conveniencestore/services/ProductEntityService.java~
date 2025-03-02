@@ -111,7 +111,7 @@ public class ProductEntityService implements ServiceInterface<ProductEntityOuter
     }
 
     private LocalDateTimePbOuterClass.LocalDateTimePb convertLocalDateTime(LocalDateTime time) {
-        return LocalDateTimePbOuterClass.LocalDateTimePb.newBuilder()
+        return LocalDateTimeOuterClass.LocalDateTime.newBuilder()
                 .setYear(time.getYear())
                 .setMonth(time.getMonthValue())
                 .setDay(time.getDayOfMonth())

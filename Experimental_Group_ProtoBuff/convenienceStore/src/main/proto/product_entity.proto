@@ -1,13 +1,14 @@
 syntax = "proto3";
-import "local_date_time.proto";
+import "local_date_time_pb.proto";
 import "product.proto";
+package com.conveniencestore.conveniencestore.protobuf;
 option java_package = "com.conveniencestore.conveniencestore.protobuf";
 
 message ProductEntity {
   int32 id = 1;
   string name = 2;
-  LocalDateTime created_at = 3;
-  LocalDateTime updated_at = 4;
+  LocalDateTimePb created_at = 3;
+  LocalDateTimePb updated_at = 4;
   repeated Product products = 5;
 }
 

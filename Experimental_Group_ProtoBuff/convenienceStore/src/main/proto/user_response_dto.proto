@@ -1,6 +1,7 @@
 syntax = "proto3";
 import "user_roles.proto";
-import "local_date_time.proto";
+import "local_date_time_pb.proto";
+package com.conveniencestore.conveniencestore.protobuf;
 option java_package = "com.conveniencestore.conveniencestore.protobuf";
 
 message UserResponseDTO {
@@ -8,8 +9,8 @@ message UserResponseDTO {
   string username = 2;
   string email = 3;
   UserRoles role = 4;
-  LocalDateTime created_at = 5;
-  LocalDateTime updated_at = 6;
+  LocalDateTimePb created_at = 5;
+  LocalDateTimePb updated_at = 6;
 }
 
 

@@ -1,5 +1,6 @@
 syntax = "proto3";
 import "user_roles.proto";
+package com.conveniencestore.conveniencestore.protobuf;
 option java_package = "com.conveniencestore.conveniencestore.protobuf";
 
 message UserDTO {

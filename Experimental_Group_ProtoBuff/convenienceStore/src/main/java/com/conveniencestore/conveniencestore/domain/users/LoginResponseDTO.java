@@ -5,6 +5,6 @@ import java.time.Instant;
 public record LoginResponseDTO(
         String token,
         Instant expiresAt,
-        UserResponseDTO user
+        UserResponseJsonDTO user
 ) {
 }

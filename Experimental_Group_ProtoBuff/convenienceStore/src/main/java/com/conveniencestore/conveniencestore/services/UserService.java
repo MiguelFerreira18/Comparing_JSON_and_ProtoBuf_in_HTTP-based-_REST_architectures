@@ -3,7 +3,12 @@ package com.conveniencestore.conveniencestore.services;
 import com.conveniencestore.conveniencestore.domain.users.*;
 import com.conveniencestore.conveniencestore.domain.users.exceptions.UserAlreadyExistsException;
 import com.conveniencestore.conveniencestore.domain.users.exceptions.UserNotFoundException;
-import com.conveniencestore.conveniencestore.protobuf.*;
+import com.conveniencestore.conveniencestore.protobuf.LocalDateTimePbOuterClass.LocalDateTimePb;
+
+import com.conveniencestore.conveniencestore.protobuf.EditUserDto;
+import com.conveniencestore.conveniencestore.protobuf.UserDto;
+import com.conveniencestore.conveniencestore.protobuf.UserResponseDto;
+import com.conveniencestore.conveniencestore.protobuf.UserRolesOuterClass;
 import com.conveniencestore.conveniencestore.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
@@ -52,7 +57,7 @@ public class UserService implements ServiceInterface<UserResponseDto.UserRespons
                 direction = Sort.DEFAULT_DIRECTION;
             }
         }
-        List<UserResponseDTO> users = this.userRepository.findAllFilteredResponse(Sort.by(direction, orderby));
+        List<User> users = this.userRepository.findAllFilteredResponse(Sort.by(direction, orderby));
         return users.stream().map(this::convertFromUserResponseDto).toList();
 
     }
@@ -103,21 +108,21 @@ public class UserService implements ServiceInterface<UserResponseDto.UserRespons
     }
 
 
-    private UserResponseDto.UserResponseDTO convertFromUserResponseDto(UserResponseDTO user) {
+    private UserResponseDto.UserResponseDTO convertFromUserResponseDto(User user) {
         return UserResponseDto.UserResponseDTO.newBuilder()
-                .setId(user.id())
-                .setUsername(user.username())
-                .setEmail(user.email())
-                .setRole(convertRole(user.role()))
-                .setCreatedAt(convertLocalDateTime(user.createdAt()))
-                .setUpdatedAt(convertLocalDateTime(user.updatedAt())).build();
+                .setId(user.getId())
+                .setUsername(user.getUsername())
+                .setEmail(user.getEmail())
+                .setRole(convertRole(user.getRole()))
+                .setCreatedAt(convertLocalDateTime(user.getCreatedAt()))
+                .setUpdatedAt(convertLocalDateTime(user.getUpdatedAt())).build();
     }
     private UserRolesOuterClass.UserRoles convertRole(UserRoles role){
         if (role == UserRoles.ADMIN) return UserRolesOuterClass.UserRoles.ADMIN;
         else return UserRolesOuterClass.UserRoles.EMPLOYEE;
     }
-    private LocalDateTimeOuterClass.LocalDateTime convertLocalDateTime(LocalDateTime time){
-        return LocalDateTimeOuterClass.LocalDateTime.newBuilder()
+    private LocalDateTimePb convertLocalDateTime(LocalDateTime time){
+        return LocalDateTimePb.newBuilder()
                 .setYear(time.getYear())
                 .setMonth(time.getMonthValue())
                 .setDay(time.getDayOfMonth())

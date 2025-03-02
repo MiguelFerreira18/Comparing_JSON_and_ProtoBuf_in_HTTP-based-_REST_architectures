@@ -52,7 +52,7 @@ public class UserController {
         var auth = this.authenticationManager.authenticate(usernameAndPassword);
         User user = (User) auth.getPrincipal();
         var token = this.tokenService.genToken(user);
-        UserResponseDTO responseDTO = new UserResponseDTO(user.getId(), user.getUsername(), user.getEmail(),
+        UserResponseJsonDTO responseDTO = new UserResponseJsonDTO(user.getId(), user.getUsername(), user.getEmail(),
                 user.getRole(), user.getCreatedAt(), user.getUpdatedAt());
         return ResponseEntity.ok().body(new LoginResponseDTO(token.token(), token.expiresAt(), responseDTO));
     }

@@ -1,4 +1,5 @@
 syntax = "proto3";
+package com.conveniencestore.conveniencestore.protobuf;
 option java_package = "com.conveniencestore.conveniencestore.protobuf";
 
 

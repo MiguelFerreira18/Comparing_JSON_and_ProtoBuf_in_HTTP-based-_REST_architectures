@@ -1,5 +1,6 @@
 package com.conveniencestore.conveniencestore.domain.users;
 
+import com.conveniencestore.conveniencestore.protobuf.LocalDateTimeOuterClass;
 import com.conveniencestore.conveniencestore.protobuf.UserDto;
 import com.conveniencestore.conveniencestore.protobuf.UserResponseDto;
 import com.conveniencestore.conveniencestore.protobuf.UserRolesOuterClass;

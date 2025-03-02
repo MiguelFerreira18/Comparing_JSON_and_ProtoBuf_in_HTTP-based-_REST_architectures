@@ -1,11 +1,8 @@
 package com.conveniencestore.conveniencestore.domain.users;
 
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
-
 import java.time.LocalDateTime;
 
-public record UserResponseDTO(
+public record UserResponseJsonDTO(
         Integer id,
         String username,
         String email,
