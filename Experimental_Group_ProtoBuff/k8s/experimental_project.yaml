@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: experimental-project
+  namespace: app-namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: experimental-project
+  template:
+    metadata:
+      labels:
+        app: experimental-project
+    spec:
+      containers:
+        - name: experimental-project
+          image: 1230199/experimental_project:latest
+          ports:
+            - containerPort: 8080
+              name: web
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "700m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: experimental-project
+  namespace: app-namespace
+  labels:
+    app: experimental-project
+spec:
+  selector:
+    app: experimental-project
+  ports:
+    - port: 8080
+      targetPort: 8080
+      name: web
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: experimental-project
+  namespace: app-namespace
+  labels:
+    release: prometheus # Match the release label of your Prometheus instance
+spec:
+  selector:
+    matchLabels:
+      app: experimental-project # Match the labels of your Spring Boot service
+  endpoints:
+    - port: web
+      path: /actuator/prometheus
+      interval: 15s
