@@ -14,6 +14,7 @@ pipeline {
         credentials = 'isep-dissertation'
         dockerhub_id = '1230199'
         docker_control_repo = 'control_project'
+        docker_experimental_repo = 'experimental_project'
         tag = 'latest'
         DOCKERHUB_CREDENTIALS = credentials('isep-dissertation-docker')
     }
@@ -24,20 +25,31 @@ pipeline {
                 checkout scm           
             }
         }
-        stage('Build jar'){
+        stage('Build control jar'){
             steps{
                 dir('Control_Project_JSON/convenienceStore'){
                     chooseOsCommand('mvn clean package -DskipTests')
                 }
             }
         }
-        stage('Build dockerfile'){
+        stage('Build control dockerfile'){
             steps{
-                chooseOsCommand("dir")
                 dir('Control_Project_JSON/convenienceStore'){
-                    chooseOsCommand("dir")
-                    chooseOsCommand("dir target")
                     chooseOsCommand("docker build -t ${dockerhub_id}/${docker_control_repo}:${tag} .")
+                }
+            }
+        }
+        stage('Build experimental jar'){
+            steps{
+                dir('Experimental_Group_ProtoBuff/convenienceStore'){
+                    chooseOsCommand('mvn clean compile package -DskipTests')
+                }
+            }
+        }
+        stage('Build experimental dockerfile'){
+            steps{
+                dir('Experimental_Group_ProtoBuff/convenienceStore'){
+                    chooseOsCommand("docker build -t ${dockerhub_id}/${docker_experimental_repo}:${tag} .")
                 }
             }
         }
@@ -48,10 +60,17 @@ pipeline {
                 }
             }
         }
-        stage('Push to Dockerhub'){
+        stage('Push control project to Dockerhub'){
             steps{
                 dir('Control_Project_JSON/convenienceStore'){
                     chooseOsCommand("docker push ${dockerhub_id}/${docker_control_repo}:${tag}")
+                }
+            }
+        }
+        stage('Push experimental project to Dockerhub'){
+            steps{
+                dir('Experimental_Group_ProtoBuff/convenienceStore'){
+                    chooseOsCommand("docker push ${dockerhub_id}/${docker_experimental_repo}:${tag}")
                 }
             }
         }

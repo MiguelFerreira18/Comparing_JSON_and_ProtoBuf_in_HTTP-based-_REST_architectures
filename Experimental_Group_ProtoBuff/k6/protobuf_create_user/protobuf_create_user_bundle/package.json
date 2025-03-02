@@ -1,0 +1,28 @@
+{
+  "name": "protobuf_create_user_bundle",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@babel/core": "^7.26.9",
+    "@babel/preset-env": "^7.26.9",
+    "@types/k6": "^0.57.1",
+    "babel-loader": "^10.0.0",
+    "core-js": "^3.40.0",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "google-protobuf": "^3.21.4",
+    "protobuf_create_user_bundle": "file:",
+    "protobufjs": "^7.4.0"
+  }
+}

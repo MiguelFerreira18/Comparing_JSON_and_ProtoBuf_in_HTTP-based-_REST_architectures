@@ -1,0 +1,8 @@
+syntax = "proto3";
+option java_package = "com.conveniencestore.conveniencestore.protobuf";
+
+
+enum UserRoles {
+  ADMIN = 0;
+  EMPLOYEE = 1;
+}

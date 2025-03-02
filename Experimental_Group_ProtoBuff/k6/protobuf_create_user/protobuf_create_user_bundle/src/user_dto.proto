@@ -1,0 +1,11 @@
+syntax = "proto3";
+import "user_roles.proto";
+option java_package = "com.conveniencestore.conveniencestore.protobuf";
+
+message UserDTO {
+  string username = 1;
+  string email = 2;
+  string password = 3;
+  UserRoles role = 4;
+}
+
