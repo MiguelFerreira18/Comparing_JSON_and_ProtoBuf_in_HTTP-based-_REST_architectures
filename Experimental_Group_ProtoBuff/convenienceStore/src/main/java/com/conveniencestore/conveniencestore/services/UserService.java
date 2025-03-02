@@ -57,7 +57,7 @@ public class UserService implements ServiceInterface<UserResponseDto.UserRespons
                 direction = Sort.DEFAULT_DIRECTION;
             }
         }
-        List<User> users = this.userRepository.findAllFilteredResponse(Sort.by(direction, orderby));
+        List<UserResponseJsonDTO> users = this.userRepository.findAllFilteredResponse(Sort.by(direction, orderby));
         return users.stream().map(this::convertFromUserResponseDto).toList();
 
     }
@@ -108,14 +108,14 @@ public class UserService implements ServiceInterface<UserResponseDto.UserRespons
     }
 
 
-    private UserResponseDto.UserResponseDTO convertFromUserResponseDto(User user) {
+    private UserResponseDto.UserResponseDTO convertFromUserResponseDto(UserResponseJsonDTO user) {
         return UserResponseDto.UserResponseDTO.newBuilder()
-                .setId(user.getId())
-                .setUsername(user.getUsername())
-                .setEmail(user.getEmail())
-                .setRole(convertRole(user.getRole()))
-                .setCreatedAt(convertLocalDateTime(user.getCreatedAt()))
-                .setUpdatedAt(convertLocalDateTime(user.getUpdatedAt())).build();
+                .setId(user.id())
+                .setUsername(user.username())
+                .setEmail(user.email())
+                .setRole(convertRole(user.role()))
+                .setCreatedAt(convertLocalDateTime(user.createdAt()))
+                .setUpdatedAt(convertLocalDateTime(user.updatedAt())).build();
     }
     private UserRolesOuterClass.UserRoles convertRole(UserRoles role){
         if (role == UserRoles.ADMIN) return UserRolesOuterClass.UserRoles.ADMIN;
