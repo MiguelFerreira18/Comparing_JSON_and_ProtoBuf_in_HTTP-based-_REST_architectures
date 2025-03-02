@@ -32,7 +32,7 @@ public class ProductEntityController {
             String order
     ) {
         if (VALID_SEARCH_PARAMETERS.contains(orderby) && VALID_SEARCH_PARAMETERS.contains(order))
-            return ResponseEntity.ok().body(this.service.getAll(orderby, order));
+            return ResponseEntity.ok().body(ProductEntityOuterClass.ProductEntityCatalog.newBuilder().addAllProducts(this.service.getAll(orderby, order)).build());
         ErrorDTO error = new ErrorDTO("Request param is not valid.", 400);
         return ResponseEntity.status(400).body(error);
     }
