@@ -36,7 +36,7 @@ export default function () {
             'Connection': 'keep-alive',
             'Accept': '*/*',
             'Cache-Control': 'no-cache',
-            'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLXByb3ZpZGVyIiwic3ViIjoiZGllZ29AZW1haWwuY29tIiwiZXhwIjoxNzQxMDM5Njk4fQ.1TlZ19x2P52bxG-qPl52UP1wxh81_BllEWO31c6cjnQ'
+            'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLXByb3ZpZGVyIiwic3ViIjoiZGllZ29AZW1haWwuY29tIiwiZXhwIjoxNzQxMDk2OTA0fQ.nAbNdWq0iyVqsh1xyWT0j8oMsUq9U-GH_JwgLSRrGXs'
         },
     }
 
@@ -53,6 +53,11 @@ export default function () {
 
 
 export function handleSummary(data) {
+    const testStartTime = Date.now() - data.state.testRunDurationMs;
+    const testEndTime = Date.now();
+
+    console.log(`Test started at: ${new Date(testStartTime).toISOString()}`);
+    console.log(`Test ended at: ${new Date(testEndTime).toISOString()}`);
     return {
         'summary.json': JSON.stringify(data, null, 2),
         'summary.html': htmlReport(data),
