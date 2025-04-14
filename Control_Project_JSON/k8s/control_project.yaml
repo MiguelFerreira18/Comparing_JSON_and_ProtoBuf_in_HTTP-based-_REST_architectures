@@ -48,11 +48,11 @@ metadata:
   name: control-project
   namespace: app-namespace
   labels:
-    release: prometheus # Match the release label of your Prometheus instance
+    release: prometheus
 spec:
   selector:
     matchLabels:
-      app: control-project # Match the labels of your Spring Boot service
+      app: control-project
   endpoints:
     - port: web
       path: /actuator/prometheus
