@@ -18,7 +18,7 @@ export const options = {
 };
 
 export default function () {
-    const url = 'http://localhost:8080/users/1';
+    const url = 'http://localhost:8081/users/1';
 
     const params = {
         headers: {

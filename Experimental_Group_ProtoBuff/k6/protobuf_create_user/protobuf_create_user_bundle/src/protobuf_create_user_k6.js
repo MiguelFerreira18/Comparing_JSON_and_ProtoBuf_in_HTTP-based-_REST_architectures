@@ -21,7 +21,7 @@ export const options = {
 
 
 export default function () {
-    const url = 'http://localhost:8080/users';
+    const url = 'http://localhost:8081/users';
 
     const userDTO = new userDtoPb.UserDTO();
     userDTO.setUsername(randomString(40, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'));

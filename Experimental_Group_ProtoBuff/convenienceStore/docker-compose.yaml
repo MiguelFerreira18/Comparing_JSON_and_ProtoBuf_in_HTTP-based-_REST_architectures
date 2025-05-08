@@ -1,8 +1,8 @@
-version: '3.7'
+version: "3.7"
 services:
-  convenience-store-api:
+  convenience-store-api-protobuf:
     build:
       context: .
-    container_name: convenience-store-api
-    ports: 
-       - 8080:8080
+    container_name: convenience-store-api-protobuf
+    ports:
+      - 8081:8081

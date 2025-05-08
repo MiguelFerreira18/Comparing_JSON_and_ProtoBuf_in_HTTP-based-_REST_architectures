@@ -18,7 +18,7 @@ export const options = {
 };
 
 export default function () {
-    const url = 'http://localhost:8080/products/entities?orderby=id&order=asc';
+    const url = 'http://localhost:8081/products/entities?orderby=id&order=asc';
     const params = {
         headers: {
             'Content-Type': 'application/x-protobuf',

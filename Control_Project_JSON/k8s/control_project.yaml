@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: control-project
-  namespace: app-namespace
+  namespace: app-namespace-json
 spec:
   replicas: 1
   selector:
@@ -31,7 +31,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: control-project
-  namespace: app-namespace
+  namespace: app-namespace-json
   labels:
     app: control-project
 spec:
@@ -46,7 +46,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: control-project
-  namespace: app-namespace
+  namespace: app-namespace-json
   labels:
     release: prometheus
 spec:

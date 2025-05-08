@@ -15,6 +15,7 @@ pipeline {
         dockerhub_id = '1230199'
         docker_control_repo = 'control_project'
         docker_experimental_repo = 'experimental_project'
+        docker_gateway_repo = 'gateway'
         tag = 'latest'
         DOCKERHUB_CREDENTIALS = credentials('isep-dissertation-docker')
     }
@@ -53,6 +54,20 @@ pipeline {
                 }
             }
         }
+        stage('Build gateway jar'){
+            steps{
+                dir('Gateway/Gateway'){
+                    chooseOsCommand('mvn clean package -DskipTests')
+                }
+            }
+        }
+        stage('Build gateway dockerfile'){
+            steps{
+                dir('Gateway/Gateway'){
+                    chooseOsCommand("docker build -t ${dockerhub_id}/${docker_gateway_repo}:${tag} .")
+                }
+            }
+        }
         stage('Login to Dockerhub'){
             steps{
                 withCredentials([usernamePassword(credentialsId: 'isep-dissertation-docker', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_NAME')]) {
@@ -71,6 +86,13 @@ pipeline {
             steps{
                 dir('Experimental_Group_ProtoBuff/convenienceStore'){
                     chooseOsCommand("docker push ${dockerhub_id}/${docker_experimental_repo}:${tag}")
+                }
+            }
+        }
+        stage('Push gateway project to Dockerhub'){
+            steps{
+                dir('Gateway/Gateway'){
+                    chooseOsCommand("docker push ${dockerhub_id}/${docker_gateway_repo}:${tag}")
                 }
             }
         }

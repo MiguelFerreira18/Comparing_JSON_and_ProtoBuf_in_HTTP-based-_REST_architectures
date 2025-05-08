@@ -1,0 +1,55 @@
+package isep.ipp.pt.Gateway.config;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.gateway.route.RouteLocator;
+import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
+
+@Configuration
+public class GatewayConfig {
+    private final String[] DOCS_PATHS = {
+            "/swagger-ui/**",
+            "/v3/api-docs/**",
+            "/swagger-ui.html",
+            "/swagger-resources/**",
+            "/webjars/**",
+            "/api-docs",
+            "/favicon.icon",
+            "/swagger-config.json"
+    };
+    private final String[] PATHS = {
+            "/**"
+    };
+    private final String localhost = "localhost";
+
+    @Value("${kubernetes.protobuf.api.url}")
+    private String kubernetesProtobufUrl;
+    @Value("${kubernetes.json.api.url}")
+    private String kubernetesJsonUrl;
+    @Value("${is.in.kubernetes}")
+    private boolean isInKubernetes;
+
+    @Bean
+    public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
+        System.out.println("Is in kubernetes: " + isInKubernetes);
+        return builder.routes()
+                .route("documentation-route", r -> r
+                        .path(DOCS_PATHS)
+                        .uri("http://" + (isInKubernetes ? kubernetesJsonUrl : localhost) +":8080"))
+                .route("json-route", r -> r
+                        .path(PATHS)
+                        .and()
+                        .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
+                        .uri("http://"+ (isInKubernetes ? kubernetesJsonUrl : localhost) +":8080")
+                )
+                .route("protobuf-route", r -> r
+                        .path(PATHS)
+                        .and()
+                        .header("Content-Type", MediaType.APPLICATION_PROTOBUF_VALUE)
+                        .uri("http://" + (isInKubernetes ? kubernetesProtobufUrl : localhost) + ":8081")
+                )
+                .build();
+    }
+}

@@ -1,8 +1,8 @@
 version: '3.7'
 services:
-  convenience-store-api:
+  convenience-store-api-json:
     build:
       context: .
-    container_name: convenience-store-api
+    container_name: convenience-store-api-json
     ports: 
        - 8080:8080
