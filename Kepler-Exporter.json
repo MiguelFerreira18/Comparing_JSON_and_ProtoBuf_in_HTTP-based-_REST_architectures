@@ -274,6 +274,7 @@
         "y": 8
       },
       "id": 16,
+      "interval": "1",
       "options": {
         "legend": {
           "calcs": ["mean"],
@@ -284,6 +285,7 @@
           "sortDesc": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
