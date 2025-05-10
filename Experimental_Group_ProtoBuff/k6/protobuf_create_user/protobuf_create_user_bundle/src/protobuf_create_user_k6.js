@@ -7,6 +7,10 @@ import { Trend } from 'k6/metrics';
 const userRolesPb = require('./user_roles_pb.js');
 const userDtoPb = require('./user_dto_pb.js');
 
+
+
+const AUTH_TOKEN = __ENV.AUTH_TOKEN || 'default-token-for-dev-only';
+
 const responseTime = new Trend('response_time');
 const responseSizeMetric = new Trend('reponse_size');
 
@@ -14,7 +18,7 @@ const responseSizeMetric = new Trend('reponse_size');
 export const options = {
     summaryTrendStats: ['avg', 'min', 'med', 'max', 'p(50)', 'p(90)', 'p(95)', 'p(99)', 'p(99.99)', 'count'],
     vus: 1,
-    iterations: 10000,
+    iterations: 1000,
     duration: '40m',
     summaryTimeUnit: 'ms',
 };
@@ -36,7 +40,7 @@ export default function () {
             'Connection': 'keep-alive',
             'Accept': '*/*',
             'Cache-Control': 'no-cache',
-            'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLXByb3ZpZGVyIiwic3ViIjoiZGllZ29AZW1haWwuY29tIiwiZXhwIjoxNzQxMDk2OTA0fQ.nAbNdWq0iyVqsh1xyWT0j8oMsUq9U-GH_JwgLSRrGXs'
+            'Authorization': `Bearer ${AUTH_TOKEN}`,
         },
     }
 

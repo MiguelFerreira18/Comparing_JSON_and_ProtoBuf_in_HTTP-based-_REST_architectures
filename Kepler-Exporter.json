@@ -330,6 +330,20 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
+          "expr": "sum by (pod_name, container_namespace) (irate(kepler_container_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[1m]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{pod_name}} / {{container_namespace}} / TOTAL",
+          "range": true,
+          "refId": "E"
+
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
           "expr": "sum by (pod_name, container_namespace) (irate(kepler_container_gpu_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[1m]))",
           "hide": false,
           "legendFormat": "{{pod_name}} / {{container_namespace}} / GPU",

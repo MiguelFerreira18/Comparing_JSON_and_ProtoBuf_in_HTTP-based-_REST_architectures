@@ -6,6 +6,9 @@ import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporte
 import { textSummary } from 'https://jslib.k6.io/k6-summary/0.0.1/index.js';
 import encoding from 'k6/encoding';
 
+
+const AUTH_TOKEN = __ENV.AUTH_TOKEN || 'default-token-for-dev-only';
+
 const responseTime = new Trend('response_time');
 const responseSizeMetric = new Trend('reponse_size');
 
@@ -13,7 +16,7 @@ const responseSizeMetric = new Trend('reponse_size');
 export const options = {
     summaryTrendStats: ['avg', 'min', 'med', 'max', 'p(50)', 'p(90)', 'p(95)', 'p(99)', 'p(99.99)', 'count'],
     vus: 1,
-    iterations: 10000,
+    iterations: 1000,
     duration: '40m',
     summaryTimeUnit: 'ms',
 };
@@ -34,7 +37,7 @@ export default function () {
             'Connection': 'keep-alive',
             'Accept': '*/*',
             'Cache-Control': 'no-cache',
-            'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLXByb3ZpZGVyIiwic3ViIjoiZGllZ29AZW1haWwuY29tIiwiZXhwIjoxNzQwOTQzMjI4fQ.45WhOJhQA2m3DJia4cuasl6LMMFroIxGu5xn3CIqLes'
+            'Authorization': `Bearer ${AUTH_TOKEN}`,
         },
     };
 

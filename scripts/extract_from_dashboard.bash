@@ -1,67 +1,49 @@
 #!/bin/bash
 
-GRAFANA_URL="http://localhost:3000"
-PANEL_ID="16"
+PROMETHEUS_URL="http://localhost:9090"
+NAMESPACE="app-namespace-json"
+OUTPUT_FILE="energy_consumption.csv"
+STEP="1s"
 
-if ! command -v jq &> /dev/null; then
-    echo "Error: jq is not installed but required for JSON processing."
-    echo ""
-    echo "Please install jq using one of the following methods:"
-    echo ""
-    echo "For Windows (using chocolatey):"
-    echo "  choco install jq"
-    echo ""
-    echo "For Windows (manual download):"
-    echo "  Download from: https://stedolan.github.io/jq/download/"
-    echo ""
-    echo "For macOS:"
-    echo "  brew install jq"
-    echo ""
-    echo "For Linux:"
-    echo "  sudo apt-get install jq  # Debian/Ubuntu"
-    echo "  sudo dnf install jq      # Fedora"
-    echo "  sudo yum install jq      # CentOS/RHEL"
-    echo ""
-    exit 1
-fi
+
+
 
 usage(){
-  echo "Usage: $0 -s <start_time> -e <end_time> -t <api_token> -d <dashboard_uid> [-u <grafana_url>] [-p <panel_id>]"
+  echo "Usage: $0 -s <start_time> -e <end_time> [-u <prometheus_ur>] [-n <namespace>]"
   echo "  -s <start_time>   Start time in ISO format (e.g., '2023-05-09T16:55:00')"
   echo "  -e <end_time>     End time in ISO format (e.g., '2023-05-09T17:05:00')"
-  echo "  -t <api_token>    Grafana API token (required)"
-  echo "  -d <dashboard_uid> Dashboard UID (required)"
-  echo "  -u <grafana_url>  Grafana URL (default: $GRAFANA_URL)"
-  echo "  -p <panel_id>     Panel ID to extract data from (default: $PANEL_ID)"
+  echo "  -u <prometheus_url>  Prometheus URL (default: $PROMETHEUS_URL)"
+  echo "  -n <namespace>    Namespace filter (default: all namespaces)"
   echo ""
   echo "Example:"
-  echo "  $0 -s '2023-05-09T16:55:00' -e '2023-05-09T17:05:00' -t 'glsa_abc123...' -d 'k8s_cluster_overview'"
+  echo "  $0 -s '2025-05-10T16:55:00' -e '2025-05-10T17:05:00' -u http://localhost:9090 -n app-namespace-json"
   exit 1
 }
+
+iso_to_unix(){
+  if [[ "$1" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2} ]]; then
+    date -d "$1" +%s
+  else
+    echo "$1"
+  fi
+}
+
 START_TIME=""
 END_TIME=""
-API_TOKEN=""
-DASHBOARD_UID=""
 
-while getopts "s:e:t:d:u:p:" opt; do
+while getopts "s:e:u:n:" opt; do
   case ${opt} in
     s )
-      START_TIME=$OPTARG
+      START_TIME=$(iso_to_unix "$OPTARG")
       ;;
     e )
-      END_TIME=$OPTARG
-      ;;
-    t )
-      API_TOKEN=$OPTARG
-      ;;
-    d )
-      DASHBOARD_UID=$OPTARG
+      END_TIME=$(iso_to_unix "$OPTARG")
       ;;
     u )
-      GRAFANA_URL=$OPTARG
+      PROMETHEUS_URL=$OPTARG
       ;;
-    p )
-      PANEL_ID=$OPTARG
+    n )
+      NAMESPACE=$OPTARG
       ;;
     \? )
       usage
@@ -69,107 +51,57 @@ while getopts "s:e:t:d:u:p:" opt; do
   esac
 done
 
-if [[ -z "$START_TIME" || -z "$END_TIME" || -z "$API_TOKEN" || -z "$DASHBOARD_UID" ]]; then
+if [[ -z "$START_TIME" || -z "$END_TIME" ]]; then
   echo "Error: Missing required parameters."
   usage
 fi
 
-if [[ "$START_TIME" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2} ]]; then
-  START_TIME=$(date -d "$START_TIME" +%s%3N)
-fi
 
-if [[ "$END_TIME" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2} ]]; then
-  END_TIME=$(date -d "$END_TIME" +%s%3N)
-fi
+echo "Extracting Energy consumption from $NAMESPACE namespace"
+echo "Using time range:"
+echo "Start: $(date -d @$START_TIME) ($START_TIME)"
+echo "End:   $(date -d @$END_TIME) ($END_TIME)"
 
-echo "Fetching data from Grafana for time range $START_TIME to $END_TIME..."
+##NOTE: THOSE ARE THE DEFAULT QUERIES FOR ENERGY CONSMPTION
+declare -A QUERIES=(
+  ["TOTAL"]="sum by (pod_name, container_namespace) (irate(kepler_container_joules_total{container_namespace=~\"$NAMESPACE\", pod_name=~\".*\"}[1m]))"
+)
 
+echo "Fetching data from Prometheus from $START_TIME to date -d $END_TIME..."
 
-echo "Getting Prometheus datasource ID..."
-DATASOURCES=$(curl -s -X GET \
-  "$GRAFANA_URL/api/datasources" \
-  -H "Authorization: Bearer $API_TOKEN")
+TMP_DIR=$(mktemp -d)
 
-PROMETHEUS_DS_ID=$(echo "$DATASOURCES" | jq '.[] | select(.type=="prometheus") | .id' | head -1)
-
-
-if [[ -z "$PROMETHEUS_DS_ID" ]]; then
-  echo "Error: Could not find Prometheus datasource."
-  exit 1
-fi
-
-echo "Found Prometheus datasource ID: $PROMETHEUS_DS_ID"
-
-echo "Getting dashboard JSON..."
-DASHBOARD_JSON=$(curl -s -X GET \
-  "$GRAFANA_URL/api/dashboards/uid/$DASHBOARD_UID" \
-  -H "Authorization: Bearer $API_TOKEN")
-
-if echo "$DASHBOARD_JSON" | jq -e '.message == "Dashboard not found"' &>/dev/null; then
-  echo "Error: Dashboard with UID '$DASHBOARD_UID' not found."
-  exit 1
-fi
-
-PANEL_INFO=$(echo "$DASHBOARD_JSON" | jq ".dashboard.panels[] | select(.id == $PANEL_ID)")
-
-
-if [[ -z "$PANEL_INFO" ]]; then
-  echo "Error: Panel with ID $PANEL_ID not found in dashboard."
-  echo "Available panels:"
-  echo "$DASHBOARD_JSON" | jq -r '.dashboard.panels[] | "ID: \(.id), Title: \(.title)"'
-  exit 1
-fi
-
-
-
-PANEL_TITLE=$(echo "$PANEL_INFO" | jq -r '.title')
-QUERY_EXPR=$(echo "$PANEL_INFO" | jq -r '.targets[0].expr')
-
-if [[ -z "$QUERY_EXPR" ]]; then
-  echo "Error: Could not find query expression for panel ID $PANEL_ID"
-  exit 1
-fi
-
-echo "Found panel: $PANEL_TITLE"
-echo "Query: $QUERY_EXPR"
-
-
-echo "Fetching metric data..."
-RESPONSE=$(curl -s -X GET \
-  "$GRAFANA_URL/api/datasources/proxy/$PROMETHEUS_DS_ID/api/v1/query_range" \
-  -H "Authorization: Bearer $API_TOKEN" \
-  -H "Content-Type: application/json" \
-  --data-urlencode "query=$QUERY_EXPR" \
+echo "Getting timestamps..."
+curl -s -G "$PROMETHEUS_URL/api/v1/query_range" \
+  --data-urlencode "query=${QUERIES[TOTAL]}" \
   --data-urlencode "start=$START_TIME" \
   --data-urlencode "end=$END_TIME" \
-  --data-urlencode "step=1s")
+  --data-urlencode "step=$STEP" \
+  | jq -r '.data.result[].values[] | .[0] | tostring' \
+  > "$TMP_DIR/timestamps.txt"
 
-SAFE_TITLE=$(echo "$PANEL_TITLE" | tr ' /' '_')
-OUTPUT_FILE="${SAFE_TITLE}_$(date +%Y%m%d%H%M%S).csv"
-
-echo "Processing data..."
-echo "timestamp,value,series" > "$OUTPUT_FILE"
-
-RESULT_COUNT=$(echo "$RESPONSE" | jq '.data.result | length')
-if [[ "$RESULT_COUNT" -eq 0 ]]; then
-  echo "Warning: No data points found in the specified time range."
-  echo "$RESPONSE" | jq '.'
-fi
-
-echo "$RESPONSE" | jq -r '.data.result[] | 
-  .metric as $metric | 
-  .values[] | 
-  [.[0], .[1], ($metric | to_entries | map("\(.key)=\(.value)") | join(","))] | 
-  join(",")' >> "$OUTPUT_FILE"
-
-# Convert timestamps to human-readable format
-echo "Converting timestamps..."
-TMP_FILE="${OUTPUT_FILE}.tmp"
-head -1 "$OUTPUT_FILE" > "$TMP_FILE"
-tail -n +2 "$OUTPUT_FILE" | while IFS=',' read -r timestamp value series; do
-  human_time=$(date -d @$timestamp "+%Y-%m-%d %H:%M:%S")
-  echo "$human_time,$value,$series" >> "$TMP_FILE"
+echo "Getting data for each metric"
+for METRIC in "${!QUERIES[@]}"; do
+  echo "Fetching $METRIC data..."
+  curl -s -G "$PROMETHEUS_URL/api/v1/query_range" \
+    --data-urlencode "query=${QUERIES[$METRIC]}" \
+    --data-urlencode "start=$START_TIME" \
+    --data-urlencode "end=$END_TIME" \
+    --data-urlencode "step=$STEP" \
+    | jq -r '.data.result[].values[] | .[1]' \
+    > "$TMP_DIR/$METRIC.txt"
 done
-mv "$TMP_FILE" "$OUTPUT_FILE"
+
+echo "Creating CSV output..."
+echo "Time,TOTAL" > "$OUTPUT_FILE"
+
+paste -d, "$TMP_DIR/timestamps.txt" "$TMP_DIR/TOTAL.txt"  | while IFS=, read -r ts total; do
+  # Convert Unix timestamp to human-readable format
+  datetime=$(date -d "@$ts" "+%Y-%m-%d %H:%M:%S")
+  # Write to CSV
+  echo "$datetime,$total" >> "$OUTPUT_FILE"
+done
+
+rm -rf "$TMP_DIR"
 
 echo "Data extraction complete. Results saved to $OUTPUT_FILE"
