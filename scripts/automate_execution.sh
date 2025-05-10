@@ -127,12 +127,13 @@ done
 
 echo -e "\n Setting up port-forwards for services..."
 services=(
+    "monitoring:prometheus-operated:9090:9090"
     "gateway-namespace:gateway:8082:8082"
     "app-namespace-protobuf:experimental-project:8081:8081"
     "app-namespace-json:control-project:8080:8080"
     )
 for svc in "${services[@]}"; do
-    IFS=":" read -r namespace name local_port target_port <<< "$svc"
+   IFS=":" read -r namespace name local_port target_port <<< "$svc"
     if kubectl get svc "$name" -n "$namespace" >/dev/null 2>&1 ; then
         kubectl port-forward "svc/$name" "$local_port:$target_port" -n "$namespace" >/dev/null 2>&1 & 
         echo "$name service is available at http://localhost:$local_port"
