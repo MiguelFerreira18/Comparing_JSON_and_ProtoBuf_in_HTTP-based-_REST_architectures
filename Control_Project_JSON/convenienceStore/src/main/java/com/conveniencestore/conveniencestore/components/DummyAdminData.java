@@ -23,7 +23,7 @@ public class DummyAdminData implements CommandLineRunner {
         User user = new User(userDTO);
         this.userRepository.save(user);
 
-        for (int i = 0; i < 400; i++){
+        for (int i = 0; i < 399; i++){
             String pwd = new BCryptPasswordEncoder().encode(generateRandomPassword());
             UserDTO userDTO1 = new UserDTO("user" + i, "user" + i + "@email.com", pwd, UserRoles.EMPLOYEE);
             User user1 = new User(userDTO1);

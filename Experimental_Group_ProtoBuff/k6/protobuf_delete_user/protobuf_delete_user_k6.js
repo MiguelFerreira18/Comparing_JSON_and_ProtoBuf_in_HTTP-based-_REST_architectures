@@ -1,10 +1,8 @@
 import http from 'k6/http';
 import { check } from 'k6';
-import { randomString, randomIntBetween } from 'https://jslib.k6.io/k6-utils/1.4.0/index.js';
 import { Trend } from 'k6/metrics';
 import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 import { textSummary } from 'https://jslib.k6.io/k6-summary/0.0.1/index.js';
-import encoding from 'k6/encoding';
 
 
 const AUTH_TOKEN = __ENV.AUTH_TOKEN || 'default-token-for-dev-only';
@@ -18,15 +16,12 @@ export const options = {
     summaryTrendStats: ['avg', 'min', 'med', 'max', 'p(50)', 'p(90)', 'p(95)', 'p(99)', 'p(99.99)', 'count'],
 };
 
-export default function () {
-    const url = 'http://localhost:8080/users';
+let id = ITERATIONS == 1000 ? 401 : 1401;
 
-    const payload = JSON.stringify({
-        username: randomString(40, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'),
-        email: randomString(10, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') + '.' + randomString(10, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') + '@mail.com',
-        password: randomString(10, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'),
-        role: "EMPLOYEE",
-    });
+export default function () {
+    const url = `http://localhost:8081/users/${id++}`;
+
+
 
     const params = {
         headers: {
@@ -38,7 +33,7 @@ export default function () {
         },
     };
 
-    const res = http.post(url, payload, params);
+    const res = http.del(url, null, params);
     responseTime.add(res.timings.duration);
 
     const responseSize = res.body ? res.body.length : 0;

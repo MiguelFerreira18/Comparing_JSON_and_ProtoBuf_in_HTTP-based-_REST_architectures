@@ -24,7 +24,7 @@ public class DummyAdminData implements CommandLineRunner {
         User user = new User(UserDto.UserDTO.newBuilder().setUsername("diego").setEmail("diego@email.com").setPassword(password).setRole(UserRolesOuterClass.UserRoles.ADMIN).build());
         this.userRepository.save(user);
 
-        for (int i = 0; i < 400; i++){
+        for (int i = 0; i < 399; i++){
             String pwd = new BCryptPasswordEncoder().encode(generateRandomPassword());
             User user1 = new User(UserDto.UserDTO.newBuilder().setPassword(pwd).setEmail("user" + i + "@email.com").setUsername("user" + i).setRole(UserRolesOuterClass.UserRoles.EMPLOYEE).build());
             this.userRepository.save(user1);

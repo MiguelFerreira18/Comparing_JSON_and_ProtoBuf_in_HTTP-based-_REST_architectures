@@ -14,18 +14,19 @@ const responseTime = new Trend('response_time');
 const responseSizeMetric = new Trend('reponse_size');
 
 
+
 export const options = {
     summaryTrendStats: ['avg', 'min', 'med', 'max', 'p(50)', 'p(90)', 'p(95)', 'p(99)', 'p(99.99)', 'count'],
 };
 
+let id = ITERATIONS == 1000 ? 401 : 1401;
+
 export default function () {
-    const url = 'http://localhost:8080/users';
+    const url = `http://localhost:8080/users/${id++}`;
 
     const payload = JSON.stringify({
         username: randomString(40, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'),
         email: randomString(10, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') + '.' + randomString(10, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') + '@mail.com',
-        password: randomString(10, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'),
-        role: "EMPLOYEE",
     });
 
     const params = {
@@ -38,7 +39,7 @@ export default function () {
         },
     };
 
-    const res = http.post(url, payload, params);
+    const res = http.put(url, payload, params);
     responseTime.add(res.timings.duration);
 
     const responseSize = res.body ? res.body.length : 0;

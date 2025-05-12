@@ -8,6 +8,9 @@ fi
 
 AUTH_TOKEN=$1
 ITERATIONS=(1000 10000) ##NOTE: If i have time add 5000
+VU=1
+DURATION=40
+SUMMARY_TIME_UNIT="ms"
 REPEATS=3
 DELAY_BETWEEN_TESTS=5
 EXTRACT_SCRIPT="./scripts/extract_from_dashboard.sh"
@@ -60,7 +63,7 @@ run_k6_tests() {
                 json_report="$report_dir/data.json"
                 csv_report="$report_dir/data.csv"
                 
-                cmd="k6 run -e AUTH_TOKEN=$AUTH_TOKEN --iterations $iteration --out json=$json_report --out csv=$csv_report $script_path"
+                cmd="k6 run -e AUTH_TOKEN=$AUTH_TOKEN -e ITERATIONS=$iteration -i $ITERATIONS -d ${DURATION}m -u $VU --summary-time-unit $SUMMARY_TIME_UNIT --out json=$json_report --out csv=$csv_report $script_path"
                 
                 echo "Running: $iteration iterations (repeat $repeat)"
                 echo "Report directory: $report_dir"
