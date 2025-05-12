@@ -7,6 +7,7 @@ import { textSummary } from 'https://jslib.k6.io/k6-summary/0.0.1/index.js';
 
 const AUTH_TOKEN = __ENV.AUTH_TOKEN || 'default-token-for-dev-only';
 const ITERATIONS = __ENV.ITERATIONS || 1000;
+const ITERATION_MULTIPLIER = __ENV.ITERATION_MULTIPLIER || 1;
 
 const responseTime = new Trend('response_time');
 const responseSizeMetric = new Trend('reponse_size');
@@ -16,7 +17,7 @@ export const options = {
     summaryTrendStats: ['avg', 'min', 'med', 'max', 'p(50)', 'p(90)', 'p(95)', 'p(99)', 'p(99.99)', 'count'],
 };
 
-let id = ITERATIONS == 1000 ? 401 : 1401;
+let id = (ITERATIONS == 1000 ? 401 : 1401) * ITERATION_MULTIPLIER;
 
 export default function () {
     const url = `http://localhost:8080/users/${id++}`;
