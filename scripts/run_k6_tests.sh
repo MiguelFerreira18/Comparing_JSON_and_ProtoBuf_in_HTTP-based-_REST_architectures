@@ -141,8 +141,8 @@ run_k6_tests() {
                 
                 json_report="$report_dir/data.json"
                 csv_report="$report_dir/data.csv"
-                
-                cmd="k6 run -e AUTH_TOKEN=$AUTH_TOKEN -e ITERATION_MULTIPLIER=$repeat -e ITERATIONS=$iteration -i $iteration -d ${DURATION}m -u $VU --summary-time-unit $SUMMARY_TIME_UNIT --out json=$json_report --out csv=$csv_report $script_path"
+
+                cmd="k6 run -e AUTH_TOKEN=$AUTH_TOKEN -e ITERATION_MULTIPLIER=$((repeat - 1)) -e ITERATIONS=$iteration -i $iteration -d ${DURATION}m -u $VU --summary-time-unit $SUMMARY_TIME_UNIT --out json=$json_report --out csv=$csv_report $script_path"
                 
                 echo "Running: $iteration iterations (repeat $repeat)"
                 echo "Report directory: $report_dir"

@@ -21,15 +21,6 @@ let id = (ITERATIONS == 1000 ? 401 : 3401) + (ITERATION_MULTIPLIER * ITERATIONS)
 
 export default function () {
     const url = `http://localhost:8080/users/${id++}`;
-    console.log(`Deleting user with ID: ${id}`);
-    console.log(`ITERATIONS: ${ITERATIONS}`);
-    console.log(`ITERATION_MULTIPLIER: ${ITERATION_MULTIPLIER}`);
-    console.log(`AUTH_TOKEN: ${AUTH_TOKEN}`);
-    console.log(`ID CALCULATED: ${ITERATION_MULTIPLIER * ITERATIONS}`);
-
-    console.log("\n");
-
-
 
     const params = {
         headers: {
