@@ -26,7 +26,7 @@ export default function () {
 
     const params = {
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/x-protobuf',
             'Connection': 'keep-alive',
             'Accept': '*/*',
             'Cache-Control': 'no-cache',
