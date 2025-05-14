@@ -4,96 +4,135 @@
 #! JSON REPORT
 ##? CONTROL PATHS
 
-# CREATE USERS
-JSON_CREATE_USER_REPORT_PATH_1 = "./Control_Project_JSON/k6/json_create_user/json_create_user_report_k6_1/json_create_user_report_1.csv"
-JSON_CREATE_USER_REPORT_PATH_2 = "./Control_Project_JSON/k6/json_create_user/json_create_user_report_k6_2/json_create_user_report_2.csv"
-JSON_CREATE_USER_REPORT_PATH_3 = "./Control_Project_JSON/k6/json_create_user/json_create_user_report_k6_3/json_create_user_report_3.csv"
-
-# GET ALL USERS
-JSON_GET_ALL_USERS_REPORT_PATH_1 = "./Control_Project_JSON/k6/json_get_all_users/json_get_all_users_report_k6_1/json_get_all_users_report_1.csv"
-JSON_GET_ALL_USERS_REPORT_PATH_2 = "./Control_Project_JSON/k6/json_get_all_users/json_get_all_users_report_k6_2/json_get_all_users_report_2.csv"
-JSON_GET_ALL_USERS_REPORT_PATH_3 = "./Control_Project_JSON/k6/json_get_all_users//json_get_all_users_report_k6_3/json_get_all_users_report_3.csv"
+# GET ALL PRODUCT ENTITIES
+JSON_GET_ALL_PRODUCT_ENTITIES_1 = "./Control_Project_JSON/k6/json_get_all_products_entities/reports/json_get_all_products_entities/10000/report_1/data.csv"
+JSON_GET_ALL_PRODUCT_ENTITIES_2 = "./Control_Project_JSON/k6/json_get_all_products_entities/reports/json_get_all_products_entities/10000/report_1/data.csv"
+JSON_GET_ALL_PRODUCT_ENTITIES_3 = "./Control_Project_JSON/k6/json_get_all_products_entities/reports/json_get_all_products_entities/10000/report_1/data.csv"
 
 # GET USER BY ID
-JSON_GET_USER_ID_REPORT_PATH_1 = "./Control_Project_JSON/k6/json_get_user_id/json_get_user_id_report_k6_1/json_get_user_id_report_1.csv"
-JSON_GET_USER_ID_REPORT_PATH_2 = "./Control_Project_JSON/k6/json_get_user_id/json_get_user_id_report_k6_2/json_get_user_id_report_2.csv"
-JSON_GET_USER_ID_REPORT_PATH_3 = "./Control_Project_JSON/k6/json_get_user_id/json_get_user_id_report_k6_3/json_get_user_id_report_3.csv"
+JSON_GET_USER_ID_1 = "./Control_Project_JSON/k6/json_get_user_id/reports/json_get_user_id/10000/report_1/data.csv"
+JSON_GET_USER_ID_2 = "./Control_Project_JSON/k6/json_get_user_id/reports/json_get_user_id/10000/report_2/data.csv"
+JSON_GET_USER_ID_3 = "./Control_Project_JSON/k6/json_get_user_id/reports/json_get_user_id/10000/report_3/data.csv"
 
+# GET ALL USERS
+JSON_GET_ALL_USERS_1 = "./Control_Project_JSON/k6/json_get_all_users/reports/json_get_all_users/10000/report_1/data.csv"
+JSON_GET_ALL_USERS_2 = "./Control_Project_JSON/k6/json_get_all_users/reports/json_get_all_users/10000/report_2/data.csv"
+JSON_GET_ALL_USERS_3 = "./Control_Project_JSON/k6/json_get_all_users/reports/json_get_all_users/10000/report_3/data.csv"
 
-# GET ALL PRODUCT ENTITIES
-JSON_GET_ALL_PRODUCT_ENTITIES_REPORT_PATH_1 = "./Control_Project_JSON/k6/json_get_all_products_entities/json_get_all_product_entities_report_k6_1/json_get_all_product_entities_report_1.csv"
-JSON_GET_ALL_PRODUCT_ENTITIES_REPORT_PATH_2 = "./Control_Project_JSON/k6/json_get_all_products_entities/json_get_all_product_entities_report_k6_2/json_get_all_product_entities_report_2.csv"
-JSON_GET_ALL_PRODUCT_ENTITIES_REPORT_PATH_3 = "./Control_Project_JSON/k6/json_get_all_products_entities//json_get_all_product_entities_report_k6_3/json_get_all_product_entities_report_3.csv"
+# CREATE USERS
+JSON_CREATE_USER_1 = "./Control_Project_JSON/k6/json_create_user/reports/json_create_user/10000/report_1/data.csv"
+JSON_CREATE_USER_2 = "./Control_Project_JSON/k6/json_create_user/reports/json_create_user/10000/report_2/data.csv"
+JSON_CREATE_USER_3 = "./Control_Project_JSON/k6/json_create_user/reports/json_create_user/10000/report_3/data.csv"
+
+# UPDATE USERS
+JSON_UPDATE_USER_1 = "./Control_Project_JSON/k6/json_update_user/reports/json_update_user/10000/report_1/data.csv"
+JSON_UPDATE_USER_2 = "./Control_Project_JSON/k6/json_update_user/reports/json_update_user/10000/report_2/data.csv"
+JSON_UPDATE_USER_3 = "./Control_Project_JSON/k6/json_update_user/reports/json_update_user/10000/report_3/data.csv"
+
+# DELETE USERS
+JSON_DELETE_USER_1 = "./Control_Project_JSON/k6/json_delete_user/reports/json_delete_user/10000/report_1/data.csv"
+JSON_DELETE_USER_2 = "./Control_Project_JSON/k6/json_delete_user/reports/json_delete_user/10000/report_2/data.csv"
+JSON_DELETE_USER_3 = "./Control_Project_JSON/k6/json_delete_user/reports/json_delete_user/10000/report_3/data.csv"
 
 
 ##? CONTROL POD PATHS
-JSON_CREATE_USER_POD_REPORT_PATH_1 = "./Control_Project_JSON/k6/json_create_user/json_create_user_report_k6_1/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_01_17_35_05.csv"
-JSON_CREATE_USER_POD_REPORT_PATH_2 = "./Control_Project_JSON/k6/json_create_user/json_create_user_report_k6_2/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_01_18_09_32.csv"
-JSON_CREATE_USER_POD_REPORT_PATH_3 = "./Control_Project_JSON/k6/json_create_user/json_create_user_report_k6_3/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_01_18_46_24.csv"
-
-# GET ALL USERS
-JSON_GET_ALL_USERS_POD_REPORT_PATH_1 = "./Control_Project_JSON/k6/json_get_all_users/json_get_all_users_report_k6_1/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_01_16_42_16.csv"
-JSON_GET_ALL_USERS_POD_REPORT_PATH_2 = "./Control_Project_JSON/k6/json_get_all_users/json_get_all_users_report_k6_2/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_01_16_45_38.csv"
-JSON_GET_ALL_USERS_POD_REPORT_PATH_3 = "./Control_Project_JSON/k6/json_get_all_users//json_get_all_users_report_k6_3/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_01_16_48_45.csv"
-
-# GET USER BY ID
-JSON_GET_USER_ID_POD_REPORT_PATH_1 = "./Control_Project_JSON/k6/json_get_user_id/json_get_user_id_report_k6_1/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_01_16_30_57.csv"
-JSON_GET_USER_ID_POD_REPORT_PATH_2 = "./Control_Project_JSON/k6/json_get_user_id/json_get_user_id_report_k6_2/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_01_16_33_39.csv"
-JSON_GET_USER_ID_POD_REPORT_PATH_3 = "./Control_Project_JSON/k6/json_get_user_id/json_get_user_id_report_k6_3/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_01_16_36_34.csv"
-
 
 # GET ALL PRODUCT ENTITIES
-JSON_GET_ALL_PRODUCT_ENTITIES_POD_REPORT_PATH_1 = "./Control_Project_JSON/k6/json_get_all_products_entities/json_get_all_product_entities_report_k6_1/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_01_16_54_37.csv"
-JSON_GET_ALL_PRODUCT_ENTITIES_POD_REPORT_PATH_2 = "./Control_Project_JSON/k6/json_get_all_products_entities/json_get_all_product_entities_report_k6_2/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_01_16_57_31.csv"
-JSON_GET_ALL_PRODUCT_ENTITIES_POD_REPORT_PATH_3 = "./Control_Project_JSON/k6/json_get_all_products_entities//json_get_all_product_entities_report_k6_3/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_01_17_00_23.csv"
+JSON_GET_ALL_PRODUCT_ENTITIES_POD_1 = "./Control_Project_JSON/k6/json_get_all_products_entities/reports/json_get_all_products_entities/10000/report_1/power_consumption_json_get_all_products_entities.csv"
+JSON_GET_ALL_PRODUCT_ENTITIES_POD_2 = "./Control_Project_JSON/k6/json_get_all_products_entities/reports/json_get_all_products_entities/10000/report_1/power_consumption_json_get_all_products_entities.csv"
+JSON_GET_ALL_PRODUCT_ENTITIES_POD_3 = "./Control_Project_JSON/k6/json_get_all_products_entities/reports/json_get_all_products_entities/10000/report_1/power_consumption_json_get_all_products_entities.csv"
+
+# GET USER BY ID
+JSON_GET_USER_ID_POD_1 = "./Control_Project_JSON/k6/json_get_user_id/reports/json_get_user_id/10000/report_1/power_consumption_json_get_user_id.csv"
+JSON_GET_USER_ID_POD_2 = "./Control_Project_JSON/k6/json_get_user_id/reports/json_get_user_id/10000/report_2/power_consumption_json_get_user_id.csv"
+JSON_GET_USER_ID_POD_3 = "./Control_Project_JSON/k6/json_get_user_id/reports/json_get_user_id/10000/report_3/power_consumption_json_get_user_id.csv"
+
+# GET ALL USERS
+JSON_GET_ALL_USERS_POD_1 = "./Control_Project_JSON/k6/json_get_all_users/reports/json_get_all_users/10000/report_1/power_consumption_json_get_all_users.csv"
+JSON_GET_ALL_USERS_POD_2 = "./Control_Project_JSON/k6/json_get_all_users/reports/json_get_all_users/10000/report_1/power_consumption_json_get_all_users.csv"
+JSON_GET_ALL_USERS_POD_3 = "./Control_Project_JSON/k6/json_get_all_users/reports/json_get_all_users/10000/report_1/power_consumption_json_get_all_users.csv"
+
+# CREATE USERS
+JSON_CREATE_USER_POD_1 = "./Control_Project_JSON/k6/json_create_user/reports/json_create_user/10000/report_1/power_consumption_json_create_user.csv"
+JSON_CREATE_USER_POD_2 = "./Control_Project_JSON/k6/json_create_user/reports/json_create_user/10000/report_2/power_consumption_json_create_user.csv"
+JSON_CREATE_USER_POD_3 = "./Control_Project_JSON/k6/json_create_user/reports/json_create_user/10000/report_3/power_consumption_json_create_user.csv"
+
+# UPDATE USERS
+JSON_UPDATE_USER_POD_1 = "./Control_Project_JSON/k6/json_update_user/reports/json_update_user/10000/report_1/power_consumption_json_update_user.csv"
+JSON_UPDATE_USER_POD_2 = "./Control_Project_JSON/k6/json_update_user/reports/json_update_user/10000/report_2/power_consumption_json_update_user.csv"
+JSON_UPDATE_USER_POD_3 = "./Control_Project_JSON/k6/json_update_user/reports/json_update_user/10000/report_3/power_consumption_json_update_user.csv"
+
+# DELETE USERS
+JSON_DELETE_USER_POD_1 = "./Control_Project_JSON/k6/json_delete_user/reports/json_delete_user/10000/report_1/power_consumption_json_delete_user.csv"
+JSON_DELETE_USER_POD_2 = "./Control_Project_JSON/k6/json_delete_user/reports/json_delete_user/10000/report_2/power_consumption_json_delete_user.csv"
+JSON_DELETE_USER_POD_3 = "./Control_Project_JSON/k6/json_delete_user/reports/json_delete_user/10000/report_3/power_consumption_json_delete_user.csv"
 
 
 #! PROTOBUF REPORT
 ##? CONTROL PATHS
 
-# CREATE USERS
-PROTOBUF_CREATE_USER_REPORT_PATH_1 = "./Experimental_Group_ProtoBuff/k6/protobuf_create_user/protobuf_create_users_report_k6_1/protobuf_create_user_report_1.csv"
-PROTOBUF_CREATE_USER_REPORT_PATH_2 = "./Experimental_Group_ProtoBuff/k6/protobuf_create_user/protobuf_create_users_report_k6_2/protobuf_create_user_report_2.csv"
-PROTOBUF_CREATE_USER_REPORT_PATH_3 = "./Experimental_Group_ProtoBuff/k6/protobuf_create_user/protobuf_create_users_report_k6_3/protobuf_create_user_report_3.csv"
-
-# GET ALL USERS
-PROTOBUF_GET_ALL_USERS_REPORT_PATH_1 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_users/protobuf_get_all_users_report_k6_1/protobuf_get_all_user_report_1.csv"
-PROTOBUF_GET_ALL_USERS_REPORT_PATH_2 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_users/protobuf_get_all_users_report_k6_2/protobuf_get_all_user_report_2.csv"
-PROTOBUF_GET_ALL_USERS_REPORT_PATH_3 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_users/protobuf_get_all_users_report_k6_3/protobuf_get_all_user_report_3.csv"
+# GET ALL PRODUCT ENTITIES
+PROTOBUF_GET_ALL_PRODUCT_ENTITIES_1 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_products_entities/reports/protobuf_get_all_products_entities/10000/report_1/data.csv"
+PROTOBUF_GET_ALL_PRODUCT_ENTITIES_2 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_products_entities/reports/protobuf_get_all_products_entities/10000/report_2/data.csv"
+PROTOBUF_GET_ALL_PRODUCT_ENTITIES_3 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_products_entities/reports/protobuf_get_all_products_entities/10000/report_3/data.csv"
 
 # GET USER BY ID
-PROTOBUF_GET_USER_ID_REPORT_PATH_1 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_user_id/protobuf_get_user_id_report_k6_1/protobuf_get_user_report_1.csv"
-PROTOBUF_GET_USER_ID_REPORT_PATH_2 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_user_id/protobuf_get_user_id_report_k6_2/protobuf_get_user_report_2.csv"
-PROTOBUF_GET_USER_ID_REPORT_PATH_3 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_user_id/protobuf_get_user_id_report_k6_3/protobuf_get_user_report_3.csv"
+PROTOBUF_GET_USER_ID_1 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_user_id/reports/protobuf_get_user_id/10000/report_1/data.csv"
+PROTOBUF_GET_USER_ID_2 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_user_id/reports/protobuf_get_user_id/10000/report_2/data.csv"
+PROTOBUF_GET_USER_ID_3 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_user_id/reports/protobuf_get_user_id/10000/report_3/data.csv"
 
+# GET ALL USERS
+PROTOBUF_GET_ALL_USERS_1 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_users/reports/protobuf_get_all_users/10000/report_1/data.csv"
+PROTOBUF_GET_ALL_USERS_2 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_users/reports/protobuf_get_all_users/10000/report_2/data.csv"
+PROTOBUF_GET_ALL_USERS_3 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_users/reports/protobuf_get_all_users/10000/report_3/data.csv"
 
-# GET ALL PRODUCT ENTITIES
-PROTOBUF_GET_ALL_PRODUCT_ENTITIES_REPORT_PATH_1 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_products_entities/protobuf_get_all_product_entities_report_k6_1/protobuf_get_all_product_entities_report_1.csv"
-PROTOBUF_GET_ALL_PRODUCT_ENTITIES_REPORT_PATH_2 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_products_entities/protobuf_get_all_product_entities_report_k6_2/protobuf_get_all_product_entities_report_2.csv"
-PROTOBUF_GET_ALL_PRODUCT_ENTITIES_REPORT_PATH_3 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_products_entities/protobuf_get_all_product_entities_report_k6_3/protobuf_get_all_product_entities_report_3.csv"
+# CREATE USERS
+PROTOBUF_CREATE_USER_1 = "./Experimental_Group_ProtoBuff/k6/protobuf_create_user/reports/protobuf_create_user/10000/report_1/data.csv"
+PROTOBUF_CREATE_USER_2 = "./Experimental_Group_ProtoBuff/k6/protobuf_create_user/reports/protobuf_create_user/10000/report_2/data.csv"
+PROTOBUF_CREATE_USER_3 = "./Experimental_Group_ProtoBuff/k6/protobuf_create_user/reports/protobuf_create_user/10000/report_3/data.csv"
 
+# UPDATE USERS
+PROTOBUF_UPDATE_USER_1 = "./Experimental_Group_ProtoBuff/k6/protobuf_update_user/reports/protobuf_update_user/10000/report_1/data.csv"
+PROTOBUF_UPDATE_USER_2 = "./Experimental_Group_ProtoBuff/k6/protobuf_update_user/reports/protobuf_update_user/10000/report_2/data.csv"
+PROTOBUF_UPDATE_USER_3 = "./Experimental_Group_ProtoBuff/k6/protobuf_update_user/reports/protobuf_update_user/10000/report_3/data.csv"
+
+# DELETE USERS
+PROTOBUF_DELETE_USER_1 = "./Experimental_Group_ProtoBuff/k6/protobuf_delete_user/reports/protobuf_delete_user/10000/report_1/data.csv"
+PROTOBUF_DELETE_USER_2 = "./Experimental_Group_ProtoBuff/k6/protobuf_delete_user/reports/protobuf_delete_user/10000/report_2/data.csv"
+PROTOBUF_DELETE_USER_3 = "./Experimental_Group_ProtoBuff/k6/protobuf_delete_user/reports/protobuf_delete_user/10000/report_3/data.csv"
 
 ##? CONTROL POD PATHS
-PROTOBUF_CREATE_USER_POD_REPORT_PATH_1 = "./Experimental_Group_ProtoBuff/k6/protobuf_create_user/protobuf_create_users_report_k6_1/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_03_12_17_18.csv"
-PROTOBUF_CREATE_USER_POD_REPORT_PATH_2 = "./Experimental_Group_ProtoBuff/k6/protobuf_create_user/protobuf_create_users_report_k6_2/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_03_14_00_12.csv"
-PROTOBUF_CREATE_USER_POD_REPORT_PATH_3 = "./Experimental_Group_ProtoBuff/k6/protobuf_create_user/protobuf_create_users_report_k6_3/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_03_14_39_07.csv"
 
-# GET ALL USERS
-PROTOBUF_GET_ALL_USERS_POD_REPORT_PATH_1 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_users/protobuf_get_all_users_report_k6_1/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_02_20_51_32.csv"
-PROTOBUF_GET_ALL_USERS_POD_REPORT_PATH_2 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_users/protobuf_get_all_users_report_k6_2/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_02_20_54_08.csv"
-PROTOBUF_GET_ALL_USERS_POD_REPORT_PATH_3 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_users/protobuf_get_all_users_report_k6_3/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_02_20_57_23.csv"
 
 # GET USER BY ID
-PROTOBUF_GET_USER_ID_POD_REPORT_PATH_1 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_user_id/protobuf_get_user_id_report_k6_1/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_02_19_16_21.csv"
-PROTOBUF_GET_USER_ID_POD_REPORT_PATH_2 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_user_id/protobuf_get_user_id_report_k6_2/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_02_19_19_02.csv"
-PROTOBUF_GET_USER_ID_POD_REPORT_PATH_3 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_user_id/protobuf_get_user_id_report_k6_3/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_02_19_21_07.csv"
+PROTOBUF_GET_USER_ID_POD_1 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_user_id/reports/protobuf_get_user_id/10000/report_1/power_consumption_protobuf_get_user_id.csv"
+PROTOBUF_GET_USER_ID_POD_2 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_user_id/reports/protobuf_get_user_id/10000/report_1/power_consumption_protobuf_get_user_id.csv"
+PROTOBUF_GET_USER_ID_POD_3 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_user_id/reports/protobuf_get_user_id/10000/report_1/power_consumption_protobuf_get_user_id.csv"
 
+# GET ALL USERS
+PROTOBUF_GET_ALL_USERS_POD_1 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_users/reports/protobuf_get_all_users/10000/report_1/power_consumption_protobuf_get_all_users.csv"
+PROTOBUF_GET_ALL_USERS_POD_2 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_users/reports/protobuf_get_all_users/10000/report_1/power_consumption_protobuf_get_all_users.csv"
+PROTOBUF_GET_ALL_USERS_POD_3 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_users/reports/protobuf_get_all_users/10000/report_1/power_consumption_protobuf_get_all_users.csv"
 
 # GET ALL PRODUCT ENTITIES
-PROTOBUF_GET_ALL_PRODUCT_ENTITIES_POD_REPORT_PATH_1 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_products_entities/protobuf_get_all_product_entities_report_k6_1/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_02_21_00_48.csv"
-PROTOBUF_GET_ALL_PRODUCT_ENTITIES_POD_REPORT_PATH_2 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_products_entities/protobuf_get_all_product_entities_report_k6_2/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_02_21_03_05.csv"
-PROTOBUF_GET_ALL_PRODUCT_ENTITIES_POD_REPORT_PATH_3 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_products_entities/protobuf_get_all_product_entities_report_k6_3/Pod_Process_Power_Consumption_(W)_in_Namespace_app_namespace_data_as_joinbyfield_2025_03_02_21_05_57.csv"
+PROTOBUF_GET_ALL_PRODUCT_ENTITIES_POD_1 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_products_entities/reports/protobuf_get_all_products_entities/10000/report_1/power_consumption_protobuf_get_all_products_entities.csv"
+PROTOBUF_GET_ALL_PRODUCT_ENTITIES_POD_2 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_products_entities/reports/protobuf_get_all_products_entities/10000/report_1/power_consumption_protobuf_get_all_products_entities.csv"
+PROTOBUF_GET_ALL_PRODUCT_ENTITIES_POD_3 = "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_products_entities/reports/protobuf_get_all_products_entities/10000/report_1/power_consumption_protobuf_get_all_products_entities.csv"
 
+# CREATE USERS
+PROTOBUF_CREATE_USER_POD_1 = "./Experimental_Group_ProtoBuff/k6/protobuf_create_user/reports/protobuf_create_user/10000/report_1/power_consumption_protobuf_create_user.csv"
+PROTOBUF_CREATE_USER_POD_2 = "./Experimental_Group_ProtoBuff/k6/protobuf_create_user/reports/protobuf_create_user/10000/report_2/power_consumption_protobuf_create_user.csv"
+PROTOBUF_CREATE_USER_POD_3 = "./Experimental_Group_ProtoBuff/k6/protobuf_create_user/reports/protobuf_create_user/10000/report_3/power_consumption_protobuf_create_user.csv"
+
+# UPDATE USERS
+PROTOBUF_UPDATE_USER_1 = "./Experimental_Group_ProtoBuff/k6/protobuf_update_user/reports/protobuf_update_user/10000/report_1/power_consumption_protobuf_update_user.csv"
+PROTOBUF_UPDATE_USER_2 = "./Experimental_Group_ProtoBuff/k6/protobuf_update_user/reports/protobuf_update_user/10000/report_2/power_consumption_protobuf_update_user.csv"
+PROTOBUF_UPDATE_USER_3 = "./Experimental_Group_ProtoBuff/k6/protobuf_update_user/reports/protobuf_update_user/10000/report_3/power_consumption_protobuf_update_user.csv"
+
+# DELETE USERS
+PROTOBUF_DELETE_USER_1 = "./Experimental_Group_ProtoBuff/k6/protobuf_delete_user/reports/protobuf_delete_user/10000/report_1/power_consumption_protobuf_delete_user.csv"
+PROTOBUF_DELETE_USER_2 = "./Experimental_Group_ProtoBuff/k6/protobuf_delete_user/reports/protobuf_delete_user/10000/report_2/power_consumption_protobuf_delete_user.csv"
+PROTOBUF_DELETE_USER_3 = "./Experimental_Group_ProtoBuff/k6/protobuf_delete_user/reports/protobuf_delete_user/10000/report_3/power_consumption_protobuf_delete_user.csv"
 
 #! CSV COLUMNS NAMES
 ##? NORMAL REPORTS
@@ -119,10 +158,7 @@ METADATA = "metadata"
 
 
 ##? POD REPORTS
-PKG = "PKG"
-DRAM = "DRAM"
-OTHER = "OTHER"
-GPU = "GPU"
+TOTAL = "TOTAL"
 
 #! CSV ROW NAMES
 ##? NORMAL REPORTS

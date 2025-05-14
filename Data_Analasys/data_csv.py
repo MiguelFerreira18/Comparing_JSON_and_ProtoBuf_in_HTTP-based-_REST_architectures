@@ -22,268 +22,250 @@ metric_row_selection = [
     const.RESPONSE_TIME,
     const.HTTP_REQ_DURATION,
 ]
-metric_selection_pods = [const.PKG, const.OTHER]
+metric_selection_pods = [const.TOTAL]
 
 # Reports JSON
 
 # Create User
-json_create_user_1 = pd.read_csv(
-    const.JSON_CREATE_USER_REPORT_PATH_1, usecols=metric_selection
-)
+json_create_user_1 = pd.read_csv(const.JSON_CREATE_USER_1, usecols=metric_selection)
 json_create_user_1 = json_create_user_1[
     json_create_user_1[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
-json_create_user_2 = pd.read_csv(
-    const.JSON_CREATE_USER_REPORT_PATH_2, usecols=metric_selection
-)
+json_create_user_2 = pd.read_csv(const.JSON_CREATE_USER_2, usecols=metric_selection)
 json_create_user_2 = json_create_user_2[
     json_create_user_2[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
-json_create_user_3 = pd.read_csv(
-    const.JSON_CREATE_USER_REPORT_PATH_3, usecols=metric_selection
-)
+json_create_user_3 = pd.read_csv(const.JSON_CREATE_USER_3, usecols=metric_selection)
 json_create_user_3 = json_create_user_3[
     json_create_user_3[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
 json_create_user_pod_1 = pd.read_csv(
-    const.JSON_CREATE_USER_POD_REPORT_PATH_1, usecols=metric_selection_pods
+    const.JSON_CREATE_USER_POD_1, usecols=metric_selection_pods
 )
 json_create_user_pod_2 = pd.read_csv(
-    const.JSON_CREATE_USER_POD_REPORT_PATH_2, usecols=metric_selection_pods
+    const.JSON_CREATE_USER_POD_2, usecols=metric_selection_pods
 )
 json_create_user_pod_3 = pd.read_csv(
-    const.JSON_CREATE_USER_POD_REPORT_PATH_3, usecols=metric_selection_pods
+    const.JSON_CREATE_USER_POD_3, usecols=metric_selection_pods
 )
 
 # Get all Users
-json_get_all_users_1 = pd.read_csv(
-    const.JSON_GET_ALL_USERS_REPORT_PATH_1, usecols=metric_selection
-)
+json_get_all_users_1 = pd.read_csv(const.JSON_GET_ALL_USERS_1, usecols=metric_selection)
 json_get_all_users_1 = json_get_all_users_1[
     json_get_all_users_1[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
-json_get_all_users_2 = pd.read_csv(
-    const.JSON_GET_ALL_USERS_REPORT_PATH_2, usecols=metric_selection
-)
+json_get_all_users_2 = pd.read_csv(const.JSON_GET_ALL_USERS_2, usecols=metric_selection)
 json_get_all_users_2 = json_get_all_users_2[
     json_get_all_users_2[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
-json_get_all_users_3 = pd.read_csv(
-    const.JSON_GET_ALL_USERS_REPORT_PATH_3, usecols=metric_selection
-)
+json_get_all_users_3 = pd.read_csv(const.JSON_GET_ALL_USERS_3, usecols=metric_selection)
 json_get_all_users_3 = json_get_all_users_3[
     json_get_all_users_3[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
 json_get_all_users_pod_1 = pd.read_csv(
-    const.JSON_GET_ALL_USERS_POD_REPORT_PATH_1, usecols=metric_selection_pods
+    const.JSON_GET_ALL_USERS_POD_1, usecols=metric_selection_pods
 )
 json_get_all_users_pod_2 = pd.read_csv(
-    const.JSON_GET_ALL_USERS_POD_REPORT_PATH_2, usecols=metric_selection_pods
+    const.JSON_GET_ALL_USERS_POD_2, usecols=metric_selection_pods
 )
 json_get_all_users_pod_3 = pd.read_csv(
-    const.JSON_GET_ALL_USERS_POD_REPORT_PATH_3, usecols=metric_selection_pods
+    const.JSON_GET_ALL_USERS_POD_3, usecols=metric_selection_pods
 )
 
 # Get User by ID
-json_get_user_id_1 = pd.read_csv(
-    const.JSON_GET_USER_ID_REPORT_PATH_1, usecols=metric_selection
-)
+json_get_user_id_1 = pd.read_csv(const.JSON_GET_USER_ID_1, usecols=metric_selection)
 json_get_user_id_1 = json_get_user_id_1[
     json_get_user_id_1[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
-json_get_user_id_2 = pd.read_csv(
-    const.JSON_GET_USER_ID_REPORT_PATH_2, usecols=metric_selection
-)
+json_get_user_id_2 = pd.read_csv(const.JSON_GET_USER_ID_2, usecols=metric_selection)
 json_get_user_id_2 = json_get_user_id_2[
     json_get_user_id_2[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
-json_get_user_id_3 = pd.read_csv(
-    const.JSON_GET_USER_ID_REPORT_PATH_3, usecols=metric_selection
-)
+json_get_user_id_3 = pd.read_csv(const.JSON_GET_USER_ID_3, usecols=metric_selection)
 json_get_user_id_3 = json_get_user_id_3[
     json_get_user_id_3[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
 json_get_user_id_pod_1 = pd.read_csv(
-    const.JSON_GET_USER_ID_POD_REPORT_PATH_1, usecols=metric_selection_pods
+    const.JSON_GET_USER_ID_POD_1, usecols=metric_selection_pods
 )
 json_get_user_id_pod_2 = pd.read_csv(
-    const.JSON_GET_USER_ID_POD_REPORT_PATH_2, usecols=metric_selection_pods
+    const.JSON_GET_USER_ID_POD_2, usecols=metric_selection_pods
 )
 json_get_user_id_pod_3 = pd.read_csv(
-    const.JSON_GET_USER_ID_POD_REPORT_PATH_3, usecols=metric_selection_pods
+    const.JSON_GET_USER_ID_POD_3, usecols=metric_selection_pods
 )
 
 # Get all Products entities
 json_get_all_product_entities_1 = pd.read_csv(
-    const.JSON_GET_ALL_PRODUCT_ENTITIES_REPORT_PATH_1, usecols=metric_selection
+    const.JSON_GET_ALL_PRODUCT_ENTITIES_1, usecols=metric_selection
 )
 json_get_all_product_entities_1 = json_get_all_product_entities_1[
     json_get_all_product_entities_1[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
 json_get_all_product_entities_2 = pd.read_csv(
-    const.JSON_GET_ALL_PRODUCT_ENTITIES_REPORT_PATH_2, usecols=metric_selection
+    const.JSON_GET_ALL_PRODUCT_ENTITIES_2, usecols=metric_selection
 )
 json_get_all_product_entities_2 = json_get_all_product_entities_2[
     json_get_all_product_entities_2[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
 json_get_all_product_entities_3 = pd.read_csv(
-    const.JSON_GET_ALL_PRODUCT_ENTITIES_REPORT_PATH_3, usecols=metric_selection
+    const.JSON_GET_ALL_PRODUCT_ENTITIES_3, usecols=metric_selection
 )
 json_get_all_product_entities_3 = json_get_all_product_entities_3[
     json_get_all_product_entities_3[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
 json_get_all_product_entities_pod_1 = pd.read_csv(
-    const.JSON_GET_ALL_PRODUCT_ENTITIES_POD_REPORT_PATH_1, usecols=metric_selection_pods
+    const.JSON_GET_ALL_PRODUCT_ENTITIES_POD_1, usecols=metric_selection_pods
 )
 json_get_all_product_entities_pod_2 = pd.read_csv(
-    const.JSON_GET_ALL_PRODUCT_ENTITIES_POD_REPORT_PATH_2, usecols=metric_selection_pods
+    const.JSON_GET_ALL_PRODUCT_ENTITIES_POD_2, usecols=metric_selection_pods
 )
 json_get_all_product_entities_pod_3 = pd.read_csv(
-    const.JSON_GET_ALL_PRODUCT_ENTITIES_POD_REPORT_PATH_3, usecols=metric_selection_pods
+    const.JSON_GET_ALL_PRODUCT_ENTITIES_POD_3, usecols=metric_selection_pods
 )
 
 # Reports Protobuf
 
 # Create User
 protobuf_create_user_1 = pd.read_csv(
-    const.PROTOBUF_CREATE_USER_REPORT_PATH_1, usecols=metric_selection
+    const.PROTOBUF_CREATE_USER_1, usecols=metric_selection
 )
 protobuf_create_user_1 = protobuf_create_user_1[
     protobuf_create_user_1[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
 protobuf_create_user_2 = pd.read_csv(
-    const.PROTOBUF_CREATE_USER_REPORT_PATH_2, usecols=metric_selection
+    const.PROTOBUF_CREATE_USER_2, usecols=metric_selection
 )
 protobuf_create_user_2 = protobuf_create_user_2[
     protobuf_create_user_2[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
 protobuf_create_user_3 = pd.read_csv(
-    const.PROTOBUF_CREATE_USER_REPORT_PATH_3, usecols=metric_selection
+    const.PROTOBUF_CREATE_USER_3, usecols=metric_selection
 )
 protobuf_create_user_3 = protobuf_create_user_3[
     protobuf_create_user_3[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
 protobuf_create_user_pod_1 = pd.read_csv(
-    const.PROTOBUF_CREATE_USER_POD_REPORT_PATH_1, usecols=metric_selection_pods
+    const.PROTOBUF_CREATE_USER_POD_1, usecols=metric_selection_pods
 )
 protobuf_create_user_pod_2 = pd.read_csv(
-    const.PROTOBUF_CREATE_USER_POD_REPORT_PATH_2, usecols=metric_selection_pods
+    const.PROTOBUF_CREATE_USER_POD_2, usecols=metric_selection_pods
 )
 protobuf_create_user_pod_3 = pd.read_csv(
-    const.PROTOBUF_CREATE_USER_POD_REPORT_PATH_3, usecols=metric_selection_pods
+    const.PROTOBUF_CREATE_USER_POD_3, usecols=metric_selection_pods
 )
 
 # Get all Users
 protobuf_get_all_users_1 = pd.read_csv(
-    const.PROTOBUF_GET_ALL_USERS_REPORT_PATH_1, usecols=metric_selection
+    const.PROTOBUF_GET_ALL_USERS_1, usecols=metric_selection
 )
 protobuf_get_all_users_1 = protobuf_get_all_users_1[
     protobuf_get_all_users_1[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
 protobuf_get_all_users_2 = pd.read_csv(
-    const.PROTOBUF_GET_ALL_USERS_REPORT_PATH_2, usecols=metric_selection
+    const.PROTOBUF_GET_ALL_USERS_2, usecols=metric_selection
 )
 protobuf_get_all_users_2 = protobuf_get_all_users_2[
     protobuf_get_all_users_2[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
 protobuf_get_all_users_3 = pd.read_csv(
-    const.PROTOBUF_GET_ALL_USERS_REPORT_PATH_3, usecols=metric_selection
+    const.PROTOBUF_GET_ALL_USERS_3, usecols=metric_selection
 )
 protobuf_get_all_users_3 = protobuf_get_all_users_3[
     protobuf_get_all_users_3[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
 protobuf_get_all_users_pod_1 = pd.read_csv(
-    const.PROTOBUF_GET_ALL_USERS_POD_REPORT_PATH_1, usecols=metric_selection_pods
+    const.PROTOBUF_GET_ALL_USERS_POD_1, usecols=metric_selection_pods
 )
 protobuf_get_all_users_pod_2 = pd.read_csv(
-    const.PROTOBUF_GET_ALL_USERS_POD_REPORT_PATH_2, usecols=metric_selection_pods
+    const.PROTOBUF_GET_ALL_USERS_POD_2, usecols=metric_selection_pods
 )
 protobuf_get_all_users_pod_3 = pd.read_csv(
-    const.PROTOBUF_GET_ALL_USERS_POD_REPORT_PATH_3, usecols=metric_selection_pods
+    const.PROTOBUF_GET_ALL_USERS_POD_3, usecols=metric_selection_pods
 )
 
 # Get User by ID
 protobuf_get_user_id_1 = pd.read_csv(
-    const.PROTOBUF_GET_USER_ID_REPORT_PATH_1, usecols=metric_selection
+    const.PROTOBUF_GET_USER_ID_1, usecols=metric_selection
 )
 protobuf_get_user_id_1 = protobuf_get_user_id_1[
     protobuf_get_user_id_1[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
 protobuf_get_user_id_2 = pd.read_csv(
-    const.PROTOBUF_GET_USER_ID_REPORT_PATH_2, usecols=metric_selection
+    const.PROTOBUF_GET_USER_ID_2, usecols=metric_selection
 )
 protobuf_get_user_id_2 = protobuf_get_user_id_2[
     protobuf_get_user_id_2[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
 protobuf_get_user_id_3 = pd.read_csv(
-    const.PROTOBUF_GET_USER_ID_REPORT_PATH_3, usecols=metric_selection
+    const.PROTOBUF_GET_USER_ID_3, usecols=metric_selection
 )
 protobuf_get_user_id_3 = protobuf_get_user_id_3[
     protobuf_get_user_id_3[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
 protobuf_get_user_id_pod_1 = pd.read_csv(
-    const.PROTOBUF_GET_USER_ID_POD_REPORT_PATH_1, usecols=metric_selection_pods
+    const.PROTOBUF_GET_USER_ID_POD_1, usecols=metric_selection_pods
 )
 protobuf_get_user_id_pod_2 = pd.read_csv(
-    const.PROTOBUF_GET_USER_ID_POD_REPORT_PATH_2, usecols=metric_selection_pods
+    const.PROTOBUF_GET_USER_ID_POD_2, usecols=metric_selection_pods
 )
 protobuf_get_user_id_pod_3 = pd.read_csv(
-    const.PROTOBUF_GET_USER_ID_POD_REPORT_PATH_3, usecols=metric_selection_pods
+    const.PROTOBUF_GET_USER_ID_POD_3, usecols=metric_selection_pods
 )
 
 # Get all Products entities
 protobuf_get_all_product_entities_1 = pd.read_csv(
-    const.PROTOBUF_GET_ALL_PRODUCT_ENTITIES_REPORT_PATH_1, usecols=metric_selection
+    const.PROTOBUF_GET_ALL_PRODUCT_ENTITIES_1, usecols=metric_selection
 )
 protobuf_get_all_product_entities_1 = protobuf_get_all_product_entities_1[
     protobuf_get_all_product_entities_1[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
 protobuf_get_all_product_entities_2 = pd.read_csv(
-    const.PROTOBUF_GET_ALL_PRODUCT_ENTITIES_REPORT_PATH_2, usecols=metric_selection
+    const.PROTOBUF_GET_ALL_PRODUCT_ENTITIES_2, usecols=metric_selection
 )
 protobuf_get_all_product_entities_2 = protobuf_get_all_product_entities_2[
     protobuf_get_all_product_entities_2[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
 protobuf_get_all_product_entities_3 = pd.read_csv(
-    const.PROTOBUF_GET_ALL_PRODUCT_ENTITIES_REPORT_PATH_3, usecols=metric_selection
+    const.PROTOBUF_GET_ALL_PRODUCT_ENTITIES_3, usecols=metric_selection
 )
 protobuf_get_all_product_entities_3 = protobuf_get_all_product_entities_3[
     protobuf_get_all_product_entities_3[const.METRIC_NAME].isin(metric_row_selection)
 ]
 
 protobuf_get_all_product_entities_pod_1 = pd.read_csv(
-    const.PROTOBUF_GET_ALL_PRODUCT_ENTITIES_POD_REPORT_PATH_1,
+    const.PROTOBUF_GET_ALL_PRODUCT_ENTITIES_POD_1,
     usecols=metric_selection_pods,
 )
 protobuf_get_all_product_entities_pod_2 = pd.read_csv(
-    const.PROTOBUF_GET_ALL_PRODUCT_ENTITIES_POD_REPORT_PATH_2,
+    const.PROTOBUF_GET_ALL_PRODUCT_ENTITIES_POD_2,
     usecols=metric_selection_pods,
 )
 protobuf_get_all_product_entities_pod_3 = pd.read_csv(
-    const.PROTOBUF_GET_ALL_PRODUCT_ENTITIES_POD_REPORT_PATH_3,
+    const.PROTOBUF_GET_ALL_PRODUCT_ENTITIES_POD_3,
     usecols=metric_selection_pods,
 )
 
@@ -1063,15 +1045,9 @@ print(
 ###! CREATE USERS BOTH JSON AND PROTOBUF
 
 ### JSON MEAN FOR THE TOTAL WATTS
-mean_json_create_user_pod_1 = round(
-    json_create_user_pod_1[[const.PKG, const.OTHER]].sum(axis=1).mean(), 2
-)
-mean_json_create_user_pod_2 = round(
-    json_create_user_pod_2[[const.PKG, const.OTHER]].sum(axis=1).mean(), 2
-)
-mean_json_create_user_pod_3 = round(
-    json_create_user_pod_3[[const.PKG, const.OTHER]].sum(axis=1).mean(), 2
-)
+mean_json_create_user_pod_1 = round(json_create_user_pod_1[const.TOTAL].mean(), 2)
+mean_json_create_user_pod_2 = round(json_create_user_pod_2[const.TOTAL].mean(), 2)
+mean_json_create_user_pod_3 = round(json_create_user_pod_3[const.TOTAL].mean(), 2)
 total_mean_json_create_user_pod = round(
     (
         mean_json_create_user_pod_1
@@ -1084,13 +1060,13 @@ total_mean_json_create_user_pod = round(
 
 ### PROTOBUF MEAN FOR THE TOTAL WATTS
 mean_protobuf_create_user_pod_1 = round(
-    protobuf_create_user_pod_1[[const.PKG, const.OTHER]].sum(axis=1).mean(), 2
+    protobuf_create_user_pod_1[const.TOTAL].mean(), 2
 )
 mean_protobuf_create_user_pod_2 = round(
-    protobuf_create_user_pod_2[[const.PKG, const.OTHER]].sum(axis=1).mean(), 2
+    protobuf_create_user_pod_2[const.TOTAL].mean(), 2
 )
 mean_protobuf_create_user_pod_3 = round(
-    protobuf_create_user_pod_3[[const.PKG, const.OTHER]].sum(axis=1).mean(), 2
+    protobuf_create_user_pod_3[const.TOTAL].mean(), 2
 )
 total_mean_protobuf_create_user_pod = round(
     (
@@ -1121,15 +1097,9 @@ print("=====================================\n")
 ###! GET ALL USERS BOTH JSON AND PROTOBUF
 
 ### JSON MEAN FOR THE TOTAL WATTS
-mean_json_get_all_users_pod_1 = round(
-    json_get_all_users_pod_1[[const.PKG, const.OTHER]].sum(axis=1).mean(), 2
-)
-mean_json_get_all_users_pod_2 = round(
-    json_get_all_users_pod_2[[const.PKG, const.OTHER]].sum(axis=1).mean(), 2
-)
-mean_json_get_all_users_pod_3 = round(
-    json_get_all_users_pod_3[[const.PKG, const.OTHER]].sum(axis=1).mean(), 2
-)
+mean_json_get_all_users_pod_1 = round(json_get_all_users_pod_1[const.TOTAL].mean(), 2)
+mean_json_get_all_users_pod_2 = round(json_get_all_users_pod_2[const.TOTAL].mean(), 2)
+mean_json_get_all_users_pod_3 = round(json_get_all_users_pod_3[const.TOTAL].mean(), 2)
 total_mean_json_get_all_user_pod = round(
     (
         mean_json_get_all_users_pod_1
@@ -1143,13 +1113,13 @@ total_mean_json_get_all_user_pod = round(
 ### PROTOBUF MEAN FOR THE TOTAL WATTS
 
 mean_protobuf_get_all_users_pod_1 = round(
-    protobuf_get_all_users_pod_1[[const.PKG, const.OTHER]].sum(axis=1).mean(), 2
+    protobuf_get_all_users_pod_1[const.TOTAL].mean(), 2
 )
 mean_protobuf_get_all_users_pod_2 = round(
-    protobuf_get_all_users_pod_2[[const.PKG, const.OTHER]].sum(axis=1).mean(), 2
+    protobuf_get_all_users_pod_2[const.TOTAL].mean(), 2
 )
 mean_protobuf_get_all_users_pod_3 = round(
-    protobuf_get_all_users_pod_3[[const.PKG, const.OTHER]].sum(axis=1).mean(), 2
+    protobuf_get_all_users_pod_3[const.TOTAL].mean(), 2
 )
 total_mean_protobuf_get_all_user_pod = round(
     (
@@ -1180,15 +1150,9 @@ print("=====================================\n")
 ###! GET USER ID
 
 ### JSON MEAN FOR THE TOTAL WATTS
-mean_json_get_user_id_pod_1 = round(
-    json_get_user_id_pod_1[[const.PKG, const.OTHER]].sum(axis=1).mean(), 2
-)
-mean_json_get_user_id_pod_2 = round(
-    json_get_user_id_pod_2[[const.PKG, const.OTHER]].sum(axis=1).mean(), 2
-)
-mean_json_get_user_id_pod_3 = round(
-    json_get_user_id_pod_3[[const.PKG, const.OTHER]].sum(axis=1).mean(), 2
-)
+mean_json_get_user_id_pod_1 = round(json_get_user_id_pod_1[const.TOTAL].mean(), 2)
+mean_json_get_user_id_pod_2 = round(json_get_user_id_pod_2[const.TOTAL].mean(), 2)
+mean_json_get_user_id_pod_3 = round(json_get_user_id_pod_3[const.TOTAL].mean(), 2)
 total_mean_json_get_user_id_pod = round(
     (
         mean_json_get_user_id_pod_1
@@ -1201,13 +1165,13 @@ total_mean_json_get_user_id_pod = round(
 
 ### PROTOBUF MEAN FOR THE TOTAL WATTS
 mean_protobuf_get_user_id_pod_1 = round(
-    protobuf_get_user_id_pod_1[[const.PKG, const.OTHER]].sum(axis=1).mean(), 2
+    protobuf_get_user_id_pod_1[const.TOTAL].mean(), 2
 )
 mean_protobuf_get_user_id_pod_2 = round(
-    protobuf_get_user_id_pod_2[[const.PKG, const.OTHER]].sum(axis=1).mean(), 2
+    protobuf_get_user_id_pod_2[const.TOTAL].mean(), 2
 )
 mean_protobuf_get_user_id_pod_3 = round(
-    protobuf_get_user_id_pod_3[[const.PKG, const.OTHER]].sum(axis=1).mean(), 2
+    protobuf_get_user_id_pod_3[const.TOTAL].mean(), 2
 )
 total_mean_protobuf_get_user_id_pod = round(
     (
@@ -1239,13 +1203,13 @@ print("=====================================\n")
 
 ### JSON MEAN FOR THE TOTAL WATTS
 mean_json_get_all_product_entities_pod_1 = round(
-    json_get_all_product_entities_pod_1[[const.PKG, const.OTHER]].sum(axis=1).mean(), 2
+    json_get_all_product_entities_pod_1[const.TOTAL].mean(), 2
 )
 mean_json_get_all_product_entities_pod_2 = round(
-    json_get_all_product_entities_pod_2[[const.PKG, const.OTHER]].sum(axis=1).mean(), 2
+    json_get_all_product_entities_pod_2[const.TOTAL].mean(), 2
 )
 mean_json_get_all_product_entities_pod_3 = round(
-    json_get_all_product_entities_pod_3[[const.PKG, const.OTHER]].sum(axis=1).mean(), 2
+    json_get_all_product_entities_pod_3[const.TOTAL].mean(), 2
 )
 total_mean_json_get_all_product_entities_pod = round(
     (
@@ -1259,21 +1223,15 @@ total_mean_json_get_all_product_entities_pod = round(
 
 ### PROTOBUF MEAN FOR THE TOTAL WATTS
 mean_protobuf_get_all_product_entities_pod_1 = round(
-    protobuf_get_all_product_entities_pod_1[[const.PKG, const.OTHER]]
-    .sum(axis=1)
-    .mean(),
+    protobuf_get_all_product_entities_pod_1[const.TOTAL].mean(),
     2,
 )
 mean_protobuf_get_all_product_entities_pod_2 = round(
-    protobuf_get_all_product_entities_pod_2[[const.PKG, const.OTHER]]
-    .sum(axis=1)
-    .mean(),
+    protobuf_get_all_product_entities_pod_2[const.TOTAL].mean(),
     2,
 )
 mean_protobuf_get_all_product_entities_pod_3 = round(
-    protobuf_get_all_product_entities_pod_3[[const.PKG, const.OTHER]]
-    .sum(axis=1)
-    .mean(),
+    protobuf_get_all_product_entities_pod_3[const.TOTAL].mean(),
     2,
 )
 total_mean_protobuf_get_all_product_entities_pod = round(
@@ -1865,13 +1823,13 @@ for i, endpoint in enumerate(endpoints):
 
 
 ## For ALL endpoints together
-def extract_energy_consumption(df, pkg_col, other_col):
-    return df[pkg_col].values + df[other_col].values
+def extract_energy_consumption(df, pkg_col):
+    return df[pkg_col].values
 
 
 json_all_pod_reports = np.concatenate(
     [
-        extract_energy_consumption(df, const.PKG, const.OTHER)
+        extract_energy_consumption(df, const.TOTAL)
         for df in [
             json_create_user_pod_1,
             json_create_user_pod_2,
@@ -1891,7 +1849,7 @@ json_all_pod_reports = np.concatenate(
 
 protobuf_all_pod_reports = np.concatenate(
     [
-        extract_energy_consumption(df, const.PKG, const.OTHER)
+        extract_energy_consumption(df, const.TOTAL)
         for df in [
             protobuf_create_user_pod_1,
             protobuf_create_user_pod_2,
@@ -2001,16 +1959,10 @@ protobuf_pod_reports = [
 
 for i, endpoint in enumerate(endpoints):
     json_response_times = np.concatenate(
-        [
-            extract_energy_consumption(df, const.PKG, const.OTHER)
-            for df in json_pod_reports[i]
-        ]
+        [extract_energy_consumption(df, const.TOTAL) for df in json_pod_reports[i]]
     )
     protobuf_response_times = np.concatenate(
-        [
-            extract_energy_consumption(df, const.PKG, const.OTHER)
-            for df in protobuf_pod_reports[i]
-        ]
+        [extract_energy_consumption(df, const.TOTAL) for df in protobuf_pod_reports[i]]
     )
 
     json_median = np.median(json_response_times)
