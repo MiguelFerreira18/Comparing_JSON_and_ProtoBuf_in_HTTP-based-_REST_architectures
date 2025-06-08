@@ -10,6 +10,7 @@ import encoding from 'k6/encoding';
 const AUTH_TOKEN = __ENV.AUTH_TOKEN || 'default-token-for-dev-only';
 const ITERATIONS = __ENV.ITERATIONS || 1000;
 const ITERATION_MULTIPLIER = __ENV.ITERATION_MULTIPLIER || 1;
+const MAX_REPETITION = __ENV.MAX_REPETITION || 1;
 
 const responseTime = new Trend('response_time');
 const responseSizeMetric = new Trend('reponse_size');
@@ -20,7 +21,7 @@ export const options = {
     summaryTrendStats: ['avg', 'min', 'med', 'max', 'p(50)', 'p(90)', 'p(95)', 'p(99)', 'p(99.99)', 'count'],
 };
 
-let id = (ITERATIONS == 1000 ? 401 : (1000 * ITERATIONS + 401)) + (ITERATION_MULTIPLIER * ITERATIONS);
+let id = (ITERATIONS == 1000 ? 401 : (1000 * MAX_REPETITION + 401)) + (ITERATION_MULTIPLIER * ITERATIONS);
 
 export default function () {
     const url = `http://localhost:8082/users/${id++}`;
