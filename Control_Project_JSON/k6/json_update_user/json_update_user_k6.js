@@ -25,7 +25,6 @@ let id = (ITERATIONS == 1000 ? 401 : (1000 * MAX_REPETITION + 401)) + (ITERATION
 
 export default function () {
     const url = `http://localhost:8080/users/${id++}`;
-    console.log(`id: ${id}`)
 
     const payload = JSON.stringify({
         username: randomString(40, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'),

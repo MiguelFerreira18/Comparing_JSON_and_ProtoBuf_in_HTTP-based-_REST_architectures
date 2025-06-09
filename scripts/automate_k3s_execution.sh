@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Check commands existance
 command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
@@ -44,18 +43,6 @@ if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then
     fi
 fi
 
-echo -e "\n Starting Minikube..."
-if command_exists minikube; then
-    if ! minikube status | grep -q "Running"; then
-        minikube start
-    else
-        echo "Minikube is already running."
-    fi
-else
-    echo "Minikube not found. Please install Minikube first."
-    exit 1
-fi
-
 echo -e "\n Installing Prometheus stack"
 if  ! helm list -n monitoring | grep -q "prometheus"; then
     helm install prometheus prometheus-community/kube-prometheus-stack \
@@ -81,27 +68,27 @@ wait_for_pod "monitoring" "app.kubernetes.io/name=grafana,app.kubernetes.io/inst
 
 echo -e "\n Import dashboards into to grafana"
 
-dashboards=("Kepler-Exporter.json" "Springboot-Dashboard.json")
+# dashboards=("Kepler-Exporter.json" "Springboot-Dashboard.json")
 
-if command_exists kubectl; then
-    GRAFANA_POD=$(kubectl get pods -n monitoring -l "app.kubernetes.io/name=grafana,app.kubernetes.io/instance=prometheus" -o jsonpath="{.items[0].metadata.name}")
-    if [ -n "$GRAFANA_POD" ]; then
-        for dashboard in "${dashboards[@]}"; do
-            if ! kubectl exec -n monitoring "$GRAFANA_POD" -- ls /var/lib/grafana/dashboard/"$dashboard" >/dev/null 2>&1; then
-                if  [ -f "$dashboard" ]; then
-                echo "Copying dashboard $dashboard to Grafana pod..."
-                kubectl cp "$dashboard" -n monitoring "$GRAFANA_POD:/tmp/dashboards/$dashboard"
-                else
-                echo "Warning: $dashboard not found in current directory. Dashboard not imported."
-                fi
-            else
-                echo "$dashboard dashboard already exists in Grafana"
-            fi
-        done
-    else
-       echo "Grafana pod not found. Dashboard not imported." 
-    fi
-fi
+# if command_exists kubectl; then
+#     GRAFANA_POD=$(kubectl get pods -n monitoring -l "app.kubernetes.io/name=grafana,app.kubernetes.io/instance=prometheus" -o jsonpath="{.items[0].metadata.name}")
+#     if [ -n "$GRAFANA_POD" ]; then
+#         for dashboard in "${dashboards[@]}"; do
+#             if ! kubectl exec -n monitoring "$GRAFANA_POD" -- ls /var/lib/grafana/dashboard/"$dashboard" >/dev/null 2>&1; then
+#                 if  [ -f "$dashboard" ]; then
+#                 echo "Copying dashboard $dashboard to Grafana pod..."
+#                 kubectl cp "$dashboard" -n monitoring "$GRAFANA_POD:/tmp/dashboards/$dashboard"
+#                 else
+#                 echo "Warning: $dashboard not found in current directory. Dashboard not imported."
+#                 fi
+#             else
+#                 echo "$dashboard dashboard already exists in Grafana"
+#             fi
+#         done
+#     else
+#        echo "Grafana pod not found. Dashboard not imported." 
+#     fi
+# fi
 
 echo -e "\n Setting up Grafana port-forward in background..."
 GRAFANA_POD=$(kubectl get pods -n monitoring -l "app.kubernetes.io/name=grafana,app.kubernetes.io/instance=prometheus" -o jsonpath="{.items[0].metadata.name}")

@@ -144,18 +144,18 @@ run_k6_tests() {
                 
                 TEST_TYPE="control-project"
                 
-                if [[ "$test_name" == *"Protobuf"* ]]; then
+                if [[ "$test_name" == *"protobuf"* ]]; then
                     TEST_TYPE="experimental-project"
                 fi
                 if [ "$IS_TESTING_GATEWAY" == "true" ]; then
-                    curl -s http://localhost:9102/metrics | grep "gateway-namespace" > "$report_dir/before.txt"
+                    curl -s http://localhost:9102/metrics | grep "gateway-namespace" > "$report_dir/before_gateway.txt"
                 fi
                 
                 curl -s http://localhost:9102/metrics | grep "$TEST_TYPE" > "$report_dir/before.txt"
                 
                 
                 
-                cmd="k6 run -e AUTH_TOKEN=$AUTH_TOKEN -e ITERATION_MULTIPLIER=$((repeat - 1)) -e ITERATIONS=$iteration -i $iteration -d ${DURATION}m -u $VU --summary-time-unit $SUMMARY_TIME_UNIT --out json=$json_report --out csv=$csv_report $script_path"
+                cmd="k6 run -e AUTH_TOKEN=$AUTH_TOKEN -e ITERATION_MULTIPLIER=$((repeat - 1)) -e MAX_REPETITION=$REPEATS -e ITERATIONS=$iteration -i $iteration -d ${DURATION}m -u $VU --summary-time-unit $SUMMARY_TIME_UNIT --out json=$json_report --out csv=$csv_report $script_path"
                 
                 echo "Running: $iteration iterations (repeat $repeat)"
                 echo "Report directory: $report_dir"
@@ -173,66 +173,13 @@ run_k6_tests() {
                         echo "Moved html and json summary to $report_dir"
                     else
                         echo "Warning: not html and json summary found"
-                        
                     fi
-                    
-                    # read start_time end_time <<< $(parse_timestamps "$output")
                     
                     curl -s http://localhost:9102/metrics | grep "$TEST_TYPE" > "$report_dir/after.txt"
                     
                     if [ "$IS_TESTING_GATEWAY" == "true" ]; then
-                        curl -s http://localhost:9102/metrics | grep "gateway-namespace" > "$report_dir/after.txt"
+                        curl -s http://localhost:9102/metrics | grep "gateway-namespace" > "$report_dir/after_gateway.txt"
                     fi
-                    
-                    
-                    # if [ -n "$start_time" ] && [ -n "$end_time" ]; then
-                    #     echo "Test ran from $start_time to $end_time"
-                    
-                    #     namespace=$(get_namespace "$test_name")
-                    
-                    #     extract_cmd="$EXTRACT_SCRIPT -s \"$start_time\" -e \"$end_time\" -n \"$namespace\""
-                    #     echo -e "\n Executing: $extract_cmd"
-                    
-                    #     # Execute and wait for completion
-                    #     eval "$extract_cmd"
-                    #     extract_result=$?
-                    
-                    #     if [ $extract_result -eq 0 ]; then
-                    #         if [ -f "$EXTRACTED_CSV" ]; then
-                    #             mv "$EXTRACTED_CSV" "$report_dir/power_consumption_${test_name}.csv"
-                    #             echo "Moved metrics results to $report_dir/power_consumption_${test_name}.csv"
-                    #         else
-                    #             echo "Warning: Extracted CSV not found at $EXTRACTED_CSV"
-                    #         fi
-                    #     else
-                    #         echo "Warning: Extraction script failed with code $extract_result"
-                    #     fi
-                    
-                    #     if [ "$IS_TESTING_GATEWAY" == "true" ]; then
-                    #         echo "Extracting energy consumption from gateway"
-                    #         extract_cmd="$EXTRACT_SCRIPT -s \"$start_time\" -e \"$end_time\" -n \"$GATEWAY_NAMESPACE\""
-                    #         echo -e "\n Executing: $extract_cmd"
-                    
-                    #         eval "$extract_cmd"
-                    #         extract_result=$?
-                    
-                    #         if [ $extract_result -eq 0 ]; then
-                    #             if [ -f "$EXTRACTED_CSV" ]; then
-                    #                 mv "$EXTRACTED_CSV" "$report_dir/energy_consumption_${test_name}_gateway.csv"
-                    #                 echo "Moved metrics results to $report_dir/energy_consumption_${test_name}_gateway.csv"
-                    #             else
-                    #                 echo "Warning: Extracted CSV not found at $EXTRACTED_CSV"
-                    #             fi
-                    #         else
-                    #             echo "Warning: Extraction script failed with code $extract_result"
-                    #         fi
-                    
-                    
-                    #     fi
-                    
-                    # else
-                    #     echo "Warning: Could not parse timestamps from test output"
-                    # fi
                 else
                     echo "Error running test (code $test_result)"
                 fi
