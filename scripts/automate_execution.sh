@@ -131,6 +131,7 @@ services=(
     "gateway-namespace:gateway:8082:8082"
     "app-namespace-protobuf:experimental-project:8081:8081"
     "app-namespace-json:control-project:8080:8080"
+    "kepler:kepler:9102:9102" # KEPLER
     )
 for svc in "${services[@]}"; do
    IFS=":" read -r namespace name local_port target_port <<< "$svc"
