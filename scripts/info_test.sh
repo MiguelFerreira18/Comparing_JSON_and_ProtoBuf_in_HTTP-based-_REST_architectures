@@ -1,14 +1,5 @@
 #!/bin/bash
 
-IS_TESTING_GATEWAY=false
-
-if [ -z "$1" ]; then
-    echo "Error: Bearer token not provided"
-    echo "Usage: $0 [--gateway]"
-    echo "       --gateway    : Optional flag to run in gateway mode"
-    exit 1
-fi
-
 DIRECTORIES=(
     "./Control_Project_JSON/k6/json_get_all_products_entities/reports/json_get_all_products_entities"
     "./Control_Project_JSON/k6/json_get_user_id/reports/json_get_user_id"
@@ -16,36 +7,41 @@ DIRECTORIES=(
     "./Control_Project_JSON/k6/json_create_user/reports/json_create_user"
     "./Control_Project_JSON/k6/json_update_user/reports/json_update_user"
     "./Control_Project_JSON/k6/json_delete_user/reports/json_delete_user"
-    
     "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_products_entities/reports/protobuf_get_all_products_entities"
     "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_users/reports/protobuf_get_all_users"
     "./Experimental_Group_ProtoBuff/k6/protobuf_get_user_id/reports/protobuf_get_user_id"
     "./Experimental_Group_ProtoBuff/k6/protobuf_create_user/reports/protobuf_create_user"
     "./Experimental_Group_ProtoBuff/k6/protobuf_update_user/reports/protobuf_update_user"
     "./Experimental_Group_ProtoBuff/k6/protobuf_delete_user/reports/protobuf_delete_user"
-    
-    "./Gateway/k6_json/json_get_all_products_entities/reports/json_get_all_products_entities"
-    "./Gateway/k6_json/json_get_all_users/reports/json_get_all_users"
-    "./Gateway/k6_json/json_get_user_id/reports/json_get_user_id"
-    "./Gateway/k6_json/json_create_user/reports/json_create_user"
-    "./Gateway/k6_json/json_update_user/reports/json_update_user"
-    "./Gateway/k6_json/json_delete_user/reports/json_delete_user"
-    
-    "./Gateway/k6_protobuf/protobuf_get_all_products_entities/reports/protobuf_get_all_products_entities"
-    "./Gateway/k6_protobuf/protobuf_get_all_users/reports/protobuf_get_all_users"
-    "./Gateway/k6_protobuf/protobuf_get_user_id/reports/protobuf_get_user_id"
-    "./Gateway/k6_protobuf/protobuf_create_user/reports/protobuf_create_user"
-    "./Gateway/k6_protobuf/protobuf_update_user/reports/protobuf_update_user"
-    "./Gateway/k6_protobuf/protobuf_delete_user/reports/protobuf_delete_user"
+    "./Gateway/k6_json/json_get_all_products_entities/reports/json_get_all_products_entities_gateway"
+    "./Gateway/k6_json/json_get_all_users/reports/json_get_all_users_gateway"
+    "./Gateway/k6_json/json_get_user_id/reports/json_get_user_id_gateway"
+    "./Gateway/k6_json/json_create_user/reports/json_create_user_gateway"
+    "./Gateway/k6_json/json_update_user/reports/json_update_user_gateway"
+    "./Gateway/k6_json/json_delete_user/reports/json_delete_user_gateway"
+    "./Gateway/k6_protobuf/protobuf_get_all_products_entities/reports/protobuf_get_all_products_entities_gateway"
+    "./Gateway/k6_protobuf/protobuf_get_all_users/reports/protobuf_get_all_users_gateway"
+    "./Gateway/k6_protobuf/protobuf_get_user_id/reports/protobuf_get_user_id_gateway"
+    "./Gateway/k6_protobuf/protobuf_create_user/reports/protobuf_create_user_gateway"
+    "./Gateway/k6_protobuf/protobuf_update_user/reports/protobuf_update_user_gateway"
+    "./Gateway/k6_protobuf/protobuf_delete_user/reports/protobuf_delete_user_gateway"
 )
 
 process_directory() {
     local base_dir="$1"
     local dir_name=$(basename "$base_dir")
-    
+    local is_gateway=false
+
+    if [[ "$base_dir" == *"gateway"* ]] || [[ "$base_dir" == *"Gateway"* ]]; then 
+        is_gateway=true
+    fi
+
     echo ""
     echo "================================================================="
     echo "PROCESSING DIRECTORY: $dir_name"
+    if $is_gateway; then
+        echo " (GATEWAY - WILL INCLUDE GATEWAY ENERGY IN CALCULATIONS)"
+    fi
     echo "================================================================="
     
     # (1000, 10000)
@@ -91,9 +87,35 @@ process_directory() {
             fi
             
             energy_diff=$(echo "$after_energy - $before_energy" | bc -l)
-            energy_diffs+=("$energy_diff")
             
-            echo "    - $trial_name: Energy consumed = $energy_diff joules"
+            if $is_gateway; then
+                before_gateway_file="${trial_dir}/before_gateway.txt"
+                after_gateway_file="${trial_dir}/after_gateway.txt"
+                
+                if [ ! -f "$before_gateway_file" ] || [ ! -f "$after_gateway_file" ]; then
+                    echo "    - Missing gateway energy files in $trial_name, skipping..."
+                    energy_diffs+=("NA")
+                    continue
+                fi
+                
+                before_gateway_energy=$(grep 'kepler_container_joules_total.*mode="dynamic"' "$before_gateway_file" | awk '{print $2}')
+                after_gateway_energy=$(grep 'kepler_container_joules_total.*mode="dynamic"' "$after_gateway_file" | awk '{print $2}')
+                
+                if [ -z "$before_gateway_energy" ] || [ -z "$after_gateway_energy" ]; then
+                    echo "    - Could not extract gateway energy values from $trial_name, skipping..."
+                    energy_diffs+=("NA")
+                    continue
+                fi
+                
+                gateway_diff=$(echo "$after_gateway_energy - $before_gateway_energy" | bc -l)
+                total_diff=$(echo "$energy_diff + $gateway_diff" | bc -l)
+                
+                echo "    - $trial_name: Energy consumed = $total_diff joules (service: $energy_diff + gateway: $gateway_diff)"
+                energy_diffs+=("$total_diff")
+            else
+                echo "    - $trial_name: Energy consumed = $energy_diff joules"
+                energy_diffs+=("$energy_diff")
+            fi
         done
         
         valid_data=()
