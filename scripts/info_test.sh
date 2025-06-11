@@ -1,19 +1,42 @@
 #!/bin/bash
 
+IS_TESTING_GATEWAY=false
+
+if [ -z "$1" ]; then
+    echo "Error: Bearer token not provided"
+    echo "Usage: $0 [--gateway]"
+    echo "       --gateway    : Optional flag to run in gateway mode"
+    exit 1
+fi
 
 DIRECTORIES=(
-        "./Control_Project_JSON/k6/json_get_all_products_entities/reports/json_get_all_products_entities"
-        "./Control_Project_JSON/k6/json_get_user_id/reports/json_get_user_id"
-        "./Control_Project_JSON/k6/json_get_all_users/reports/json_get_all_users"
-        "./Control_Project_JSON/k6/json_create_user/reports/json_create_user"
-        "./Control_Project_JSON/k6/json_update_user/reports/json_update_user"
-        "./Control_Project_JSON/k6/json_delete_user/reports/json_delete_user"
-        "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_products_entities/reports/protobuf_get_all_products_entities"
-        "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_users/reports/protobuf_get_all_users"
-        "./Experimental_Group_ProtoBuff/k6/protobuf_get_user_id/reports/protobuf_get_user_id"
-        "./Experimental_Group_ProtoBuff/k6/protobuf_create_user/reports/protobuf_create_user"
-        "./Experimental_Group_ProtoBuff/k6/protobuf_update_user/reports/protobuf_update_user"
-        "./Experimental_Group_ProtoBuff/k6/protobuf_delete_user/reports/protobuf_delete_user"
+    "./Control_Project_JSON/k6/json_get_all_products_entities/reports/json_get_all_products_entities"
+    "./Control_Project_JSON/k6/json_get_user_id/reports/json_get_user_id"
+    "./Control_Project_JSON/k6/json_get_all_users/reports/json_get_all_users"
+    "./Control_Project_JSON/k6/json_create_user/reports/json_create_user"
+    "./Control_Project_JSON/k6/json_update_user/reports/json_update_user"
+    "./Control_Project_JSON/k6/json_delete_user/reports/json_delete_user"
+    
+    "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_products_entities/reports/protobuf_get_all_products_entities"
+    "./Experimental_Group_ProtoBuff/k6/protobuf_get_all_users/reports/protobuf_get_all_users"
+    "./Experimental_Group_ProtoBuff/k6/protobuf_get_user_id/reports/protobuf_get_user_id"
+    "./Experimental_Group_ProtoBuff/k6/protobuf_create_user/reports/protobuf_create_user"
+    "./Experimental_Group_ProtoBuff/k6/protobuf_update_user/reports/protobuf_update_user"
+    "./Experimental_Group_ProtoBuff/k6/protobuf_delete_user/reports/protobuf_delete_user"
+    
+    "./Gateway/k6_json/json_get_all_products_entities/reports/json_get_all_products_entities"
+    "./Gateway/k6_json/json_get_all_users/reports/json_get_all_users"
+    "./Gateway/k6_json/json_get_user_id/reports/json_get_user_id"
+    "./Gateway/k6_json/json_create_user/reports/json_create_user"
+    "./Gateway/k6_json/json_update_user/reports/json_update_user"
+    "./Gateway/k6_json/json_delete_user/reports/json_delete_user"
+    
+    "./Gateway/k6_protobuf/protobuf_get_all_products_entities/reports/protobuf_get_all_products_entities"
+    "./Gateway/k6_protobuf/protobuf_get_all_users/reports/protobuf_get_all_users"
+    "./Gateway/k6_protobuf/protobuf_get_user_id/reports/protobuf_get_user_id"
+    "./Gateway/k6_protobuf/protobuf_create_user/reports/protobuf_create_user"
+    "./Gateway/k6_protobuf/protobuf_update_user/reports/protobuf_update_user"
+    "./Gateway/k6_protobuf/protobuf_delete_user/reports/protobuf_delete_user"
 )
 
 process_directory() {
