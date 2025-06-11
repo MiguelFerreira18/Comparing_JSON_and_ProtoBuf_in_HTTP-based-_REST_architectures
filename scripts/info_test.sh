@@ -26,22 +26,71 @@ DIRECTORIES=(
     "./Gateway/k6_protobuf/protobuf_update_user/reports/protobuf_update_user_gateway"
     "./Gateway/k6_protobuf/protobuf_delete_user/reports/protobuf_delete_user_gateway"
 )
+calculate_median() {
+    local sorted_data=($(printf '%s\n' "$@" | sort -n))
+    local count=${#sorted_data[@]}
+    local median=0
+    
+    if (( count % 2 == 1 )); then
+        median=${sorted_data[((count/2))]}
+    else
+        median=$(echo "scale=4; (${sorted_data[((count/2-1))]} + ${sorted_data[((count/2))]}) / 2" | bc -l)
+    fi
+    
+    echo "$median"
+}
+
+# Function to extract base test name from path (removes json/protobuf prefixes)
+get_base_test_name() {
+    local path="$1"
+    local test_name
+    
+    # Extract the test name part (like "get_all_users")
+    if [[ "$path" =~ \/(json_|protobuf_)?([^/]+)(_gateway)?$ ]]; then
+        test_name="${BASH_REMATCH[2]}"
+    fi
+    
+    # Convert to uppercase and replace underscores with spaces
+    test_name=$(echo "$test_name" | tr '[:lower:]' '[:upper:]' | tr '_' ' ')
+    echo "$test_name"
+}
+
+# Function to determine if path is JSON or Protobuf
+get_test_type() {
+    local path="$1"
+    
+    if [[ "$path" == *"json"* ]]; then
+        echo "JSON"
+    elif [[ "$path" == *"protobuf"* ]]; then
+        echo "PROTOBUF"
+    fi
+}
+
+# Function to determine if path is gateway
+is_gateway() {
+    local path="$1"
+    [[ "$path" == *"gateway"* ]] || [[ "$path" == *"Gateway"* ]]
+}
+
+# Arrays to store all results
+declare -A all_results
 
 process_directory() {
     local base_dir="$1"
     local dir_name=$(basename "$base_dir")
-    local is_gateway=false
-
-    if [[ "$base_dir" == *"gateway"* ]] || [[ "$base_dir" == *"Gateway"* ]]; then 
-        is_gateway=true
+    
+    # Get base test name (without json/protobuf prefix)
+    local base_test_name=$(get_base_test_name "$base_dir")
+    local test_type=$(get_test_type "$base_dir")
+    local gateway_suffix=""
+    
+    if is_gateway "$base_dir"; then
+        gateway_suffix=" + Gateway"
     fi
-
+    
     echo ""
     echo "================================================================="
-    echo "PROCESSING DIRECTORY: $dir_name"
-    if $is_gateway; then
-        echo " (GATEWAY - WILL INCLUDE GATEWAY ENERGY IN CALCULATIONS)"
-    fi
+    echo "PROCESSING: $base_test_name - $test_type$gateway_suffix"
     echo "================================================================="
     
     # (1000, 10000)
@@ -64,7 +113,6 @@ process_directory() {
                 continue
             fi
             
-            # trial name/number
             trial_name=$(basename "$trial_dir")
             trial_names+=("$trial_name")
             
@@ -77,18 +125,20 @@ process_directory() {
                 continue
             fi
             
+            # Get main service energy
             before_energy=$(grep 'kepler_container_joules_total.*mode="dynamic"' "$before_file" | awk '{print $2}')
             after_energy=$(grep 'kepler_container_joules_total.*mode="dynamic"' "$after_file" | awk '{print $2}')
             
             if [ -z "$before_energy" ] || [ -z "$after_energy" ]; then
-                echo "    - Could not extract energy values from $trial_name, skipping..."
+                echo "    - Could not extract main service energy values from $trial_name, skipping..."
                 energy_diffs+=("NA")
                 continue
             fi
             
             energy_diff=$(echo "$after_energy - $before_energy" | bc -l)
             
-            if $is_gateway; then
+            # If gateway, add gateway energy
+            if is_gateway "$base_dir"; then
                 before_gateway_file="${trial_dir}/before_gateway.txt"
                 after_gateway_file="${trial_dir}/after_gateway.txt"
                 
@@ -157,6 +207,16 @@ process_directory() {
             fi
         done
         
+        median=$(calculate_median "${valid_data[@]}")
+        
+        # Store results for later table generation
+        key="$base_test_name|$test_type$gateway_suffix|$iteration"
+        all_results["$key|min"]=$min
+        all_results["$key|max"]=$max
+        all_results["$key|mean"]=$mean
+        all_results["$key|median"]=$median
+        all_results["$key|stddev"]=$stddev
+        
         echo ""
         echo "    SUMMARY FOR $iteration ITERATIONS:"
         echo "    ---------------------------------"
@@ -164,11 +224,69 @@ process_directory() {
         echo "    Minimum energy: $min joules"
         echo "    Maximum energy: $max joules"
         echo "    Mean energy consumption: $mean joules"
+        echo "    Median energy consumption: $median joules"
         echo "    Standard deviation: $stddev joules"
         echo ""
     done
 }
 
+# Function to print comparison tables
+print_comparison_tables() {
+    # Get unique base test names
+    declare -A base_test_names
+    for key in "${!all_results[@]}"; do
+        IFS='|' read -ra parts <<< "$key"
+        base_test_names["${parts[0]}"]=1
+    done
+    
+    # For each base test name, print a comparison table
+    for base_test_name in "${!base_test_names[@]}"; do
+        echo ""
+        echo "================================================================"
+        echo "COMPARISON TABLE FOR: $base_test_name"
+        echo "================================================================"
+        echo ""
+        printf "| %-20s | %-6s | %-8s | %-8s | %-8s | %-8s | %-8s |\n" \
+               "Test" "Reqs" "Min" "Max" "Mean" "Median" "Std"
+        echo "|----------------------|--------|----------|----------|----------|----------|----------|"
+        
+        # Print all variants for this endpoint
+        print_test_results "$base_test_name" "JSON" "1000"
+        print_test_results "$base_test_name" "PROTOBUF" "1000"
+        print_test_results "$base_test_name" "JSON + Gateway" "1000"
+        print_test_results "$base_test_name" "PROTOBUF + Gateway" "1000"
+        
+        print_test_results "$base_test_name" "JSON" "10000"
+        print_test_results "$base_test_name" "PROTOBUF" "10000"
+        print_test_results "$base_test_name" "JSON + Gateway" "10000"
+        print_test_results "$base_test_name" "PROTOBUF + Gateway" "10000"
+        
+        echo ""
+    done
+}
+
+# Function to print a row of test results
+print_test_results() {
+    local base_test_name="$1"
+    local test_type="$2"
+    local iteration="$3"
+    
+    local key="$base_test_name|$test_type|$iteration"
+    
+    if [[ -z "${all_results["$key|min"]}" ]]; then
+        return  # No data for this combination
+    fi
+    
+    printf "| %-20s | %-6s | %-8.2f | %-8.2f | %-8.2f | %-8.2f | %-8.2f |\n" \
+           "$test_type" "$iteration" \
+           "${all_results["$key|min"]}" \
+           "${all_results["$key|max"]}" \
+           "${all_results["$key|mean"]}" \
+           "${all_results["$key|median"]}" \
+           "${all_results["$key|stddev"]}"
+}
+
+# Main processing
 for dir in "${DIRECTORIES[@]}"; do
     if [ ! -d "$dir" ]; then
         echo "Directory $dir not found, skipping..."
@@ -176,6 +294,9 @@ for dir in "${DIRECTORIES[@]}"; do
     fi
     process_directory "$dir"
 done
+
+# Print all comparison tables
+print_comparison_tables
 
 echo ""
 echo "================================================================="
