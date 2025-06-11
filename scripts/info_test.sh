@@ -40,22 +40,18 @@ calculate_median() {
     echo "$median"
 }
 
-# Function to extract base test name from path (removes json/protobuf prefixes)
 get_base_test_name() {
     local path="$1"
     local test_name
     
-    # Extract the test name part (like "get_all_users")
     if [[ "$path" =~ \/(json_|protobuf_)?([^/]+)(_gateway)?$ ]]; then
         test_name="${BASH_REMATCH[2]}"
     fi
     
-    # Convert to uppercase and replace underscores with spaces
     test_name=$(echo "$test_name" | tr '[:lower:]' '[:upper:]' | tr '_' ' ')
     echo "$test_name"
 }
 
-# Function to determine if path is JSON or Protobuf
 get_test_type() {
     local path="$1"
     
@@ -66,13 +62,11 @@ get_test_type() {
     fi
 }
 
-# Function to determine if path is gateway
 is_gateway() {
     local path="$1"
     [[ "$path" == *"gateway"* ]] || [[ "$path" == *"Gateway"* ]]
 }
 
-# Arrays to store all results
 declare -A all_results
 
 process_directory() {
@@ -125,7 +119,6 @@ process_directory() {
                 continue
             fi
             
-            # Get main service energy
             before_energy=$(grep 'kepler_container_joules_total.*mode="dynamic"' "$before_file" | awk '{print $2}')
             after_energy=$(grep 'kepler_container_joules_total.*mode="dynamic"' "$after_file" | awk '{print $2}')
             
@@ -137,7 +130,6 @@ process_directory() {
             
             energy_diff=$(echo "$after_energy - $before_energy" | bc -l)
             
-            # If gateway, add gateway energy
             if is_gateway "$base_dir"; then
                 before_gateway_file="${trial_dir}/before_gateway.txt"
                 after_gateway_file="${trial_dir}/after_gateway.txt"
@@ -230,16 +222,13 @@ process_directory() {
     done
 }
 
-# Function to print comparison tables
 print_comparison_tables() {
-    # Get unique base test names
     declare -A base_test_names
     for key in "${!all_results[@]}"; do
         IFS='|' read -ra parts <<< "$key"
         base_test_names["${parts[0]}"]=1
     done
     
-    # For each base test name, print a comparison table
     for base_test_name in "${!base_test_names[@]}"; do
         echo ""
         echo "================================================================"
@@ -265,7 +254,6 @@ print_comparison_tables() {
     done
 }
 
-# Function to print a row of test results
 print_test_results() {
     local base_test_name="$1"
     local test_type="$2"
@@ -274,7 +262,7 @@ print_test_results() {
     local key="$base_test_name|$test_type|$iteration"
     
     if [[ -z "${all_results["$key|min"]}" ]]; then
-        return  # No data for this combination
+        return  
     fi
     
     printf "| %-20s | %-6s | %-8.2f | %-8.2f | %-8.2f | %-8.2f | %-8.2f |\n" \
@@ -286,7 +274,6 @@ print_test_results() {
            "${all_results["$key|stddev"]}"
 }
 
-# Main processing
 for dir in "${DIRECTORIES[@]}"; do
     if [ ! -d "$dir" ]; then
         echo "Directory $dir not found, skipping..."
@@ -295,7 +282,6 @@ for dir in "${DIRECTORIES[@]}"; do
     process_directory "$dir"
 done
 
-# Print all comparison tables
 print_comparison_tables
 
 echo ""
