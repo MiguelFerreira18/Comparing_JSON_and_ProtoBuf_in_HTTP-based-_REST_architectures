@@ -3,4 +3,4 @@ prometheus
 ./.idea
 .idea
 ./test/diff/*
-./test/temp*
+./test/*.bin
