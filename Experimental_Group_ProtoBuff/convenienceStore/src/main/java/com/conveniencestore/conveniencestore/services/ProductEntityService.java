@@ -7,6 +7,7 @@ import com.conveniencestore.conveniencestore.domain.Products.Product;
 import com.conveniencestore.conveniencestore.protobuf.LocalDateTimePbOuterClass;
 import com.conveniencestore.conveniencestore.protobuf.ProductEntityDto;
 import com.conveniencestore.conveniencestore.protobuf.ProductEntityOuterClass;
+import com.conveniencestore.conveniencestore.protobuf.ProductOuterClass;
 import com.conveniencestore.conveniencestore.repositories.ProductEntityRepository;
 import com.conveniencestore.conveniencestore.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -101,14 +102,34 @@ public class ProductEntityService implements ServiceInterface<ProductEntityOuter
         return response;
     }
 
+
     private ProductEntityOuterClass.ProductEntity convertFromProductEntity(ProductEntity productEntity) {
-        return ProductEntityOuterClass.ProductEntity.newBuilder()
+        ProductEntityOuterClass.ProductEntity.Builder builder = ProductEntityOuterClass.ProductEntity.newBuilder()
                 .setId(productEntity.getId())
                 .setName(productEntity.getName())
                 .setCreatedAt(convertLocalDateTime(productEntity.getCreatedAt()))
-                .setUpdatedAt(convertLocalDateTime(productEntity.getUpdatedAt()))
+                .setUpdatedAt(convertLocalDateTime(productEntity.getUpdatedAt()));
+
+        if (productEntity.getProducts() != null) {
+            for (Product product : productEntity.getProducts()) {
+                builder.addProducts(convertFromProduct(product));
+            }
+        }
+
+
+        return builder.build();
+    }
+
+    private ProductOuterClass.Product convertFromProduct(Product product) {
+        return ProductOuterClass.Product.newBuilder()
+                .setId(product.getId())
+                .setEntityId(product.getEntityId())
+                .setSold(product.isSold())
+                .setCreatedAt(convertLocalDateTime(product.getCreatedAt()))
+                .setUpdatedAt(convertLocalDateTime(product.getUpdatedAt()))
                 .build();
     }
+
 
     private LocalDateTimePbOuterClass.LocalDateTimePb convertLocalDateTime(LocalDateTime time) {
         return LocalDateTimePbOuterClass.LocalDateTimePb.newBuilder()
