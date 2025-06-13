@@ -2,3 +2,5 @@
 prometheus
 ./.idea
 .idea
+./test/diff/*
+./test/temp*

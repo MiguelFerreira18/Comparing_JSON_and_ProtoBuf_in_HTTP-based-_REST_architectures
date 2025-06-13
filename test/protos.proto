@@ -1,8 +1,9 @@
 syntax = "proto3";
 
 enum UserRoles {
-  ADMIN = 0;
-  EMPLOYEE = 1;
+  UNKOWN = 0;
+  ADMIN = 1;
+  EMPLOYEE = 2;
 }
 message LocalDateTimePb {
   int32 year = 1;

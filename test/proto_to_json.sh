@@ -1,12 +1,14 @@
 #!/bin/bash
 
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Decode the protobuf binary into text format
-DECODED_TEXT=$(protoc --decode="$1" --proto_path=. "$2" < "$3")
+DECODED_TEXT=$(protoc --decode="$1" --proto_path="$SCRIPT_DIR" "$2" < "$3")
 
 # Process the decoded text into JSON
 echo "$DECODED_TEXT" | awk '
 BEGIN {
-    print "[";
+    print "{";
     indent = "    ";
     level = 0;
     first[level] = 1;
@@ -128,6 +130,6 @@ END {
     if (in_array) {
         printf "\n%s]", array_indent;
     }
-    print "\n]";
+    print "\n}";
 }
 '

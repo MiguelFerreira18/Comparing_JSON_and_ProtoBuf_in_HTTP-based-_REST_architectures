@@ -4,6 +4,7 @@ option java_package = "com.conveniencestore.conveniencestore.protobuf";
 
 
 enum UserRoles {
-  ADMIN = 0;
-  EMPLOYEE = 1;
+  UNKOWN = 0;
+  ADMIN = 1;
+  EMPLOYEE = 2;
 }
