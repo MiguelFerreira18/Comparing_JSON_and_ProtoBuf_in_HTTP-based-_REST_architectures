@@ -103,10 +103,21 @@ parse_proto_to_json() {
     local proto_type="$1"
     local protos_file="$2"
     local output_file="$3"
+    local IS_SIMPLE_LIST="$4"
     
-    json=$("$PARSE_PROTO_TO_JSON_SCRIPT" "$proto_type" "$protos_file" "$output_file")
+    json=$("$PARSE_PROTO_TO_JSON_SCRIPT" "$proto_type" "$protos_file" "$output_file" "$IS_SIMPLE_LIST")
     
     echo $json
+}
+special_parse_proto_to_json() {
+    local proto_type="$1"
+    local protos_file="$2"
+    local output_file="$3"
+    local IS_SIMPLE_LIST="$4"
+    
+    decoded_text=$(protoc --decode="$1" --proto_path="$SCRIPT_DIR" "$2" < "$3")
+    
+    echo $decoded_text
 }
 assert_equal_file() {
     local expected="$1"
@@ -124,6 +135,19 @@ assert_equal_file() {
         echo "$test_name assertion passed. 🟩"
     fi
 }
+assert_equal_special(){
+    local expected="$(echo "$1" | tr -d '\r')"
+    local actual="$(echo "$2" | tr -d '\r')"
+    local test_name="$3"
+    
+    if [ "$expected" != "$actual" ]; then
+        echo "$test_name assertion failed. 🟥"
+        dif_out=$(diff <(echo "$expected") <(echo "$actual"))
+        echo -n "$dif_out" > "./test/diff/${test_name}_diff_output.txt"
+    else
+        echo "$test_name assertion passed. 🟩"
+    fi
+}
 
 # TESTS
 test_get_all_product_entities(){
@@ -131,15 +155,25 @@ test_get_all_product_entities(){
     local url="$2"
     local uri="$3"
     local output_bin_name="${SCRIPT_DIR}/temp_$(date +%s%N).bin"
+    local curl_extras=()
+    local expected_response_file
+    
+    if [ $IS_TESTING_PROTOBUF -eq 1 ]; then
+        curl_extras+=(--output "$output_bin_name")
+        local expected_response_file="./test/JSON/get_all_product_entities_expected"
+    else
+        local expected_response_file="./test/JSON/get_all_product_entities_expected.json"
+    fi
     
     local curl_request=$(curl --location "$url/$uri" \
         --header 'Accept: */*' \
         --header "Authorization: Bearer $bearer_token" \
+        "${curl_extras[@]}" \
     )
     
+    printf "\n"
     local curl_response=$(echo "$curl_request")
     
-    local expected_response_file="./test/JSON/get_all_product_entities_expected.json"
     if [ ! -f "$expected_response_file" ]; then
         echo "Error: Expected response file '$expected_response_file' does not exist."
         echo "get_all_product_entities assertion failed. 🟥"
@@ -150,15 +184,24 @@ test_get_all_product_entities(){
     local expected_response=$(cat "$expected_response_file")
     
     if [ $IS_TESTING_PROTOBUF -eq 1 ]; then
-        local type="ProductEntity"
-        json=$(parse_proto_to_json "$type" "$PROTOS" "$output_bin_name")
-        filtered_response=$(echo "$json" | jq 'map(del(.createdAt, .updatedAt) | .products |= map(del(.createdAt, .updatedAt)))')
-        assert_equal_file "$expected_response" "$filtered_response" "get_all_product_entities"
+        local type="ProductEntityCatalog"
+        proto_dir="$(realpath "${SCRIPT_DIR}")"
+        proto_file="${proto_dir}/${PROTOS}"
+        
+        filtered_response=$(protoc --decode="$type" --proto_path="$proto_dir" "$proto_file" < "$output_bin_name" | awk '
+            /created_at {/ { in_block=1; next }
+            /updated_at {/ { in_block=1; next }
+            /^[[:space:]]*}/ && in_block { in_block=0; next }
+            !in_block { print }
+        ')
+        assert_equal_special "$expected_response" "$filtered_response" "get_all_product_entities"
+        rm -f "$output_bin_name"
     else
         filtered_response=$(echo "$curl_response" | jq 'map(del(.createdAt, .updatedAt) | .products |= map(del(.createdAt, .updatedAt)))') || filtered_response="$curl_response"
         assert_equal_file "$expected_response" "$filtered_response" "get_all_product_entities"
     fi
     
+    printf "\n"
 }
 test_get_user_by_id(){
     local bearer_token="$1"
@@ -177,8 +220,7 @@ test_get_user_by_id(){
         "${curl_extras[@]}" \
     )
     
-    
-    
+    printf "\n"
     local curl_response=$(echo "$curl_request")
     
     local expected_response_file="./test/JSON/get_user_id_expected.json"
@@ -193,17 +235,17 @@ test_get_user_by_id(){
     
     if [ $IS_TESTING_PROTOBUF -eq 1 ]; then
         local type="UserResponseDTO"
-        json=$(parse_proto_to_json "$type" "${SCRIPT_DIR}/${PROTOS}" "$output_bin_name")
-        echo "$json"
+        json=$(parse_proto_to_json "$type" "${SCRIPT_DIR}/${PROTOS}" "$output_bin_name" "false")
         filtered_response=$(echo "$json" | jq 'del(.createdAt, .updatedAt)')
         assert_equal_file "$expected_response" "$filtered_response" "get_user_id"
-        
+        rm -f "$output_bin_name"
     else
         filtered_response=$(echo "$curl_response" | jq 'del(.createdAt, .updatedAt)') || filtered_response="$curl_response"
         assert_equal_file "$expected_response" "$filtered_response" "get_user_id"
         
     fi
     
+    printf "\n"
 }
 test_get_all_users(){
     local bearer_token="$1"
@@ -224,6 +266,7 @@ test_get_all_users(){
         "${curl_extras[@]}" \
     )
     
+    printf "\n"
     local curl_response=$(echo "$curl_request")
     
     local expected_response_file="./test/JSON/get_all_users_expected.json"
@@ -238,15 +281,16 @@ test_get_all_users(){
     
     if [ $IS_TESTING_PROTOBUF -eq 1 ]; then
         local type="UserResponseCatalog"
-        json=$(parse_proto_to_json "$type" "$PROTOS" "$output_bin_name")
-        filtered_response=$(echo "$json" | jq 'del(.createdAt, .updatedAt)')
-        # TODO: MAKE A SPECIAL SCRIPT FOR ARRAY DATA AND NOT OBJECT DATA
+        json=$(parse_proto_to_json "$type" "$PROTOS" "$output_bin_name" "true")
+        filtered_response=$(echo "$json")
         assert_equal_file "$expected_response" "$filtered_response" "get_all_users"
         rm -f "$output_bin_name"
     else
         filtered_response=$(echo "$curl_response" | jq 'map(del(.createdAt, .updatedAt))') || filtered_response="$curl_response"
         assert_equal_file "$expected_response" "$filtered_response" "get_all_users"
     fi
+    
+    printf "\n"
 }
 test_create_user(){
     local bearer_token="$1"
@@ -257,8 +301,6 @@ test_create_user(){
     local content_type="application/json"
     local curl_extras=()
     proto_dir="$(realpath "${SCRIPT_DIR}/${PROTOS}")"
-    
-    printf "\n\n"
     
     if [ $IS_TESTING_PROTOBUF -eq 1 ]; then
         output_bin_name="${SCRIPT_DIR}/temp_$(date +%s%N).bin"
@@ -275,9 +317,6 @@ test_create_user(){
         curl_extras+=(--data "$user_data")
     fi
     
-    printf "\n\n"
-    
-    
     local curl_request=$(curl -X POST --location "$url/$uri" \
         --header 'Accept: */*' \
         --header "Authorization: Bearer $bearer_token" \
@@ -285,9 +324,8 @@ test_create_user(){
         "${curl_extras[@]}" \
     )
     
+    printf "\n"
     local curl_response=$(echo "$curl_request")
-    
-    printf "\n\n"
     
     local expected_response_file="./test/JSON/post_user_expected.json"
     if [ ! -f "$expected_response_file" ]; then
@@ -301,7 +339,7 @@ test_create_user(){
     
     if [ $IS_TESTING_PROTOBUF -eq 1 ]; then
         local type="UserResponseDTO"
-        json=$(parse_proto_to_json "$type" "$PROTOS" "$output_bin_name")
+        json=$(parse_proto_to_json "$type" "$PROTOS" "$output_bin_name" "false")
         filtered_response=$(echo "$json" | jq 'del(.createdAt, .updatedAt)')
         assert_equal_file "$expected_response" "$filtered_response" "create_user"
         rm -f "$output_bin_name"
@@ -327,8 +365,6 @@ test_update_user(){
         return 1
     fi
     
-    printf "\n\n"
-    
     if [ $IS_TESTING_PROTOBUF -eq 1 ]; then
         content_type="application/x-protobuf"
         
@@ -342,10 +378,6 @@ test_update_user(){
         curl_extras+=(--data "$user_data")
     fi
     
-    printf "\n\n"
-    
-    local user_data=$(cat "$user_data_file")
-    
     local curl_request=$(curl --location --globoff --request PUT "$url/$uri" \
         --header 'Accept: */*' \
         --header "Authorization: Bearer $bearer_token" \
@@ -353,6 +385,7 @@ test_update_user(){
         "${curl_extras[@]}" \
     )
     
+    printf "\n"
     local curl_response=$(echo "$curl_request")
     
     local expected_response_file="./test/JSON/put_user_expected.json"
@@ -367,7 +400,7 @@ test_update_user(){
     
     if [ $IS_TESTING_PROTOBUF -eq 1 ]; then
         local type="UserResponseDTO"
-        json=$(parse_proto_to_json "$type" "$PROTOS" "$output_bin_name")
+        json=$(parse_proto_to_json "$type" "$PROTOS" "$output_bin_name" "false")
         filtered_response=$(echo "$json" | jq 'del(.createdAt, .updatedAt)')
         assert_equal_file "$expected_response" "$filtered_response" "update_user"
         rm -f "$output_bin_name"
@@ -386,8 +419,6 @@ test_delete_user(){
     
     if [ $IS_TESTING_PROTOBUF -eq 1 ]; then
         curl_extras+=(--output "$output_bin_name")
-    else
-        local user_data=$(cat "$user_data_file")
     fi
     
     local curl_request=$(curl --location --globoff --request DELETE "$url/$uri" \
@@ -396,8 +427,8 @@ test_delete_user(){
         "${curl_extras[@]}" \
     )
     
+    printf "\n"
     local curl_response=$(echo "$curl_request")
-    echo "$(cat $output_bin_name)"
     
     local expected_response_file="./test/JSON/delete_user_expected.json"
     if [ ! -f "$expected_response_file" ]; then
@@ -411,7 +442,7 @@ test_delete_user(){
     
     if [ $IS_TESTING_PROTOBUF -eq 1 ]; then
         local type="UserResponseDTO"
-        json=$(parse_proto_to_json "$type" "$PROTOS" "$output_bin_name")
+        json=$(parse_proto_to_json "$type" "$PROTOS" "$output_bin_name" "false")
         filtered_response=$(echo "$json" | jq 'del(.createdAt, .updatedAt)')
         assert_equal_file "$expected_response" "$filtered_response" "delete_user"
         rm -f "$output_bin_name"
@@ -421,10 +452,31 @@ test_delete_user(){
     fi
 }
 
-# test_get_all_product_entities "$BEARER_TOKEN" "$BASE_URL" "products/entities?orderby=id&order=asc"
-test_get_user_by_id "$BEARER_TOKEN" "$BASE_URL" "users/1" #! WORKS
-# test_get_all_users "$BEARER_TOKEN" "$BASE_URL" "users?orderby=id&order=asc"
-test_create_user "$BEARER_TOKEN" "$BASE_URL" "users" #! WORKS
-test_update_user "$BEARER_TOKEN" "$BASE_URL" "users/401" #! WORKS
-test_delete_user "$BEARER_TOKEN" "$BASE_URL" "users/401" #! WORKS
+echo "Starting integration tests..."
+echo "Testing with serialisation: $1"
+printf "\n\n"
+
+echo "Testing get_all_product_entities..."
+test_get_all_product_entities "$BEARER_TOKEN" "$BASE_URL" "products/entities?orderby=id&order=asc"
+printf "\n\n"
+
+echo "Testing get_user_by_id..."
+test_get_user_by_id "$BEARER_TOKEN" "$BASE_URL" "users/1"
+printf "\n\n"
+
+echo "Testing get_all_users..."
+test_get_all_users "$BEARER_TOKEN" "$BASE_URL" "users?orderby=id&order=asc"
+printf "\n\n"
+
+echo "Testing create_user..."
+test_create_user "$BEARER_TOKEN" "$BASE_URL" "users"
+printf "\n\n"
+
+echo "Testing update_user..."
+test_update_user "$BEARER_TOKEN" "$BASE_URL" "users/401"
+printf "\n\n"
+
+echo "Testing delete_user..."
+test_delete_user "$BEARER_TOKEN" "$BASE_URL" "users/401"
+printf "\n\n"
 
